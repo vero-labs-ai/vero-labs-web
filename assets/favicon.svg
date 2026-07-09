@@ -1,6 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Vero Labs">
-  <rect width="64" height="64" rx="12" fill="#0B0E14"/>
-  <path d="M16 18 L32 46 L48 18" fill="none" stroke="#E9A23B" stroke-width="6"
-        stroke-linecap="round" stroke-linejoin="round"/>
-  <circle cx="51" cy="20" r="4" fill="#5FD08A"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" fill="#F8F8F5"/>
+  <rect x="1.5" y="1.5" width="61" height="61" fill="none" stroke="#171715" stroke-width="3"/>
+  <text x="32" y="43" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="600" font-size="26" fill="#171715">V&#183;L</text>
 </svg>

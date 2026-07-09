@@ -1,35 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Vero Labs, applied AI studio, Bangalore">
-  <defs>
-    <radialGradient id="glow" cx="78%" cy="30%" r="55%">
-      <stop offset="0%" stop-color="#E9A23B" stop-opacity="0.16"/>
-      <stop offset="100%" stop-color="#E9A23B" stop-opacity="0"/>
-    </radialGradient>
-  </defs>
-  <rect width="1200" height="630" fill="#0B0E14"/>
-  <rect width="1200" height="630" fill="url(#glow)"/>
-
-  <!-- mono eyebrow -->
-  <text x="80" y="150" fill="#8A93A6"
-        font-family="'JetBrains Mono', ui-monospace, monospace" font-size="24"
-        letter-spacing="4">VERO LABS // APPLIED AI STUDIO // BANGALORE</text>
-
-  <!-- wordmark / headline -->
-  <text x="78" y="320" fill="#E8E6E1"
-        font-family="'Space Grotesk', system-ui, sans-serif" font-size="92"
-        font-weight="600" letter-spacing="-2">Production AI systems,</text>
-  <text x="78" y="420" fill="#E8E6E1"
-        font-family="'Space Grotesk', system-ui, sans-serif" font-size="92"
-        font-weight="600" letter-spacing="-2">built end to end.</text>
-
-  <!-- mono support line -->
-  <text x="80" y="520" fill="#E9A23B"
-        font-family="'JetBrains Mono', ui-monospace, monospace" font-size="26"
-        letter-spacing="1">multi-agent · voice · computer vision · applied ml</text>
-
-  <!-- hairline + live dot -->
-  <rect x="80" y="556" width="1040" height="1" fill="#232A38"/>
-  <circle cx="1090" cy="150" r="9" fill="#5FD08A"/>
-  <text x="980" y="158" fill="#8A93A6"
-        font-family="'JetBrains Mono', ui-monospace, monospace" font-size="22"
-        letter-spacing="2">live</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <!-- Editable source for og.png (1200x630). The PNG is exported with the
+       site's design language; this SVG uses local serif/mono fallbacks so
+       it renders anywhere. Re-export after edits (see README). -->
+  <rect width="1200" height="630" fill="#F8F8F5"/>
+  <text x="80" y="150" font-family="Georgia, 'Times New Roman', serif" font-weight="600" font-size="72" letter-spacing="1" fill="#171715">VERO LABS</text>
+  <text x="1120" y="150" text-anchor="end" font-family="Georgia, 'Times New Roman', serif" font-size="30" fill="#55554F">Applied AI Studio, Bangalore</text>
+  <rect x="80" y="185" width="1040" height="2" fill="#171715"/>
+  <text x="80" y="235" font-family="Consolas, 'Courier New', monospace" font-size="24" letter-spacing="2" fill="#55554F">NO. 01 &#183; <tspan fill="#C8371E">FIELD REPORT</tspan> &#183; 2026</text>
+  <text x="80" y="370" font-family="Georgia, 'Times New Roman', serif" font-weight="500" font-size="60" fill="#171715">We build AI systems that survive</text>
+  <text x="80" y="445" font-family="Georgia, 'Times New Roman', serif" font-weight="500" font-size="60" fill="#171715">contact with production.</text>
+  <text x="80" y="560" font-family="Consolas, 'Courier New', monospace" font-size="24" letter-spacing="1" fill="#55554F">multi-agent &#183; voice &#183; computer vision &#183; applied ml</text>
 </svg>
