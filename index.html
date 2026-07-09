@@ -1,627 +1,498 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <title>Vero Labs · Applied AI Studio</title>
-  <meta name="description" content="Vero Labs is a Bangalore applied AI studio. We design, build, and run AI systems in production across multi-agent systems, voice agents, computer vision, and applied ML.">
-  <meta name="theme-color" content="#0B0E14">
-
-  <!-- Open Graph -->
+  <title>Vero Labs · Applied AI Studio, Bangalore</title>
+  <meta name="description" content="Vero Labs designs, builds, and runs production AI systems: multi-agent systems, voice agents, computer vision, and applied ML. Two engineers, end to end. A field report with real schematics, real latency numbers, and a recorded demo.">
+  <meta property="og:title" content="Vero Labs · Field Report No. 01">
+  <meta property="og:description" content="Production AI systems, built end to end. Evidence inside.">
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Vero Labs">
-  <meta property="og:title" content="Vero Labs">
-  <meta property="og:description" content="Production AI systems, built end to end. Multi-agent systems, voice agents, computer vision, and applied ML.">
   <meta property="og:image" content="./assets/og.png">
-  <meta property="og:image:type" content="image/png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Vero Labs. Production AI systems, built end to end.">
-
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Vero Labs">
-  <meta name="twitter:description" content="Production AI systems, built end to end. Multi-agent systems, voice agents, computer vision, and applied ML.">
-  <meta name="twitter:image" content="./assets/og.png">
-
-  <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg">
-
-  <!-- Fonts -->
+  <meta name="theme-color" content="#F8F8F5">
+  <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap">
-
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=Instrument+Sans:wght@400;500&amp;family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400&amp;display=swap">
   <link rel="stylesheet" href="./styles.css">
-
-  <!-- Structured data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Vero Labs",
-    "description": "Bangalore applied AI studio. We design, build, and run AI systems in production across multi-agent systems, voice agents, computer vision, and applied ML.",
-    "slogan": "Production AI systems, built end to end.",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Bangalore",
-      "addressCountry": "IN"
-    },
-    "knowsAbout": [
-      "Multi-agent systems",
-      "Voice AI",
-      "Computer vision",
-      "Retrieval-augmented generation",
-      "Applied machine learning"
-    ],
-    "founder": [
-      {
-        "@type": "Person",
-        "name": "Vishal",
-        "jobTitle": "Engineer / Developer",
-        "sameAs": "https://github.com/Dark8203"
-      },
-      {
-        "@type": "Person",
-        "name": "Alakh",
-        "jobTitle": "Engineer / Developer",
-        "sameAs": "https://github.com/alakhagr"
-      }
-    ]
-  }
-  </script>
+  <script src="./main.js" defer></script>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
 
-  <header class="site-header" id="top">
-    <nav class="nav container" aria-label="Primary">
-      <a class="nav__logo" href="#top">Vero&nbsp;Labs</a>
+<a class="skip-link" href="#main">Skip to content</a>
 
-      <button class="nav__toggle" aria-expanded="false" aria-controls="nav-menu"
-              aria-label="Open menu">
-        <span class="nav__toggle-bar"></span>
-        <span class="nav__toggle-bar"></span>
-      </button>
-
-      <div class="nav__menu" id="nav-menu">
-        <ul class="nav__links">
-          <li><a href="#work">Work</a></li>
-          <li><a href="#what-we-do">What we do</a></li>
-          <li><a href="#how-we-work">How we work</a></li>
-          <li><a href="#team">Team</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-        <a class="btn btn--primary nav__cta" href="#contact">Start a project</a>
-      </div>
+<div class="stickybar" id="stickybar">
+  <div class="wrap stickybar-inner">
+    <a class="wordmark" href="#top">Vero Labs</a>
+    <nav class="stickybar-nav" aria-label="Quick contents">
+      <a href="#demo">Demo</a>
+      <a href="#work">Work</a>
+      <a href="#method">Method</a>
+      <a href="#studio">Studio</a>
+      <a href="#contact">Contact</a>
     </nav>
-  </header>
+    <a class="stickybar-cta" href="#contact">Start a project</a>
+  </div>
+</div>
 
-  <main id="main">
+<header class="masthead wrap" id="top">
+  <div class="masthead-top">
+    <span class="wordmark">VERO LABS</span>
+    <span class="masthead-desc">Applied AI Studio, Bangalore</span>
+  </div>
+  <div class="masthead-meta">
+    <span>No. 01 · Field Report · 2026</span>
+    <nav class="contents-nav" aria-label="Contents">
+      <span class="contents-label">Contents:</span>
+      <a href="#demo">Demo</a>
+      <a href="#work">Work</a>
+      <a href="#method">Method</a>
+      <a href="#studio">Studio</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
 
-    <!-- ============================ HERO ============================ -->
-    <section class="hero section" aria-labelledby="hero-title">
-      <div class="container hero__grid">
-        <div class="hero__copy">
-          <p class="eyebrow hero__eyebrow">Vero Labs · Applied AI studio · Bangalore</p>
-          <h1 class="display-xl" id="hero-title">Production AI systems, built end to end.</h1>
-          <p class="lead hero__sub">
-            Vero Labs is a two-person applied AI studio in Bangalore. We design, build, and run
-            AI systems for teams that need machine learning in production but do not have an ML
-            team of their own. We work across multi-agent systems, voice agents, computer vision,
-            and applied ML, and we own the whole thing from the first call to the system running
-            in production.
-          </p>
-          <div class="hero__actions">
-            <a class="btn btn--primary" href="#contact">Start a project</a>
-            <a class="btn btn--ghost-link" href="#work">See the work <span aria-hidden="true">&rarr;</span></a>
-          </div>
-          <p class="mono hero__support">multi-agent · voice · computer vision · applied ml // scoped, built, deployed, run</p>
+<main id="main">
+
+  <section class="hero wrap">
+    <h1>We build AI systems that survive contact with production.</h1>
+    <p class="hero-sub">Vero Labs is a two-person applied AI studio in Bangalore. We design, build, and run AI systems for teams that need machine learning in production but do not have an ML team of their own: multi-agent systems, voice agents, computer vision, and applied ML. We own the whole thing, from the first call to the system running live, and we stay on to operate it.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#contact">Start a project</a>
+      <a class="textlink" href="#demo">Watch the demo ↓</a>
+    </div>
+    <p class="hero-tags">multi-agent · voice · computer vision · applied ml</p>
+  </section>
+
+  <!-- 01 · Demo -->
+  <section class="section wrap reveal" id="demo" aria-labelledby="demo-title">
+    <header class="section-head">
+      <div class="kicker"><span class="kicker-no">01</span><h2 class="kicker-name" id="demo-title">Demo</h2></div>
+    </header>
+    <p class="section-intro">The fastest way to judge us is to watch the system work. This is a recorded walkthrough of a voice agent we built and shipped: live test calls, real latency, and the structured data every call writes back to the CRM.</p>
+
+    <div class="annotated">
+      <figure class="evidence">
+        <p class="evidence-title">Exhibit A · recorded walkthrough</p>
+
+        <!-- ============================================================
+             VIDEO EMBED SWAP POINT
+             Replace the .video-frame contents below with the real embed:
+             <iframe src="https://www.youtube-nocookie.com/embed/VIDEO_ID"
+                     title="Recorded walkthrough of the voice agent"
+                     allow="encrypted-media; picture-in-picture"
+                     allowfullscreen></iframe>
+             (or the equivalent Loom embed iframe). Keep the .video-frame
+             wrapper; it provides the border and the 16:9 ratio.
+             ============================================================ -->
+        <div class="video-frame">
+          <iframe src="https://www.youtube-nocookie.com/embed/E92rkpvyChk?rel=0"
+                   title="Recorded walkthrough of the voice agent"
+                   allow="encrypted-media; picture-in-picture"
+                   allowfullscreen></iframe>
         </div>
 
-        <!-- Hero signature: systems panel -->
-        <div class="hero__panel">
-          <div class="panel" role="img"
-               aria-label="Vero Labs systems panel. Service areas: multi-agent systems, computer vision, voice agents, RAG and applied ML. Delivery pipeline: scope, build, deploy, run. Status: live.">
-            <div class="panel__bar" aria-hidden="true">
-              <span class="panel__title mono">vero labs // systems</span>
-              <span class="panel__dots">
-                <span></span><span></span><span></span>
-              </span>
-            </div>
-            <div class="panel__body" aria-hidden="true">
-              <ul class="panel__services">
-                <li class="panel__service mono"><span class="panel__caret">&gt;</span> multi-agent systems</li>
-                <li class="panel__service mono"><span class="panel__caret">&gt;</span> computer vision</li>
-                <li class="panel__service mono"><span class="panel__caret">&gt;</span> voice agents</li>
-                <li class="panel__service mono"><span class="panel__caret">&gt;</span> rag &amp; applied ml</li>
-              </ul>
-              <div class="panel__rule"></div>
-              <div class="panel__pipeline mono">
-                <span class="pipe-stage" data-stage="0">scope</span>
-                <span class="pipe-arrow">&rarr;</span>
-                <span class="pipe-stage" data-stage="1">build</span>
-                <span class="pipe-arrow">&rarr;</span>
-                <span class="pipe-stage" data-stage="2">deploy</span>
-                <span class="pipe-arrow">&rarr;</span>
-                <span class="pipe-stage" data-stage="3">run</span>
-                <span class="panel__status">
-                  <span class="live-dot"></span><span class="live-label mono">live</span>
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
+        <figcaption class="fig-caption">Internal test calls. Our engineer as the customer. Nothing staged.</figcaption>
+
+        <!-- ============================================================
+             AUDIO CLIPS REMOVED (players return when the MP3s land in
+             ./assets/audio/). To restore, paste this list back here:
+
+             <ul class="clip-list">
+               <li>
+                 <audio controls preload="none" src="./assets/audio/clip-07a.mp3" aria-label="Call clip 07a: ten seconds of silence, the agent checks in and resumes"></audio>
+                 <span class="clip-caption"><span class="clip-no">07a</span> · Ten seconds of silence. The agent checks in and resumes where it left off.</span>
+               </li>
+               <li>
+                 <audio controls preload="none" src="./assets/audio/clip-10.mp3" aria-label="Call clip 10: garbled input on a noisy line, the agent clarifies"></audio>
+                 <span class="clip-caption"><span class="clip-no">10</span> · Garbled input on a noisy line. The agent clarifies. It never guesses.</span>
+               </li>
+             </ul>
+
+             POST-BLEEP SWAP: once clip 06 is cleaned, replace the clip-10
+             item with:
+               <li>
+                 <audio controls preload="none" src="./assets/audio/clip-06.mp3" aria-label="Call clip 06: the caller interrupts mid-sentence, the agent stops and takes the correction"></audio>
+                 <span class="clip-caption"><span class="clip-no">06</span> · The caller interrupts mid-sentence. The agent stops, apologises, and takes the correction.</span>
+               </li>
+             ============================================================ -->
+
+        <!-- FUTURE (only when the callable demo agent is live), add inside
+             this figure, styled as a redline line:
+        <p class="demo-callout">Or call the demo agent yourself: [number]. It picks up in English or Hindi.</p>
+        -->
+      </figure>
+      <p class="margin-note">Every clip on this page is from an internal test call. No customer audio, ever.</p>
+    </div>
+  </section>
+
+  <!-- 02 · What we do -->
+  <section class="section wrap reveal" id="what-we-do" aria-labelledby="what-title">
+    <header class="section-head">
+      <div class="kicker"><span class="kicker-no">02</span><h2 class="kicker-name" id="what-title">What we do</h2></div>
+    </header>
+    <div class="annotated">
+      <p class="section-intro">We are generalists the way a small senior team has to be: we scope it, build it, deploy it, and stay on to run it. Four areas we go deep in.</p>
+      <p class="margin-note">Stated as things we build. One has a live case study below.</p>
+    </div>
+
+    <div class="cap-grid">
+      <div class="cap">
+        <h3>Multi-agent and agentic systems</h3>
+        <p>Systems where multiple specialized agents plan, call tools, and hand off to each other to get real work done. We design the orchestration, the guardrails, and the failure handling so the system stays reliable when a single step goes wrong.</p>
       </div>
-    </section>
-
-    <!-- ========================= STAT STRIP ========================= -->
-    <section class="stats" aria-label="Studio facts">
-      <div class="container">
-        <ul class="stats__row">
-          <li class="stats__item">
-            <span class="num stats__num">4</span>
-            <span class="stats__label">service areas: multi-agent, voice, computer vision, applied ML</span>
-          </li>
-          <li class="stats__item">
-            <span class="num stats__num">2</span>
-            <span class="stats__label">engineers, end to end, no handoffs</span>
-          </li>
-          <li class="stats__item">
-            <span class="num stats__num">end-to-end</span>
-            <span class="stats__label">we scope, build, deploy, and run it</span>
-          </li>
-          <li class="stats__item">
-            <span class="num stats__num stats__num--accent">&lt; 2s</span>
-            <span class="stats__label">real-time turns in a system we shipped to production</span>
-          </li>
-        </ul>
-        <p class="stats__caption muted">
-          The one hard number is from a deployed production system. We publish engineering numbers
-          we can stand behind, and we do not publish outcome metrics until a live cohort earns them.
-        </p>
+      <div class="cap">
+        <h3>Computer vision</h3>
+        <p>Face detection and recognition, 1:N identity matching at scale, and image-quality and liveness checks. We work with proven open components (detection, embedding, vector search) and tune the decision logic for the accuracy and review workflow your use case demands.</p>
       </div>
-    </section>
-
-    <!-- ========================= WHAT WE DO ========================= -->
-    <section class="section" id="what-we-do" aria-labelledby="what-we-do-title">
-      <div class="container">
-        <p class="eyebrow">What we do</p>
-        <h2 class="heading" id="what-we-do-title">Four things we build, end to end.</h2>
-        <p class="lead section__intro">
-          We are generalists in the way a small, senior team has to be: we scope it, build it,
-          deploy it, and stay on to run it. These are the areas we go deep in.
-        </p>
-
-        <ul class="grid-2 cap-grid">
-          <li class="card cap">
-            <span class="cap__index num">01</span>
-            <h3 class="card-heading">Multi-agent and agentic systems</h3>
-            <p class="muted">
-              Systems where multiple specialized agents plan, call tools, and hand off to each
-              other to get real work done. We design the orchestration, the guardrails, and the
-              failure handling so the system stays reliable when a single step goes wrong.
-            </p>
-          </li>
-          <li class="card cap">
-            <span class="cap__index num">02</span>
-            <h3 class="card-heading">Computer vision</h3>
-            <p class="muted">
-              Face detection and recognition, 1:N identity matching at scale, and image-quality
-              and liveness checks. We work with proven open components (detection, embedding,
-              vector search) and tune the decision logic for the accuracy and review workflow
-              your use case demands.
-            </p>
-          </li>
-          <li class="card cap">
-            <span class="cap__index num">03</span>
-            <h3 class="card-heading">Conversational and voice AI</h3>
-            <p class="muted">
-              Real-time voice agents that hold a natural two-way conversation over the phone, in
-              English and Indian languages. We assemble the full stack: telephony, speech-to-text,
-              an in-call LLM, text-to-speech, and the low-latency turn-taking loop that ties them
-              together, then wire the output back into your systems as structured data.
-            </p>
-          </li>
-          <li class="card cap">
-            <span class="cap__index num">04</span>
-            <h3 class="card-heading">RAG and applied ML</h3>
-            <p class="muted">
-              Retrieval-augmented LLM systems, model selection and evaluation, and the unglamorous
-              parts that decide whether ML works in production: data pipelines, scoring logic,
-              deployment, and monitoring. We pick the boring, reliable option on purpose.
-            </p>
-          </li>
-        </ul>
+      <div class="cap">
+        <h3>Conversational and voice AI</h3>
+        <p>Real-time voice agents that hold a natural two-way conversation over the phone, in English and Indian languages. We assemble the full stack: telephony, speech-to-text, an in-call LLM, text-to-speech, and the low-latency turn-taking loop that ties them together, then wire the output back into your systems as structured data.</p>
       </div>
-    </section>
-
-    <!-- ======================= SELECTED WORK ======================== -->
-    <section class="work" id="work" aria-labelledby="work-title">
-      <div class="container">
-        <p class="eyebrow">Selected work</p>
-        <p class="lead section__intro work__intro">
-          One engagement that shows how we work: scoped, built, and now running in production.
-          The domain happens to be voice, but the approach is the same whatever the AI problem is.
-        </p>
-
-        <p class="mono work__kicker">Voice AI · Real estate · In production</p>
-        <h2 class="heading work__title" id="work-title">
-          A real-time voice agent that qualifies leads before a human picks up.
-        </h2>
-        <p class="muted work__client">For an enterprise real estate client. Live in production.</p>
-
-        <div class="work__cols">
-          <div class="work__block">
-            <h3 class="eyebrow work__label">The problem</h3>
-            <p>
-              Real estate developers generate warm leads in volume: people who fill an enquiry
-              form from an ad or a landing page. The economics break at first touch. Intent is
-              highest within minutes of the form, but human tele-callers cannot call every lead
-              instantly, so hot leads cool while the team works through the queue. The first call
-              is also the same eight to ten questions every time (still interested, budget,
-              timeline, own-use or investment, loan or self-funded, ready for a site visit), which
-              is exactly the high-volume, low-variation work that burns callers out. And what the
-              customer actually says on that first call rarely lands in the CRM in a structured,
-              queryable form.
-            </p>
-          </div>
-          <div class="work__block">
-            <h3 class="eyebrow work__label">What we built</h3>
-            <p>
-              An AI voice agent that calls each warm lead automatically, holds a natural two-way
-              conversation in English or Hindi, runs the full qualification flow, books a site
-              visit when the lead is ready, and writes a structured, scored payload back into
-              Salesforce in real time. Human callers then inherit only the hot, fully-contextualised
-              leads. It is positioned as a first-touch filter, not a replacement for the sales team.
-            </p>
-          </div>
-        </div>
-
-        <!-- How it works: three steps -->
-        <h3 class="eyebrow work__label work__steps-label">How it works</h3>
-        <ol class="grid-3 steps">
-          <li class="card step">
-            <span class="step__index num">01</span>
-            <h4 class="card-heading step__title mono">Lead in</h4>
-            <p class="muted">
-              A new warm lead in the CRM triggers an outbound call within the speed-to-lead window,
-              in the language the lead chose on the form.
-            </p>
-          </li>
-          <li class="card step">
-            <span class="step__index num">02</span>
-            <h4 class="card-heading step__title mono">Qualify</h4>
-            <p class="muted">
-              The agent runs the full qualification conversation, answers locality and project
-              questions from structured per-call context, handles interruptions, and books a site
-              visit when the lead is ready.
-            </p>
-          </li>
-          <li class="card step">
-            <span class="step__index num">03</span>
-            <h4 class="card-heading step__title mono">Structured result out</h4>
-            <p class="muted">
-              After the call, the system extracts a scored, structured result (roughly 50 fields
-              across 14 blocks) and pushes it back into the CRM in real time, so the sales team
-              picks up only qualified, contextualised leads.
-            </p>
-          </li>
-        </ol>
-
-        <!-- Under the hood -->
-        <h3 class="eyebrow work__label work__hood-label">Under the hood</h3>
-
-        <!-- The call loop -->
-        <figure class="callloop"
-                aria-label="One conversational turn. Customer audio goes to Telephony (Plivo, ~44 to 77ms first audio), then Speech-to-text (Deepgram Nova-3, ~17 to 50ms per utterance), then the In-call LLM (Azure GPT-4.1, ~1.0 to 1.7s first token, the latency-dominant stage), then Text-to-speech (ElevenLabs, ~350 to 1000ms first token), and back to the customer.">
-          <figcaption class="callloop__cap mono" aria-hidden="true">
-            <span class="live-dot"></span><span class="live-label">live</span>
-            <span class="callloop__turn muted">one conversational turn</span>
-          </figcaption>
-
-          <ol class="callloop__flow" aria-hidden="true">
-            <li class="cl-node cl-node--endpoint" data-node="0">
-              <span class="cl-node__stage mono">Customer</span>
-              <span class="cl-node__tool muted">speaks</span>
-            </li>
-            <li class="cl-arrow" aria-hidden="true">&rarr;</li>
-            <li class="cl-node" data-node="1">
-              <span class="cl-node__stage mono">Telephony</span>
-              <span class="cl-node__tool">Plivo</span>
-              <span class="cl-node__lat num">~44-77ms</span>
-              <span class="cl-node__note muted">first audio</span>
-            </li>
-            <li class="cl-arrow" aria-hidden="true">&rarr;</li>
-            <li class="cl-node" data-node="2">
-              <span class="cl-node__stage mono">Speech-to-text</span>
-              <span class="cl-node__tool">Deepgram Nova-3</span>
-              <span class="cl-node__lat num">~17-50ms</span>
-              <span class="cl-node__note muted">per utterance</span>
-            </li>
-            <li class="cl-arrow" aria-hidden="true">&rarr;</li>
-            <li class="cl-node cl-node--dominant" data-node="3">
-              <span class="cl-node__stage mono">In-call LLM</span>
-              <span class="cl-node__tool">Azure GPT-4.1</span>
-              <span class="cl-node__lat num">~1.0-1.7s</span>
-              <span class="cl-node__note muted">first token · latency-dominant</span>
-            </li>
-            <li class="cl-arrow" aria-hidden="true">&rarr;</li>
-            <li class="cl-node" data-node="4">
-              <span class="cl-node__stage mono">Text-to-speech</span>
-              <span class="cl-node__tool">ElevenLabs</span>
-              <span class="cl-node__lat num">~350-1000ms</span>
-              <span class="cl-node__note muted">first token</span>
-            </li>
-            <li class="cl-arrow cl-arrow--return" aria-hidden="true">&rarr;</li>
-            <li class="cl-node cl-node--endpoint" data-node="5">
-              <span class="cl-node__stage mono">Customer</span>
-              <span class="cl-node__tool muted">hears</span>
-            </li>
-          </ol>
-        </figure>
-
-        <p class="work__hood-text">
-          A FastAPI orchestration service (hosted on Render) receives the lead, triggers the call
-          through Bolna's voice infrastructure, then processes the transcript after the call. A
-          separate LLM pass (GPT-5.4) turns the raw transcript into the canonical structured
-          payload. A Node.js middleware layer bridges the pipeline and Salesforce, holds
-          credentials, and backs up every transcript.
-        </p>
-
-        <!-- Architecture diagram -->
-        <figure class="arch"
-                aria-label="System architecture around the call. A lead flows from Salesforce through a Node.js middleware bridge to a FastAPI orchestration service on Render, which triggers the call through Bolna's voice infrastructure (Plivo, Deepgram, Azure GPT-4.1, ElevenLabs). After the call, a GPT-5.4 pass extracts a canonical JSON payload that is pushed back to Salesforce in real time, with a polling fallback.">
-          <ol class="arch__flow" aria-hidden="true">
-            <li class="arch__node">
-              <span class="arch__name mono">Salesforce</span>
-              <span class="arch__sub muted">CRM: lead in, result out</span>
-            </li>
-            <li class="arch__arrow" aria-hidden="true">&rarr;</li>
-            <li class="arch__node">
-              <span class="arch__name mono">Node.js middleware</span>
-              <span class="arch__sub muted">bridge · credentials · transcript backup</span>
-            </li>
-            <li class="arch__arrow" aria-hidden="true">&rarr;</li>
-            <li class="arch__node">
-              <span class="arch__name mono">FastAPI on Render</span>
-              <span class="arch__sub muted">orchestration service</span>
-            </li>
-            <li class="arch__arrow" aria-hidden="true">&rarr;</li>
-            <li class="arch__node arch__node--live">
-              <span class="arch__name mono">Bolna</span>
-              <span class="arch__sub muted">Plivo · Deepgram · Azure GPT-4.1 · ElevenLabs</span>
-            </li>
-          </ol>
-          <div class="arch__return" aria-hidden="true">
-            <span class="arch__return-line"></span>
-            <span class="arch__return-label mono">real-time JSON result &rarr; Salesforce (polling fallback)</span>
-          </div>
-          <p class="arch__note mono" aria-hidden="true">
-            <span class="arch__note-mark">&rarr;</span> post-call: GPT-5.4 extraction &rarr; canonical JSON (14 blocks)
-          </p>
-        </figure>
-
-        <!-- Design notes -->
-        <h3 class="eyebrow work__label">Design notes</h3>
-        <dl class="notes">
-          <div class="note">
-            <dt class="note__term mono">Determinism over RAG</dt>
-            <dd class="note__desc muted">
-              Project knowledge is passed as structured per-call context rather than retrieved from
-              a vector store, so answers to locality and project questions are consistent and
-              auditable. An earlier retrieval-based experiment was dropped on purpose.
-            </dd>
-          </div>
-          <div class="note">
-            <dt class="note__term mono">Resume on drop</dt>
-            <dd class="note__desc muted">
-              If a call drops mid-conversation, the system calls back with a resume-mode agent that
-              skips already-answered questions and picks up where it left off, and can acknowledge
-              a concern raised in the previous call.
-            </dd>
-          </div>
-          <div class="note">
-            <dt class="note__term mono">No lost leads</dt>
-            <dd class="note__desc muted">
-              Results are pushed in real time, with a polling fallback if the push fails. In
-              testing, when the bridge briefly returned an error and recovered, the fallback fired
-              and no lead data was lost.
-            </dd>
-          </div>
-          <div class="note">
-            <dt class="note__term mono">Native barge-in</dt>
-            <dd class="note__desc muted">
-              When the customer starts talking mid-sentence, the agent stops and listens, with
-              endpointing tuned to 100ms for responsive turn-handoff.
-            </dd>
-          </div>
-          <div class="note">
-            <dt class="note__term mono">Honest scope</dt>
-            <dd class="note__desc muted">
-              The agent qualifies and books. It does not negotiate, and it deflects questions it
-              does not have data for to a human follow-up instead of inventing an answer.
-            </dd>
-          </div>
-        </dl>
-
-        <!-- The stack -->
-        <h3 class="eyebrow work__label">The stack</h3>
-        <dl class="stack">
-          <div class="stack__row"><dt class="stack__key mono">Telephony</dt><dd class="stack__val mono">Plivo (via Bolna)</dd></div>
-          <div class="stack__row"><dt class="stack__key mono">Speech-to-text</dt><dd class="stack__val mono">Deepgram Nova-3 (Hindi config, covers Hinglish and Indian English)</dd></div>
-          <div class="stack__row"><dt class="stack__key mono">In-call LLM</dt><dd class="stack__val mono">Azure GPT-4.1</dd></div>
-          <div class="stack__row"><dt class="stack__key mono">Text-to-speech</dt><dd class="stack__val mono">ElevenLabs eleven_multilingual_v2</dd></div>
-          <div class="stack__row"><dt class="stack__key mono">Voice orchestration</dt><dd class="stack__val mono">Bolna</dd></div>
-          <div class="stack__row"><dt class="stack__key mono">Post-call extraction</dt><dd class="stack__val mono">OpenAI GPT-5.4 &rarr; canonical JSON (14 blocks)</dd></div>
-          <div class="stack__row"><dt class="stack__key mono">Orchestration service</dt><dd class="stack__val mono">FastAPI on Render</dd></div>
-          <div class="stack__row"><dt class="stack__key mono">CRM bridge</dt><dd class="stack__val mono">Node.js middleware</dd></div>
-          <div class="stack__row"><dt class="stack__key mono">CRM</dt><dd class="stack__val mono">Salesforce (Sales, Data, Marketing Cloud)</dd></div>
-          <div class="stack__row"><dt class="stack__key mono">Call log store</dt><dd class="stack__val mono">SQLite (indexed + full payload)</dd></div>
-        </dl>
-
-        <p class="work__honest">
-          The system is in production and we are scaling it carefully. We are not publishing
-          conversion or lift numbers yet, because a real number needs a real cohort behind it.
-          What we can show you is the engineering, and we are happy to walk through any of it.
-        </p>
-      </div>
-    </section>
-
-    <!-- ========================= HOW WE WORK ======================== -->
-    <section class="section" id="how-we-work" aria-labelledby="how-we-work-title">
-      <div class="container">
-        <p class="eyebrow">How we work</p>
-        <h2 class="heading" id="how-we-work-title">Small team, no handoffs.</h2>
-        <p class="lead section__intro">
-          Two engineers own the whole thing, from the first call to the system running in
-          production. You are not handed from a salesperson to a delivery team to a support queue.
-          Here is the shape of a typical engagement.
-        </p>
-
-        <ol class="grid-4 process">
-          <li class="process__step">
-            <span class="process__index num">01</span>
-            <h3 class="card-heading process__title mono">Scope</h3>
-            <p class="muted">
-              We dig into the actual workflow and agree on the smallest version that proves value.
-              You get a clear spec and a realistic estimate, not a pitch deck.
-            </p>
-          </li>
-          <li class="process__step">
-            <span class="process__index num">02</span>
-            <h3 class="card-heading process__title mono">Build a pilot</h3>
-            <p class="muted">
-              We build the smallest real thing that runs end to end on your data, so the decision
-              to continue is based on a working system, not a promise.
-            </p>
-          </li>
-          <li class="process__step">
-            <span class="process__index num">03</span>
-            <h3 class="card-heading process__title mono">Productionise</h3>
-            <p class="muted">
-              We harden it: failure handling, monitoring, integration with your stack, and the
-              structured output your team actually needs.
-            </p>
-          </li>
-          <li class="process__step">
-            <span class="process__index num">04</span>
-            <h3 class="card-heading process__title mono">Run it</h3>
-            <p class="muted">
-              We stay on to operate and improve the system, because the interesting problems
-              usually show up only once real traffic does.
-            </p>
-          </li>
-        </ol>
-      </div>
-    </section>
-
-    <!-- ============================ TEAM ============================ -->
-    <section class="section" id="team" aria-labelledby="team-title">
-      <div class="container">
-        <p class="eyebrow">Team</p>
-        <h2 class="heading" id="team-title">Two engineers.</h2>
-        <p class="lead section__intro">
-          Vero Labs is Vishal and Alakh. We both write the code and we both own delivery. When you
-          talk to us, you are talking to the people building the system.
-        </p>
-
-        <ul class="grid-2 team">
-          <li class="card person">
-            <div class="person__head">
-              <span class="person__monogram mono" aria-hidden="true">V</span>
-              <div>
-                <h3 class="card-heading">Vishal</h3>
-                <p class="eyebrow person__role">Engineer / Developer</p>
-              </div>
-            </div>
-            <p class="muted person__bio">
-              Machine learning engineer. Works across the stack, from the model and the real-time
-              pipeline to deployment and the parts that keep it running. Based in Bangalore.
-            </p>
-            <p class="mono person__links">
-              <a href="https://github.com/Dark8203" target="_blank" rel="noopener">github</a>
-              <span aria-hidden="true">·</span>
-              <a href="mailto:vishal@vero.co.in">email</a>
-            </p>
-          </li>
-          <li class="card person">
-            <div class="person__head">
-              <span class="person__monogram mono" aria-hidden="true">A</span>
-              <div>
-                <h3 class="card-heading">Alakh</h3>
-                <p class="eyebrow person__role">Engineer / Developer</p>
-              </div>
-            </div>
-            <p class="muted person__bio">
-              Data scientist and engineer. Works across modelling, data pipelines, and the systems
-              that turn a prototype into something dependable. Based in Bangalore.
-            </p>
-            <p class="mono person__links">
-              <a href="https://github.com/alakhagr" target="_blank" rel="noopener">github</a>
-              <span aria-hidden="true">·</span>
-              <a href="mailto:alakh@vero.co.in">email</a>
-            </p>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- =========================== CONTACT ========================== -->
-    <section class="section contact" id="contact" aria-labelledby="contact-title">
-      <div class="container contact__inner">
-        <p class="eyebrow">Contact</p>
-        <h2 class="heading" id="contact-title">Have a workflow that needs AI in production?</h2>
-        <p class="lead section__intro">
-          Tell us what you are trying to build or fix. If it is something we can help with, we will
-          say so and give you a straight answer on scope and timeline. If it is not, we will tell
-          you that too.
-        </p>
-
-        <div class="contact__actions">
-          <a class="btn btn--primary" href="mailto:vishal@vero.co.in">Email Vishal</a>
-          <a class="btn btn--ghost" href="mailto:alakh@vero.co.in">Email Alakh</a>
-        </div>
-
-        <ul class="contact__details mono">
-          <li><span class="contact__email" data-copy="vishal@vero.co.in">vishal@vero.co.in</span></li>
-          <li><span class="contact__email" data-copy="alakh@vero.co.in">alakh@vero.co.in</span></li>
-          <li>Bangalore, India</li>
-        </ul>
-      </div>
-    </section>
-
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer__grid">
-      <div class="footer__brand">
-        <a class="nav__logo" href="#top">Vero&nbsp;Labs</a>
-        <p class="muted footer__tagline">Applied AI studio. Bangalore.</p>
-      </div>
-
-      <nav class="footer__nav" aria-label="Footer">
-        <ul class="footer__links">
-          <li><a href="#work">Work</a></li>
-          <li><a href="#what-we-do">What we do</a></li>
-          <li><a href="#how-we-work">How we work</a></li>
-          <li><a href="#team">Team</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
-
-      <div class="footer__contact mono">
-        <a href="https://github.com/Dark8203" target="_blank" rel="noopener">github · Vishal</a>
-        <a href="https://github.com/alakhagr" target="_blank" rel="noopener">github · Alakh</a>
-        <a href="mailto:vishal@vero.co.in">vishal@vero.co.in</a>
-        <a href="mailto:alakh@vero.co.in">alakh@vero.co.in</a>
+      <div class="cap">
+        <h3>RAG and applied ML</h3>
+        <p>Retrieval-augmented LLM systems, model selection and evaluation, and the unglamorous parts that decide whether ML works in production: data pipelines, scoring logic, deployment, and monitoring. We pick the boring, reliable option on purpose.</p>
       </div>
     </div>
-    <div class="container">
-      <p class="footer__copy mono muted">&copy; 2026 Vero Labs.</p>
-    </div>
-  </footer>
+  </section>
 
-  <script src="./main.js" defer></script>
+  <!-- 03 · Selected work -->
+  <section class="section wrap reveal" id="work" aria-labelledby="work-title">
+    <header class="section-head">
+      <div class="kicker"><span class="kicker-no">03</span><span class="kicker-name">Selected work</span></div>
+      <h2 class="section-title" id="work-title">A voice agent that qualifies leads before a human picks up.</h2>
+      <p class="section-dek">For an enterprise real estate client. Live in production.</p>
+    </header>
+
+    <h3 class="case-sub">The problem</h3>
+    <div class="annotated">
+      <div class="prose">
+        <p>Real estate developers generate warm leads in volume: people who fill an enquiry form from an ad or a landing page. The economics break at first touch. Intent is highest within minutes of the form, but human tele-callers cannot call every lead instantly, so hot leads cool while the team works through the queue.</p>
+        <p>The first call is also the same eight to ten questions every time (still interested, budget, timeline, own use or investment, loan or self-funded, ready for a site visit), which is exactly the high-volume, low-variation work that burns callers out. And what the customer actually says on that first call rarely lands in the CRM in a structured, queryable form.</p>
+      </div>
+    </div>
+
+    <h3 class="case-sub">What we built</h3>
+    <div class="annotated">
+      <div class="prose">
+        <p>An AI voice agent that calls each warm lead automatically, holds a natural two-way conversation in English or Hindi, runs the full qualification flow, books a site visit when the lead is ready, and writes a structured, scored payload back into Salesforce in real time. Human callers then inherit only the hot, fully contextualised leads.</p>
+      </div>
+    </div>
+
+    <blockquote class="pullquote">A first-touch filter, not a replacement for the sales team.</blockquote>
+
+    <div class="annotated">
+      <figure class="figure schematic">
+        <svg class="fig-wide" viewBox="0 0 740 210" role="img" aria-label="Schematic of one conversational turn. The customer's speech passes through telephony (Plivo), speech-to-text (Deepgram Nova-3), an in-call LLM (Azure GPT-4.1), and text-to-speech (ElevenLabs), then returns to the customer as audio. The LLM step is circled as the dominant latency, about 1.0 to 1.7 seconds.">
+          <rect class="node" x="5" y="42" width="110" height="50"></rect>
+          <text x="60" y="71" text-anchor="middle" font-size="11.5">Customer</text>
+          <rect class="node" x="157" y="42" width="110" height="50"></rect>
+          <text x="212" y="64" text-anchor="middle" font-size="11.5">Telephony</text>
+          <text class="lbl-soft" x="212" y="80" text-anchor="middle" font-size="9.5">Plivo</text>
+          <rect class="node" x="309" y="42" width="116" height="50"></rect>
+          <text x="367" y="64" text-anchor="middle" font-size="11.5">Speech-to-text</text>
+          <text class="lbl-soft" x="367" y="80" text-anchor="middle" font-size="9.5">Deepgram Nova-3</text>
+          <rect class="node" x="467" y="42" width="116" height="50"></rect>
+          <text x="525" y="64" text-anchor="middle" font-size="11.5">LLM</text>
+          <text class="lbl-soft" x="525" y="80" text-anchor="middle" font-size="9.5">Azure GPT-4.1</text>
+          <rect class="node" x="625" y="42" width="110" height="50"></rect>
+          <text x="680" y="64" text-anchor="middle" font-size="11.5">Text-to-speech</text>
+          <text class="lbl-soft" x="680" y="80" text-anchor="middle" font-size="9.5">ElevenLabs</text>
+
+          <line class="live" pathLength="1" x1="115" y1="67" x2="149" y2="67"></line>
+          <polygon class="live-fill" points="157,67 149,63.5 149,70.5"></polygon>
+          <line class="live" pathLength="1" x1="267" y1="67" x2="301" y2="67"></line>
+          <polygon class="live-fill" points="309,67 301,63.5 301,70.5"></polygon>
+          <line class="live" pathLength="1" x1="425" y1="67" x2="459" y2="67"></line>
+          <polygon class="live-fill" points="467,67 459,63.5 459,70.5"></polygon>
+          <line class="live" pathLength="1" x1="583" y1="67" x2="617" y2="67"></line>
+          <polygon class="live-fill" points="625,67 617,63.5 617,70.5"></polygon>
+
+          <path class="live" pathLength="1" d="M 680 92 V 165 H 60 V 100"></path>
+          <polygon class="live-fill" points="60,92 56.5,100 63.5,100"></polygon>
+          <text class="lbl-soft" x="370" y="158" text-anchor="middle" font-size="9.5">response audio, back to the caller</text>
+
+          <ellipse class="mark" pathLength="1" cx="525" cy="116" rx="104" ry="14"></ellipse>
+          <text class="lbl-red" x="525" y="120" text-anchor="middle" font-size="10">≈1.0 to 1.7 s · dominant latency</text>
+        </svg>
+        <svg class="fig-tall" viewBox="0 0 340 590" role="img" aria-label="Schematic of one conversational turn, vertical layout. The customer's speech passes through telephony (Plivo), speech-to-text (Deepgram Nova-3), an in-call LLM (Azure GPT-4.1), and text-to-speech (ElevenLabs), then returns to the customer as audio. The LLM step is circled as the dominant latency, about 1.0 to 1.7 seconds.">
+          <rect class="node" x="115" y="10" width="185" height="50"></rect>
+          <text x="207" y="39" text-anchor="middle" font-size="11.5">Customer</text>
+          <rect class="node" x="115" y="128" width="185" height="50"></rect>
+          <text x="207" y="150" text-anchor="middle" font-size="11.5">Telephony</text>
+          <text class="lbl-soft" x="207" y="166" text-anchor="middle" font-size="9.5">Plivo</text>
+          <rect class="node" x="115" y="246" width="185" height="50"></rect>
+          <text x="207" y="268" text-anchor="middle" font-size="11.5">Speech-to-text</text>
+          <text class="lbl-soft" x="207" y="284" text-anchor="middle" font-size="9.5">Deepgram Nova-3</text>
+          <rect class="node" x="115" y="364" width="185" height="50"></rect>
+          <text x="207" y="386" text-anchor="middle" font-size="11.5">LLM</text>
+          <text class="lbl-soft" x="207" y="402" text-anchor="middle" font-size="9.5">Azure GPT-4.1</text>
+          <rect class="node" x="115" y="482" width="185" height="50"></rect>
+          <text x="207" y="504" text-anchor="middle" font-size="11.5">Text-to-speech</text>
+          <text class="lbl-soft" x="207" y="520" text-anchor="middle" font-size="9.5">ElevenLabs</text>
+
+          <line class="live" pathLength="1" x1="207" y1="60" x2="207" y2="120"></line>
+          <polygon class="live-fill" points="207,128 203.5,120 210.5,120"></polygon>
+          <line class="live" pathLength="1" x1="207" y1="178" x2="207" y2="238"></line>
+          <polygon class="live-fill" points="207,246 203.5,238 210.5,238"></polygon>
+          <line class="live" pathLength="1" x1="207" y1="296" x2="207" y2="356"></line>
+          <polygon class="live-fill" points="207,364 203.5,356 210.5,356"></polygon>
+          <line class="live" pathLength="1" x1="207" y1="414" x2="207" y2="474"></line>
+          <polygon class="live-fill" points="207,482 203.5,474 210.5,474"></polygon>
+
+          <path class="live" pathLength="1" d="M 115 507 H 28 V 35 H 107"></path>
+          <polygon class="live-fill" points="115,35 107,31.5 107,38.5"></polygon>
+
+          <ellipse class="mark" pathLength="1" cx="57" cy="387" rx="56" ry="26"></ellipse>
+          <text class="lbl-red" x="57" y="384" text-anchor="middle" font-size="9">≈1.0 to 1.7 s</text>
+          <text class="lbl-red" x="57" y="398" text-anchor="middle" font-size="9">dominant latency</text>
+        </svg>
+        <figcaption class="fig-caption">Fig. 1 · One conversational turn. Customer speech runs through telephony, speech-to-text, an in-call LLM, and text-to-speech, and back. Typical perceived turn: 1.5 to 2.5 seconds.</figcaption>
+      </figure>
+      <p class="margin-note">The LLM is the dominant latency component. We say so, and the agent covers the gap with natural fillers by design.</p>
+    </div>
+
+    <div class="annotated">
+      <figure class="evidence">
+        <p class="evidence-title">Exhibit B · from a live test call</p>
+        <div class="transcript">
+          <p><span class="speaker">Agent</span> <span class="stage">(after ten seconds of caller silence)</span> "Hello, <span lang="hi">क्या आप अभी भी लाइन पर हैं?</span>"</p>
+          <p><span class="speaker">Caller</span> "<span lang="hi">हां</span>"</p>
+          <p><span class="speaker">Agent</span> <span class="stage">(resumes exactly where it left off)</span></p>
+        </div>
+        <figcaption class="fig-caption">Ten seconds of silence. The agent checks in and resumes where it left off.</figcaption>
+        <!-- POST-BLEEP SWAP (preferred, from clip 06): once clip 06 is
+             cleaned, replace the transcript above with:
+        <div class="transcript">
+          <p><span class="speaker">Agent</span> "Username spell करती हूँ: e as in echo, k as in kilo"</p>
+          <p><span class="speaker">Caller</span> "नहीं नहीं नहीं"</p>
+          <p><span class="speaker">Agent</span> "माफ़ कीजिए! फिर से बताइए."</p>
+          <p><span class="speaker">Caller</span> "इशिता जैन ... at gmail dot com"</p>
+        </div>
+        and the caption with:
+        <figcaption class="fig-caption">Interruption, recovery, correction. Endpointing tuned to 100 ms.</figcaption>
+        -->
+      </figure>
+    </div>
+
+    <div class="annotated">
+      <figure class="figure schematic">
+        <svg class="fig-wide" viewBox="0 0 740 230" role="img" aria-label="System architecture schematic. Salesforce hands leads to a Node.js middleware and a FastAPI pipeline, which drive the Bolna voice stack that runs the call. After the call, a GPT-5.4 extraction step turns the transcript into a canonical JSON payload pushed back to Salesforce in real time, with a polling fallback through the middleware.">
+          <rect class="node" x="5" y="30" width="150" height="52"></rect>
+          <text x="80" y="53" text-anchor="middle" font-size="11.5">Salesforce</text>
+          <text class="lbl-soft" x="80" y="69" text-anchor="middle" font-size="9.5">CRM</text>
+          <rect class="node" x="200" y="30" width="150" height="52"></rect>
+          <text x="275" y="53" text-anchor="middle" font-size="11.5">Middleware</text>
+          <text class="lbl-soft" x="275" y="69" text-anchor="middle" font-size="9.5">Node.js</text>
+          <rect class="node" x="395" y="30" width="150" height="52"></rect>
+          <text x="470" y="53" text-anchor="middle" font-size="11.5">Pipeline</text>
+          <text class="lbl-soft" x="470" y="69" text-anchor="middle" font-size="9.5">FastAPI</text>
+          <rect class="node" x="590" y="30" width="148" height="52"></rect>
+          <text x="664" y="53" text-anchor="middle" font-size="11.5">Voice stack</text>
+          <text class="lbl-soft" x="664" y="69" text-anchor="middle" font-size="9.5">Bolna · runs the call</text>
+
+          <line class="wire" x1="155" y1="56" x2="192" y2="56"></line>
+          <polygon points="200,56 192,52.5 192,59.5" fill="#171715"></polygon>
+          <text class="lbl-soft" x="177" y="46" text-anchor="middle" font-size="9">leads</text>
+          <line class="wire" x1="350" y1="56" x2="387" y2="56"></line>
+          <polygon points="395,56 387,52.5 387,59.5" fill="#171715"></polygon>
+          <line class="wire" x1="545" y1="56" x2="582" y2="56"></line>
+          <polygon points="590,56 582,52.5 582,59.5" fill="#171715"></polygon>
+
+          <line class="wire" x1="664" y1="82" x2="664" y2="150"></line>
+          <polygon points="664,157 660.5,149 667.5,149" fill="#171715"></polygon>
+          <text class="lbl-soft" x="672" y="120" text-anchor="start" font-size="9">transcript</text>
+
+          <rect class="node" x="580" y="157" width="158" height="52"></rect>
+          <text x="659" y="180" text-anchor="middle" font-size="11.5">Post-call extraction</text>
+          <text class="lbl-soft" x="659" y="196" text-anchor="middle" font-size="9.5">GPT-5.4</text>
+
+          <path class="live" pathLength="1" d="M 580 183 H 80 V 90"></path>
+          <polygon class="live-fill" points="80,82 76.5,90 83.5,90"></polygon>
+          <text class="lbl-red" x="410" y="175" text-anchor="middle" font-size="9.5">canonical JSON · pushed in real time</text>
+
+          <line class="wire-dashed" x1="275" y1="183" x2="275" y2="90"></line>
+          <polygon points="275,82 271.5,90 278.5,90" fill="#55554F"></polygon>
+          <text class="lbl-soft" x="283" y="140" text-anchor="start" font-size="9">polling fallback</text>
+        </svg>
+        <svg class="fig-tall" viewBox="0 0 340 590" role="img" aria-label="System architecture schematic, vertical layout. Salesforce hands leads to a Node.js middleware and a FastAPI pipeline, which drive the Bolna voice stack that runs the call. After the call, a GPT-5.4 extraction step turns the transcript into a canonical JSON payload pushed back to Salesforce in real time, with a polling fallback through the middleware.">
+          <rect class="node" x="110" y="30" width="185" height="52"></rect>
+          <text x="202" y="53" text-anchor="middle" font-size="11.5">Salesforce</text>
+          <text class="lbl-soft" x="202" y="69" text-anchor="middle" font-size="9.5">CRM</text>
+          <rect class="node" x="110" y="130" width="185" height="52"></rect>
+          <text x="202" y="153" text-anchor="middle" font-size="11.5">Middleware</text>
+          <text class="lbl-soft" x="202" y="169" text-anchor="middle" font-size="9.5">Node.js</text>
+          <rect class="node" x="110" y="230" width="185" height="52"></rect>
+          <text x="202" y="253" text-anchor="middle" font-size="11.5">Pipeline</text>
+          <text class="lbl-soft" x="202" y="269" text-anchor="middle" font-size="9.5">FastAPI</text>
+          <rect class="node" x="110" y="330" width="185" height="52"></rect>
+          <text x="202" y="353" text-anchor="middle" font-size="11.5">Voice stack</text>
+          <text class="lbl-soft" x="202" y="369" text-anchor="middle" font-size="9.5">Bolna · runs the call</text>
+          <rect class="node" x="110" y="450" width="185" height="52"></rect>
+          <text x="202" y="473" text-anchor="middle" font-size="11.5">Post-call extraction</text>
+          <text class="lbl-soft" x="202" y="489" text-anchor="middle" font-size="9.5">GPT-5.4</text>
+
+          <line class="wire" x1="202" y1="82" x2="202" y2="122"></line>
+          <polygon points="202,130 198.5,122 205.5,122" fill="#171715"></polygon>
+          <text class="lbl-soft" x="210" y="106" text-anchor="start" font-size="9">leads</text>
+          <line class="wire" x1="202" y1="182" x2="202" y2="222"></line>
+          <polygon points="202,230 198.5,222 205.5,222" fill="#171715"></polygon>
+          <line class="wire" x1="202" y1="282" x2="202" y2="322"></line>
+          <polygon points="202,330 198.5,322 205.5,322" fill="#171715"></polygon>
+          <line class="wire" x1="202" y1="382" x2="202" y2="442"></line>
+          <polygon points="202,450 198.5,442 205.5,442" fill="#171715"></polygon>
+          <text class="lbl-soft" x="210" y="416" text-anchor="start" font-size="9">transcript</text>
+
+          <path class="live" pathLength="1" d="M 202 502 V 540 H 40 V 56 H 102"></path>
+          <polygon class="live-fill" points="110,56 102,52.5 102,59.5"></polygon>
+          <text class="lbl-red" x="170" y="562" text-anchor="middle" font-size="9">canonical JSON · pushed in real time</text>
+
+          <line class="wire-dashed" x1="40" y1="156" x2="94" y2="156"></line>
+          <polygon points="102,156 94,152.5 94,159.5" fill="#55554F"></polygon>
+          <text class="lbl-soft" x="46" y="148" text-anchor="start" font-size="8.5">polling fallback</text>
+        </svg>
+        <figcaption class="fig-caption">Fig. 2 · System architecture. Salesforce hands leads to a Node.js middleware and a FastAPI pipeline; the voice stack runs the call; a post-call model turns the transcript into a canonical JSON payload pushed back in real time, with a polling fallback so no lead is lost.</figcaption>
+      </figure>
+      <p class="margin-note">No retrieval index in the live path. Project knowledge travels as structured per-call context, for determinism and auditability.</p>
+    </div>
+
+    <h3 class="case-sub">Design notes</h3>
+    <div class="annotated">
+      <div class="prose design-notes">
+        <p><b>Determinism over RAG.</b> Project knowledge is passed as structured per-call context rather than retrieved from a vector store, so answers to locality and project questions are consistent and auditable. An earlier retrieval-based experiment was dropped on purpose.</p>
+        <p><b>Resume on drop.</b> If a call drops mid-conversation, the system calls back with a resume-mode agent that skips already-answered questions and picks up where it left off.</p>
+        <p><b>No lost leads.</b> Results are pushed in real time, with a polling fallback if the push fails. In testing, when the bridge briefly errored and recovered, the fallback fired and no lead data was lost.</p>
+        <p><b>Native barge-in.</b> When the customer starts talking mid-sentence, the agent stops and listens, with endpointing tuned to 100 ms for responsive turn-handoff.</p>
+        <p><b>Honest scope.</b> The agent qualifies and books. It does not negotiate, and it deflects questions it does not have data for to a human follow-up instead of inventing an answer.</p>
+      </div>
+    </div>
+
+    <div class="annotated">
+      <figure class="evidence">
+        <p class="evidence-title">Exhibit C · where the time goes (measured on deployed calls)</p>
+        <table class="spec-table">
+          <tbody>
+            <tr>
+              <th scope="row">Time to first audio</th>
+              <td>44 to 77 ms</td>
+            </tr>
+            <tr>
+              <th scope="row">Speech-to-text, per utterance</th>
+              <td>17 to 50 ms</td>
+            </tr>
+            <tr>
+              <th scope="row">LLM first token</th>
+              <td><span class="spec-mark">1.0 to 1.7 s · the bottleneck</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Text-to-speech first token</th>
+              <td>350 to 1000 ms</td>
+            </tr>
+            <tr>
+              <th scope="row">Perceived turn, steady state</th>
+              <td>~1.5 to 2.5 s</td>
+            </tr>
+          </tbody>
+        </table>
+        <figcaption class="fig-caption">Everyone says real-time. We show the budget.</figcaption>
+      </figure>
+    </div>
+
+    <div class="annotated">
+      <figure class="evidence">
+        <p class="evidence-title">Exhibit D · post-call payload (excerpt, test data)</p>
+        <div class="payload">
+<pre>{
+  "lead_score": "[redacted]",
+  "category": "hot",
+  "qualification": {
+    "still_interested": true,
+    "budget": "[redacted, updated mid-call]",
+    "timeline": "[redacted]",
+    "purpose": "own_use",
+    "funding": "home_loan"
+  },
+  "site_visit": { "booked": <span class="redval">true</span>, "slot": "[redacted]" },
+  "concerns": ["possession_timing"],
+  "language": "hindi"
+}</pre>
+        </div>
+        <figcaption class="fig-caption">About fifty structured fields across fourteen blocks, per call, pushed to Salesforce in real time.</figcaption>
+      </figure>
+    </div>
+
+    <div class="annotated annotated-close">
+      <div class="prose">
+        <p>The system is in production and we are scaling it carefully. We are not publishing conversion or lift numbers yet, because a real number needs a real cohort behind it. What we can show you is the engineering, and we are happy to walk through any of it.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 · Method -->
+  <section class="section wrap reveal" id="method" aria-labelledby="method-title">
+    <header class="section-head">
+      <div class="kicker"><span class="kicker-no">04</span><h2 class="kicker-name" id="method-title">Method</h2></div>
+    </header>
+    <p class="section-intro">Two engineers own the whole thing, from the first call to the system running in production. You are not handed from a salesperson to a delivery team to a support queue.</p>
+
+    <ol class="method-list">
+      <li><span class="method-no">01</span><b>Scope.</b> We dig into the actual workflow and agree on the smallest version that proves value. You get a clear spec and a realistic estimate, not a pitch deck.</li>
+      <li><span class="method-no">02</span><b>Build a pilot.</b> We build the smallest real thing that runs end to end on your data, so the decision to continue is based on a working system, not a promise.</li>
+      <li><span class="method-no">03</span><b>Productionise.</b> We harden it: failure handling, monitoring, integration with your stack, and the structured output your team actually needs.</li>
+      <li><span class="method-no">04</span><b>Run it.</b> We stay on to operate and improve the system, because the interesting problems usually show up only once real traffic does.</li>
+    </ol>
+  </section>
+
+  <!-- 05 · The studio -->
+  <section class="section wrap reveal" id="studio" aria-labelledby="studio-title">
+    <header class="section-head">
+      <div class="kicker"><span class="kicker-no">05</span><h2 class="kicker-name" id="studio-title">The studio</h2></div>
+    </header>
+    <p class="section-intro">Vero Labs is Vishal and Alakh. We both write the code and we both own delivery. When you talk to us, you are talking to the people building the system.</p>
+
+    <div class="studio-grid">
+      <div class="person">
+        <h3>Vishal</h3>
+        <p class="person-role">Engineer / Developer</p>
+        <p>AI/ML engineer. Works across the stack, from the model and the real-time pipeline to deployment and the parts that keep it running. Based in Bangalore.</p>
+        <p class="person-links"><a href="https://github.com/Dark8203">github.com/Dark8203</a> · <a href="mailto:vishal@vero.co.in">vishal@vero.co.in</a></p>
+      </div>
+      <div class="person">
+        <h3>Alakh</h3>
+        <p class="person-role">Engineer / Developer</p>
+        <p>Data scientist. Works across modelling, data pipelines, and the systems that turn a prototype into something dependable. Based in Bangalore.</p>
+        <p class="person-links"><a href="https://github.com/alakhagr">github.com/alakhagr</a> · <a href="mailto:alakh@vero.co.in">alakh@vero.co.in</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 · Contact -->
+  <section class="section wrap reveal" id="contact" aria-labelledby="contact-title">
+    <header class="section-head">
+      <div class="kicker"><span class="kicker-no">06</span><span class="kicker-name">Contact</span></div>
+      <h2 class="section-title" id="contact-title">Have a workflow that needs AI in production?</h2>
+    </header>
+    <p class="section-intro">Tell us what you are trying to build or fix. If it is something we can help with, we will say so and give you a straight answer on scope and timeline. If it is not, we will tell you that too.</p>
+    <div class="contact-actions">
+      <a class="btn btn-primary" href="mailto:vishal@vero.co.in">Email Vishal</a>
+      <a class="btn btn-secondary" href="mailto:alakh@vero.co.in">Email Alakh</a>
+    </div>
+    <p class="contact-detail">vishal@vero.co.in · alakh@vero.co.in · Bangalore, India</p>
+  </section>
+
+</main>
+
+<!-- 07 · Colophon -->
+<footer class="colophon">
+  <div class="wrap">
+    <p>Vero Labs, Bangalore. <span class="colophon-nav"><a href="#demo">Demo</a> · <a href="#work">Work</a> · <a href="#method">Method</a> · <a href="#studio">Studio</a> · <a href="#contact">Contact</a></span></p>
+    <p><a href="https://github.com/Dark8203">github.com/Dark8203</a> · <a href="https://github.com/alakhagr">github.com/alakhagr</a></p>
+    <p>Set in Newsreader, Instrument Sans, and IBM Plex Mono. Hand-built; no site builder.</p>
+    <p>© 2026 Vero Labs.</p>
+  </div>
+</footer>
+
 </body>
 </html>
