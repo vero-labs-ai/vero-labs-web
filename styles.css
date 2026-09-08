@@ -439,6 +439,10 @@ h2.kicker-name {
   max-width: var(--measure);
 }
 
+.evidence + .evidence {
+  margin-top: 1.5rem;
+}
+
 .evidence-title {
   font-family: var(--font-mono);
   font-size: 0.85rem;

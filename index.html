@@ -94,8 +94,6 @@
                    allowfullscreen></iframe>
         </div>
 
-        <figcaption class="fig-caption">Internal test calls. Our engineer as the customer. Nothing staged.</figcaption>
-
         <!-- ============================================================
              AUDIO CLIPS REMOVED (players return when the MP3s land in
              ./assets/audio/). To restore, paste this list back here:
@@ -123,6 +121,18 @@
              this figure, styled as a redline line:
         <p class="demo-callout">Or call the demo agent yourself: [number]. It picks up in English or Hindi.</p>
         -->
+      </figure>
+
+      <figure class="evidence">
+        <p class="evidence-title">Exhibit B · one call, unedited</p>
+        <ul class="clip-list">
+          <li>
+            <audio controls preload="metadata" aria-label="A full inbound study abroad counselling call, unedited from start to finish">
+              <source src="./assets/audio/raw-call-01.aac" type="audio/aac">
+            </audio>
+            <span class="clip-caption">A different agent on a similar stack: inbound, for study abroad counselling. Different prompt, different personality. One call, start to finish, with nothing cut.</span>
+          </li>
+        </ul>
       </figure>
       <p class="margin-note">Every clip on this page is from an internal test call. No customer audio, ever.</p>
     </div>
@@ -256,7 +266,7 @@
 
     <div class="annotated">
       <figure class="evidence">
-        <p class="evidence-title">Exhibit B · from a live test call</p>
+        <p class="evidence-title">Exhibit C · from a live test call</p>
         <div class="transcript">
           <p><span class="speaker">Agent</span> <span class="stage">(after ten seconds of caller silence)</span> "Hello, <span lang="hi">क्या आप अभी भी लाइन पर हैं?</span>"</p>
           <p><span class="speaker">Caller</span> "<span lang="hi">हां</span>"</p>
@@ -371,7 +381,7 @@
 
     <div class="annotated">
       <figure class="evidence">
-        <p class="evidence-title">Exhibit C · where the time goes (measured on deployed calls)</p>
+        <p class="evidence-title">Exhibit D · where the time goes (measured on deployed calls)</p>
         <table class="spec-table">
           <tbody>
             <tr>
@@ -402,7 +412,7 @@
 
     <div class="annotated">
       <figure class="evidence">
-        <p class="evidence-title">Exhibit D · post-call payload (excerpt, test data)</p>
+        <p class="evidence-title">Exhibit E · post-call payload (excerpt, test data)</p>
         <div class="payload">
 <pre>{
   "lead_score": "[redacted]",
