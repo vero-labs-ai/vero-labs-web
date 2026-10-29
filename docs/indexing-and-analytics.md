@@ -19,6 +19,8 @@ If you want indexing to start before the full refresh is ready, Claude can make 
 
 ## A. Google Search Console
 
+**Status (30 Oct 2026): already verified.** vero.co.in exists as a Domain property (verified through DNS, which covers www and http too) and as a URL-prefix property. Skip A1 and A2: no tag is needed. Use the Domain property for everything below.
+
 **A1. Add the site and get the code**
 1. Go to https://search.google.com/search-console and sign in.
 2. Click **Add property**. Choose **URL prefix**, not "Domain", because "Domain" needs a DNS record at GoDaddy.

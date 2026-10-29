@@ -152,7 +152,7 @@ Updated 29 Oct 2026 after Alakh's answers.
 - **OG description:** `An applied AI studio in Bangalore, India. Tell us the tool you need; we build it on your data and keep it running.`
 - **OG image:** `https://vero.co.in/assets/og.png` (absolute, because some scrapers ignore relative OG URLs). The current og.png carries the old headline. Re-rendering it with the new H1 is in Phase 1.
 - Twitter card tags to match.
-- `<meta name="google-site-verification" content="[TODO: Alakh]">` and `<meta name="msvalidate.01" content="[TODO: Alakh]">`
+- No Google verification tag: Search Console is already verified (a Domain property plus a URL-prefix property for `https://vero.co.in/`). The Bing tag is only needed if the import from Google isn't used.
 - Cloudflare Web Analytics snippet, commented out and ready (B4).
 - **JSON-LD `ProfessionalService`:**
   - name "Vero Labs", url, description
@@ -635,8 +635,7 @@ The header and footer are shared per B6.
 | 8 | Confirm: "your data stays yours; used only to build and run your tool" | FAQ 4 |
 | 9 | Typical reply time to an enquiry (optional) | Contact |
 | 10 | LinkedIn company URL | JSON-LD sameAs, colophon |
-| 11 | Google Search Console verification token (steps in `docs/indexing-and-analytics.md`) | `<head>` |
-| 12 | Bing Webmaster Tools verification token (same doc) | `<head>` |
+| 12 | Bing: import from Google Search Console (no token needed) | Setup |
 | 13 | Cloudflare Web Analytics token (same doc) | `<head>` |
 | 14 | Show founders' full names on the page? (I recommend yes) | Studio |
 | 15 | WhatsApp number, whenever you're ready (on hold) | Contact |
