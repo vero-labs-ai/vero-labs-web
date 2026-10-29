@@ -43,6 +43,8 @@ If you want indexing to start before the full refresh is ready, Claude can make 
 
 ## B. Bing Webmaster Tools
 
+**Status (30 Oct 2026): already verified.** vero.co.in is in Bing Webmaster Tools, with 66 impressions and 0 clicks over the last three months. Skip B1 and B2. After deploy, do B3, run **Site Scan** and check **Robots.txt Tester**.
+
 This one matters for AI chatbots too: ChatGPT's search draws heavily on Bing's index.
 
 **B1. Add the site.** Pick one of these two routes.
