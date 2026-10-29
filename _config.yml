@@ -1,0 +1,6 @@
+# GitHub Pages runs Jekyll over this repo. The site itself is plain HTML;
+# this file only keeps internal docs off vero.co.in.
+exclude:
+  - Requirements
+  - docs
+  - README.md

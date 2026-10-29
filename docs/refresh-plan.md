@@ -77,65 +77,46 @@ All visible copy is hand-written inline in `index.html` and `demo/index.html`. T
 
 - `README.md` starts with a stray line, `lkkokok`, followed by blank lines.
 - The README says a `.nojekyll` file exists, but it doesn't.
-- The schema telephone you gave (+91 80 6535 5106) is the **live AI demo agent's number**. Calling it reaches a bot, not you (see B2).
+- The schema telephone in the brief (+91 80 6535 5106) is the **live AI demo agent's number**. Calling it reaches a bot, not you. It stays on the page as the demo number only (see B2).
+- The GitHub repo `vero-labs-ai/vero-labs-web` is **public**, so anything committed is readable on github.com, whatever the website serves (see B1).
 
 ---
 
-## Part B. Decisions I need from you
+## Part B. Decisions
 
-**B1. Internal docs are public, and one HTML comment contains a person's name.** (Hosting change, so I'm asking.)
+Updated 29 Oct 2026 after Alakh's answers.
 
-- Because Jekyll runs, `vero.co.in/Requirements/vero-labs-website-content-v2.html` (and the `.md`) return 200 today. That exposes internal guardrails, notes on quarantined clips, and a caller's name from a test-call transcript.
-- The same name sits in an HTML comment in `index.html` (the clip-06 swap block), which anyone can see with View Source.
-- This `docs/refresh-plan.md` would also go public once merged.
-- **Proposal:**
-  - Add a 3-line `_config.yml` with `exclude: [Requirements, docs, README.md, LICENSE]`. Jekyll still runs, nothing else changes, and `CNAME` and the branch are untouched.
-  - Delete the name from the HTML comment.
+**B1. Internal docs off the public site. Decided: hide them. Done on `site-refresh`.**
+- `_config.yml` now excludes `Requirements/`, `docs/` and `README.md` from the Jekyll build, so vero.co.in stops serving them once this branch is deployed. `CNAME`, the branch and the publish settings are unchanged.
+- The test caller's name is removed from the HTML comment in `index.html` and from the v2 content doc.
+- **Still public on github.com:** the repo is public, so these docs (and the name, in the first commit's history) can still be read there. There are three ways to fix that, and the choice is yours:
+  - (a) Move `Requirements/` and `docs/` into a separate **private** repo and delete them here. The history still holds old copies.
+  - (b) Also rewrite the history to remove them. That needs a force-push to `main`, which only you or Vishal should do.
+  - (c) Make this repo private. GitHub Pages from a private repo needs a paid plan (GitHub Team for an org). On the free plan, **the site goes offline**.
 
-  The alternative is to move these docs out of the repo. **Approve or choose?**
+**B2. Phone numbers. Decided.**
+- No phone number in the new copy or in the JSON-LD.
+- The demo agent's number stays in the Demo section as it is today.
 
-**B2. Phone number in the schema.** +91 80 6535 5106 reaches the demo agent. If a chatbot quotes it as "Vero Labs' phone", people will reach a bot. Here are the options:
+**B3. Timelines. Decided: no numbers, just say we're fast.**
+- No "2 weeks", "2-6 weeks" or "typical weeks" anywhere.
+- The H1 keeps "Built in weeks", because it's the approved headline and not a specific promise. If you want even that gone, the alternative is "Custom AI for your business. Built fast. Run in production."
+- Non-project facts stay: the 30-minute scope call, the Blinkit cadence (every 10 minutes, 9 AM to 10 PM), and "going live in November 2026".
 
-- (a) Use it anyway, and label it on the page as "talk to our demo agent".
-- (b) Use a human number. `[TODO: Alakh]`
-- (c) Leave the phone out of the schema.
+**B4. Placeholders.**
+- The WhatsApp link is on hold until there's a number, and nothing is added for now.
+- The Cloudflare snippet goes in as a ready-to-enable comment until you send the token.
+- The Google and Bing verification tags go in with placeholder content.
+- Setup steps for all three are in `docs/indexing-and-analytics.md`.
 
-I recommend (b), or (c) until you have one.
+**B5. Analytics. Decided: Cloudflare Web Analytics.** It's free, cookieless and needs no banner. Google Search Console and Bing Webmaster Tools are added for search data. GA4 was considered and set aside, because it uses cookies and so needs a consent banner.
 
-**B3. "2 weeks" vs "2-6 weeks".** The brief says both, "Build Sprint (2 weeks)" and "a first working version in 2-6 weeks", and a reader will notice. My proposed wording, used throughout below:
+**B6. Sharing the header and footer across Phase 2 pages. Still open.**
+- My recommendation is a tiny stdlib Python script, `tools/sync_partials.py`, that copies the header and footer from `partials/` into every page between `<!-- partial:header -->` markers.
+- The output is plain committed HTML, and publishing doesn't change.
+- I'll ask again when Phase 2 starts.
 
-- "a working first version on your data, usually in 2 weeks, and a live system in 2-6 weeks"
-
-Confirm, or give me the true numbers.
-
-**B4. Placeholders that would ship broken.**
-
-- A `wa.me/[TODO]` WhatsApp link and a Cloudflare beacon with a fake token would show up as a dead link and a console error, and the error costs Best Practices points.
-- **Proposal:** Write both into the HTML as clearly marked comments that are ready to switch on. When you paste the number and the token, they go live.
-- The two verification `<meta>` tags are harmless with placeholder content, so they go in as you asked.
-
-**B5. Analytics (D4).**
-
-- Cloudflare Web Analytics with the JS snippet is a good fit for GitHub Pages: no cookies, no banner, no DNS move, and it's free. I agree with it.
-- Two honest limits:
-  - Ad blockers will hide some visitors.
-  - No JS beacon can see AI crawlers (GPTBot, ClaudeBot and so on), because they don't run JS. GitHub Pages also gives no server logs, so you can't measure crawler visits on this host. If that ever matters, putting the domain behind Cloudflare's proxy would show it, but that's a DNS change and not for now.
-- GoatCounter is the main alternative (open source, also cookieless). I don't see a reason to prefer it.
-
-**B6. Sharing the header and footer across Phase 2 pages.** I recommend a tiny stdlib Python script, `tools/sync_partials.py`, with no dependencies.
-
-- It copies the header and footer from `partials/` into every page between `<!-- partial:header -->` markers.
-- You run it before committing, and the output is plain committed HTML. Pages publishing doesn't change.
-- The alternative is Jekyll `{% include %}`, which needs no script because Jekyll already runs. But it ties the site to Jekyll and needs Ruby to preview locally. I'd avoid it.
-- **OK to add the script in Phase 2?**
-
-**B7. Facts only you have.** These are listed in the TODO table at the end. The ones that block the most copy are:
-
-- time to first version for each case
-- a "typical weeks" figure for each card
-- the stack for the WhatsApp and Blinkit cases
-- what the ERP labelling tool labels
-- your LinkedIn company URL
+**B7. Facts only you have.** These are in the TODO table at the end.
 
 ---
 
@@ -165,7 +146,7 @@ Confirm, or give me the true numbers.
 
 - `<html lang="en-IN">`
 - **Title (59 chars):** `Vero Labs · Custom AI Tools for Business · Bangalore, India`
-- **Meta description (about 150 chars):** `Vero Labs is an applied AI studio in Bangalore, India. We build custom AI tools for businesses, like WhatsApp agents and quality checks, in 2-6 weeks.`
+- **Meta description (about 150 chars):** `Vero Labs is an applied AI studio in Bangalore, India. We build custom AI tools for businesses, from WhatsApp agents to AI quality checks, fast.`
 - **Canonical:** `https://vero.co.in/`
 - **OG title:** `Vero Labs · Custom AI for your business, built in weeks`
 - **OG description:** `An applied AI studio in Bangalore, India. Tell us the tool you need; we build it on your data and keep it running.`
@@ -178,7 +159,7 @@ Confirm, or give me the true numbers.
   - areaServed India
   - address with addressLocality Bengaluru, addressRegion Karnataka, addressCountry IN
   - email alakh@vero.co.in plus vishal@vero.co.in
-  - telephone per B2
+  - no telephone (B2)
   - founders Alakh Agrawal and Vishal Srivastava
   - knowsAbout: WhatsApp AI agents, quick-commerce rank and ad tracking, process automation, computer vision quality checks, voice AI agents, CRM and ERP integration
   - sameAs the Zapier partner page and github.com/vero-labs-ai
@@ -200,19 +181,19 @@ Confirm, or give me the true numbers.
 > Custom AI for your business. Built in weeks. Run in production.
 
 Intro:
-> Vero Labs is an applied AI studio in Bangalore, India. You tell us the tool you need, whether that's a WhatsApp agent, a monitoring dashboard or an AI quality check, and we build a working version on your data in 2-6 weeks, then keep it running.
+> Vero Labs is an applied AI studio in Bangalore, India. You tell us the tool you need, whether that's a WhatsApp agent, a monitoring dashboard or an AI quality check, and we build a working version on your data, fast, then keep it running.
 
 Buttons: **Start a project** (primary, goes to #contact) · **See what we've built ↓** (text link, goes to #work)
 
 `mono:` tags:
 > whatsapp agents · marketplace tracking · process automation · ai quality checks · voice agents
 
-**Fig. 1.** This is a small schematic that draws on load. The four nodes are joined by the redline: `Your idea` → `Pilot in 2 weeks` → `Live system` → `We run it`. It sits beside the intro on desktop and under the buttons on mobile.
+**Fig. 1.** This is a small schematic that draws on load. The four nodes are joined by the redline: `Your idea` → `Working pilot` → `Live system` → `We run it`. It sits beside the intro on desktop and under the buttons on mobile.
 
 Caption:
 > Fig. 1 · How a project runs. A working pilot on your data, then a live system, then we keep it running.
 
-SVG `<title>` / `<desc>`: "How a Vero Labs project runs: your idea becomes a pilot in about two weeks, then a live system, which Vero Labs keeps running."
+SVG `<title>` / `<desc>`: "How a Vero Labs project runs: your idea becomes a working pilot on your data, then a live system, which Vero Labs keeps running."
 
 ### C4. 01 · What we build
 
@@ -234,7 +215,6 @@ Each entry has these parts, in order:
 - the problem in the owner's words (Newsreader italic)
 - what we build
 - the outcome
-- `mono:` Typical
 - a link
 - a 3-4 node sketch drawn on scroll, in the same redline style
 
@@ -244,7 +224,7 @@ Each entry has these parts, in order:
 - *"My team spends hours on repetitive WhatsApp chats with suppliers or customers."*
 - > We build an AI agent that handles the routine conversations, like quotes, price negotiation and follow-ups, and passes the tricky ones to a person on your team.
 - > Outcome: your team handles the exceptions, not every message.
-- `mono:` `Typical: [TODO: Alakh] weeks` · link: `See the case ↓`
+- link: `See the case ↓`
 - Sketch: `Trader or customer` → `Agent` → `Your team, for edge cases`
 
 **Entry 2**
@@ -253,7 +233,7 @@ Each entry has these parts, in order:
 - *"I don't know where my products and ads show up on Blinkit, or when competitors outbid me."*
 - > We track where your products and ads rank for the searches that matter, at the exact delivery addresses you choose, every few minutes. You get a live dashboard and an alert when your rank drops.
 - > Outcome: you see what a shopper sees, all day, before you spend more on ads.
-- `mono:` `Typical: [TODO: Alakh] weeks` · link: `See the case ↓`
+- link: `See the case ↓`
 - Sketch: `Keywords × addresses` → `Check every 10 min` → `Alert`
 
 **Entry 3**
@@ -262,7 +242,7 @@ Each entry has these parts, in order:
 - *"This runs on Excel, WhatsApp and people's memory."*
 - > We build a small app or workflow that does the job in one place and plugs into the systems you already use: your ERP, CRM or Google Sheets.
 - > Outcome: the process runs the same way every time, and it no longer depends on one person remembering.
-- `mono:` `Typical: [TODO: Alakh] weeks` · link: `See the case ↓` (goes to the refurbisher's labelling tool)
+- link: `See the case ↓` (goes to the refurbisher's labelling tool)
 - Sketch: `Excel + WhatsApp` → `One tool` → `Your ERP or CRM`
 
 **Entry 4**
@@ -271,7 +251,7 @@ Each entry has these parts, in order:
 - *"We inspect things by eye, and it's slow and inconsistent."*
 - > We build computer vision (software that checks photos) that looks for defects, checks quality or confirms identity, and sends unclear cases to a person to review.
 - > Outcome: every photo gets the same check, and your team only looks at the unclear ones.
-- `mono:` `Typical: [TODO: Alakh] weeks` · link: `Talk to us about it ↓` (no public case yet, so the link goes to contact)
+- link: `Talk to us about it ↓` (no public case yet, so the link goes to contact)
 - Sketch: `Photo` → `Check` → `Pass / send for review`
 
 **Entry 5**
@@ -280,7 +260,7 @@ Each entry has these parts, in order:
 - *"Leads go cold before anyone calls them."*
 - > We build a voice agent that calls each new lead, asks your qualifying questions in English or Hindi, books the next step and updates your CRM.
 - > Outcome: every new lead gets a first call, and your sales team spends its time on the ones ready to talk.
-- `mono:` `Typical: [TODO: Alakh] weeks` · link: `See the case ↓`
+- link: `See the case ↓`
 - Sketch: `New lead` → `Call, English or Hindi` → `CRM updated`
 
 In Phase 2, each H3 also links to its own page ("More on WhatsApp agents →").
@@ -315,7 +295,7 @@ Margin note, unchanged:
 Intro:
 > One is live, one goes live next month, one is a pilot. Each starts with a one-box summary. The engineering detail is underneath for your tech team.
 
-The summary box is an evidence block, laid out as a mono two-column `<dl>`. Its rows are: CLIENT · PROBLEM · WHAT WE BUILT · TIME TO FIRST VERSION · STATUS.
+The summary box is an evidence block, laid out as a mono two-column `<dl>`. Its rows are: CLIENT · PROBLEM · WHAT WE BUILT · STATUS. (The brief's TIME TO FIRST VERSION row is dropped per B3.)
 
 #### Case 1. Real-estate lead qualification
 
@@ -331,7 +311,6 @@ Summary box:
 | CLIENT | An enterprise real-estate developer |
 | PROBLEM | Hot leads went cold while tele-callers worked through the queue. |
 | WHAT WE BUILT | A phone agent that calls each new lead, asks the qualifying questions in English or Hindi, books site visits and updates Salesforce. |
-| TIME TO FIRST VERSION | [TODO: Alakh] |
 | STATUS | Live in production |
 
 **The problem** (existing copy, simplified):
@@ -395,7 +374,6 @@ Summary box:
 | CLIENT | An electronics refurbisher in Bangalore, about 300 people |
 | PROBLEM | Buyers negotiate prices with traders one chat at a time on WhatsApp. |
 | WHAT WE BUILT | An AI agent that handles routine purchase chats using the company's price sheet and negotiation rules, and sends unusual deals to a buyer to approve. Plus a data-labelling tool inside their ERP, to prepare for AI quality checks. |
-| TIME TO FIRST DEMO | [TODO: Alakh] |
 | STATUS | Demoed to the client. Going live in November 2026. |
 
 **The problem:**
@@ -434,7 +412,6 @@ Summary box:
 | CLIENT | A regional sweets brand |
 | PROBLEM | Heavy Blinkit ad spend at festive peaks, with no view of where its products and ads actually appeared. |
 | WHAT WE BUILT | Tracking of product rank and ad positions for chosen searches, at exact delivery addresses, every 10 minutes from 9 AM to 10 PM, with a live dashboard and rank alerts. |
-| TIME TO FIRST VERSION | [TODO: Alakh] |
 | STATUS | Pilot |
 
 **The problem:**
@@ -469,7 +446,7 @@ There are four numbered steps. A redline runs down the left edge through the ste
 
 1. **Scope call (free, 30 minutes).**
    > We agree the smallest version that proves value, and a fixed price.
-2. **Build Sprint (usually 2 weeks).**
+2. **Build Sprint.**
    > A working version on your data. Fixed price, agreed before we start.
 3. **Make it production-ready.**
    > We add what a live system needs: handling for things going wrong, monitoring, and connection to your systems.
@@ -483,7 +460,7 @@ There are two boxes beside the steps, in the margin column on desktop and stacke
 > - Sample data
 > - Access to the system it plugs into
 
-**What you get at the end of week 2**
+**What you get at the end of the Build Sprint**
 > - A working tool
 > - A demo on your real data
 > - A fixed quote for going live
@@ -501,7 +478,7 @@ The FAQ uses native `<details>` per question with all answers in the static HTML
    > Mostly owner-led companies in India that already know the tool they want. Recent work includes an electronics refurbisher, a consumer food brand and a real-estate developer. You do not need an AI plan, just a clear problem that costs your team time or money.
 
 2. **How much does it cost, and how long does it take?**
-   > Every project gets a fixed price after a free 30-minute scope call. A first working version usually takes 2-6 weeks. You know the price before we start.
+   > Every project gets a fixed price after a free 30-minute scope call, and you know it before we start. We move fast: you see a working version on your own data before you commit to the full build.
 
 3. **Do we need a tech team?**
    > No. We need one person who knows the process and can make decisions, for about 30 minutes a week. If you do have a tech team, we work with them and give them everything they need.
@@ -566,7 +543,7 @@ Buttons: **Email Vishal** (primary) · **Email Alakh** (secondary). Both are pre
 Mono line:
 > vishal@vero.co.in · alakh@vero.co.in · Bangalore, India
 
-WhatsApp: `Message us on WhatsApp` → `https://wa.me/[TODO: Alakh]`, commented out until you give me the number (B4).
+WhatsApp: on hold until there's a number (B4). Nothing is added for now.
 
 ### C11. Colophon
 
@@ -635,7 +612,7 @@ Each page has the same structure, at 400-800 words:
 - what we build
 - one schematic, reused from the home page
 - a mini case
-- a typical timeline, with no price
+- how we work, with no price and no timeline
 - 3-4 FAQs with `FAQPage` JSON-LD
 - a CTA
 - a visible "Last updated"
@@ -648,23 +625,18 @@ The header and footer are shared per B6.
 
 | # | Item | Where it's used |
 |---|---|---|
-| 1 | B1: `_config.yml` exclude, and removing the caller's name from the HTML comment. Approve or choose an alternative. | Hosting |
-| 2 | B2: phone number for the schema (human line, or none) | JSON-LD |
-| 3 | B3: confirm "pilot in 2 weeks, live in 2-6 weeks" | Hero, Process, FAQ |
-| 4 | B6: OK for the `tools/sync_partials.py` script in Phase 2 | Phase 2 |
-| 5 | "Typical: X weeks" for each of the 5 entries | C4 |
-| 6 | Time to first version: real-estate case | C6 case 1 |
-| 7 | Time to first demo: refurbisher case | C6 case 2 |
-| 8 | Time to first version: Blinkit case | C6 case 3 |
-| 9 | What the ERP labelling tool labels | C6 case 2 |
-| 10 | Confirm: "the agent never agrees a price outside the rules your buyers set" | C6 case 2 margin note |
-| 11 | Stack and integration notes for the WhatsApp agent and the labelling tool | C6 case 2 tech layer |
-| 12 | Stack and alerting notes for the Blinkit tracker | C6 case 3 tech layer |
-| 13 | Confirm: "your data stays yours; used only to build and run your tool" | FAQ 4 |
-| 14 | Typical reply time to an enquiry (optional) | Contact |
-| 15 | WhatsApp number for click-to-chat | Contact |
-| 16 | LinkedIn company URL | JSON-LD sameAs, colophon |
-| 17 | Google Search Console verification token | `<head>` |
-| 18 | Bing Webmaster Tools verification token | `<head>` |
-| 19 | Cloudflare Web Analytics token | `<head>` |
-| 20 | Show founders' full names on the page? (I recommend yes) | Studio |
+| 1 | B1: choose how to make the docs private on GitHub, (a), (b) or (c) | Repo |
+| 2 | B6: OK for the `tools/sync_partials.py` script in Phase 2 | Phase 2 |
+| 3 | Confirm the H1 keeps "Built in weeks", or switch to "Built fast" | Hero |
+| 4 | What the ERP labelling tool labels | C6 case 2 |
+| 5 | Confirm: "the agent never agrees a price outside the rules your buyers set" | C6 case 2 margin note |
+| 6 | Stack and integration notes for the WhatsApp agent and the labelling tool | C6 case 2 tech layer |
+| 7 | Stack and alerting notes for the Blinkit tracker | C6 case 3 tech layer |
+| 8 | Confirm: "your data stays yours; used only to build and run your tool" | FAQ 4 |
+| 9 | Typical reply time to an enquiry (optional) | Contact |
+| 10 | LinkedIn company URL | JSON-LD sameAs, colophon |
+| 11 | Google Search Console verification token (steps in `docs/indexing-and-analytics.md`) | `<head>` |
+| 12 | Bing Webmaster Tools verification token (same doc) | `<head>` |
+| 13 | Cloudflare Web Analytics token (same doc) | `<head>` |
+| 14 | Show founders' full names on the page? (I recommend yes) | Studio |
+| 15 | WhatsApp number, whenever you're ready (on hold) | Contact |

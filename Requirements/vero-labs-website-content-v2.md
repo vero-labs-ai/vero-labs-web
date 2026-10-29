@@ -165,7 +165,7 @@ Post-bleep swap (preferred, from clip 06):
 > AGENT   "Username spell करती हूँ: e as in echo, k as in kilo"
 > CALLER  "नहीं नहीं नहीं"
 > AGENT   "माफ़ कीजिए! फिर से बताइए."
-> CALLER  "इशिता जैन … at gmail dot com"
+> CALLER  "[name] … at gmail dot com"
 Caption: `Interruption, recovery, correction. Endpointing tuned to 100 ms.`
 
 ### Fig. 2 caption
