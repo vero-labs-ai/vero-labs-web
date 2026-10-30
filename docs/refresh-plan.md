@@ -86,13 +86,11 @@ All visible copy is hand-written inline in `index.html` and `demo/index.html`. T
 
 Updated 29 Oct 2026 after Alakh's answers.
 
-**B1. Internal docs off the public site. Decided: hide them. Done on `site-refresh`.**
-- `_config.yml` now excludes `Requirements/`, `docs/` and `README.md` from the Jekyll build, so vero.co.in stops serving them once this branch is deployed. `CNAME`, the branch and the publish settings are unchanged.
+**B1. Internal docs off the public site. Decided: hide them from vero.co.in. Done on `site-refresh`.**
+- `_config.yml` excludes `Requirements/`, `docs/` and `README.md` from the Jekyll build, so vero.co.in stops serving them once this branch is deployed.
 - The test caller's name is removed from the HTML comment in `index.html` and from the v2 content doc.
-- **Still public on github.com:** the repo is public, so these docs (and the name, in the first commit's history) can still be read there. There are three ways to fix that, and the choice is yours:
-  - (a) Move `Requirements/` and `docs/` into a separate **private** repo and delete them here. The history still holds old copies.
-  - (b) Also rewrite the history to remove them. That needs a force-push to `main`, which only you or Vishal should do.
-  - (c) Make this repo private. GitHub Pages from a private repo needs a paid plan (GitHub Team for an org). On the free plan, **the site goes offline**.
+- The repo stays public on GitHub. Alakh confirmed this is fine for now.
+- Search Console shows the Requirements page was never indexed, so no removal request is needed.
 
 **B2. Phone numbers. Decided.**
 - No phone number in the new copy or in the JSON-LD.
@@ -106,7 +104,7 @@ Updated 29 Oct 2026 after Alakh's answers.
 **B4. Placeholders.**
 - The WhatsApp link is on hold until there's a number, and nothing is added for now.
 - The Cloudflare snippet goes in as a ready-to-enable comment until you send the token.
-- The Google and Bing verification tags go in with placeholder content.
+- No Google or Bing verification tags: both are already verified.
 - Setup steps for all three are in `docs/indexing-and-analytics.md`.
 
 **B5. Analytics. Decided: Cloudflare Web Analytics.** It's free, cookieless and needs no banner. Google Search Console and Bing Webmaster Tools are added for search data. GA4 was considered and set aside, because it uses cookies and so needs a consent banner.
@@ -146,14 +144,14 @@ Updated 29 Oct 2026 after Alakh's answers.
 ### C1. `<head>` (home)
 
 - `<html lang="en-IN">`
-- **Title (59 chars):** `Vero Labs · Custom AI Tools for Business · Bangalore, India`
-- **Meta description (about 150 chars):** `Vero Labs is an applied AI studio in Bangalore, India. We build custom AI tools for businesses, from WhatsApp agents to AI quality checks, fast.`
+- **Title (59 chars):** `Vero Labs · Custom AI Development Studio · Bangalore, India`
+- **Meta description:** `Vero Labs is an applied AI studio in Bangalore, India, offering custom AI development for businesses: WhatsApp agents, voice agents and AI quality checks.`
 - **Canonical:** `https://vero.co.in/`
 - **OG title:** `Vero Labs · Custom AI for your business, built in weeks`
 - **OG description:** `An applied AI studio in Bangalore, India. Tell us the tool you need; we build it on your data and keep it running.`
 - **OG image:** `https://vero.co.in/assets/og.png` (absolute, because some scrapers ignore relative OG URLs). The current og.png carries the old headline. Re-rendering it with the new H1 is in Phase 1.
 - Twitter card tags to match.
-- No Google verification tag: Search Console is already verified (a Domain property plus a URL-prefix property for `https://vero.co.in/`). The Bing tag is only needed if the import from Google isn't used.
+- No Google or Bing verification tags: both are already verified.
 - Cloudflare Web Analytics snippet, commented out and ready (B4).
 - **JSON-LD `ProfessionalService`:**
   - name "Vero Labs", url, description
@@ -182,7 +180,7 @@ Updated 29 Oct 2026 after Alakh's answers.
 > Custom AI for your business. Built in weeks. Run in production.
 
 Intro:
-> Vero Labs is an applied AI studio in Bangalore, India. You tell us the tool you need, whether that's a WhatsApp agent, a monitoring dashboard or an AI quality check, and we build a working version on your data, fast, then keep it running.
+> Vero Labs is an applied AI studio in Bangalore, India. We do custom AI development: you tell us the tool you need, whether that's a WhatsApp agent, a monitoring dashboard or an AI quality check, and we build a working version on your data, fast, then keep it running.
 
 Buttons: **Start a project** (primary, goes to #contact) · **See what we've built ↓** (text link, goes to #work)
 
@@ -204,7 +202,7 @@ SVG `<title>` / `<desc>`: "How a Vero Labs project runs: your idea becomes a wor
 > AI tools built around a problem you already have.
 
 Intro:
-> Most projects fall into one of five kinds. Find the problem that sounds like yours, and you will see what we would build.
+> Our AI services fall into five kinds of custom tools. Find the problem that sounds like yours, and you will see what we would build.
 
 Margin note:
 > Four of the five come from client work shown below. The fifth uses our computer vision work.
@@ -285,6 +283,9 @@ Intro:
 
 Margin note, unchanged:
 > Every clip on this page is from an internal test call. No customer audio, ever.
+
+New link under the exhibits, because no page links to `/demo/` today and Google has never found it:
+> See the full demo →
 
 ### C6. 03 · Selected work
 
@@ -569,7 +570,10 @@ In Phase 2 the colophon also gets a "Services" line linking the five problem pag
 
 - **`robots.txt`:** allows all, and explicitly names Googlebot, Bingbot, OAI-SearchBot, GPTBot, ChatGPT-User, PerplexityBot, ClaudeBot, Claude-SearchBot and Google-Extended. It points to `https://vero.co.in/sitemap.xml`.
 - **`sitemap.xml`:** `/` and `/demo/` with `lastmod`. The Phase 2 URLs are added when those pages exist.
-- **`llms.txt`** (low priority, Phase 1 because it's cheap): a 10-line summary in the same words as the hero and the cards, plus links.
+- **`llms.txt`:** draft in `docs/launch-checklist.md`.
+- **`404.html`:** a Field Report-styled not-found page with links back to the main sections.
+- **Page source clean-up:** the internal notes in HTML comments (clip quarantine, swap instructions) move to `Requirements/`, because anyone can read them with View Source.
+- **Video and audio:** add a short written summary beside each, plus `VideoObject` JSON-LD for the walkthrough, because crawlers can't watch or listen.
 
 ### C14. Implementation phases
 
@@ -597,6 +601,7 @@ These are outline only. I'll write the full copy for your review in a second doc
 
 | URL | H1 (draft) | Title (draft) |
 |---|---|---|
+| `/ai-services/` | AI services from Vero Labs: the hub linking all five service pages | Vero Labs · AI Services for Business · Bangalore, India |
 | `/whatsapp-agents/` | WhatsApp agents for Indian businesses | Vero Labs · WhatsApp AI Agents · Bangalore, India |
 | `/quick-commerce-tracking/` | Blinkit, Zepto and Instamart rank and ad tracking | Vero Labs · Quick-Commerce Rank & Ad Tracking |
 | `/process-automation/` | Turn a manual process into a tool | Vero Labs · Process Automation · Bangalore, India |
@@ -626,17 +631,15 @@ The header and footer are shared per B6.
 
 | # | Item | Where it's used |
 |---|---|---|
-| 1 | B1: choose how to make the docs private on GitHub, (a), (b) or (c) | Repo |
-| 2 | B6: OK for the `tools/sync_partials.py` script in Phase 2 | Phase 2 |
-| 3 | Confirm the H1 keeps "Built in weeks", or switch to "Built fast" | Hero |
-| 4 | What the ERP labelling tool labels | C6 case 2 |
-| 5 | Confirm: "the agent never agrees a price outside the rules your buyers set" | C6 case 2 margin note |
-| 6 | Stack and integration notes for the WhatsApp agent and the labelling tool | C6 case 2 tech layer |
-| 7 | Stack and alerting notes for the Blinkit tracker | C6 case 3 tech layer |
-| 8 | Confirm: "your data stays yours; used only to build and run your tool" | FAQ 4 |
-| 9 | Typical reply time to an enquiry (optional) | Contact |
-| 10 | LinkedIn company URL | JSON-LD sameAs, colophon |
-| 12 | Bing: import from Google Search Console (no token needed) | Setup |
-| 13 | Cloudflare Web Analytics token (same doc) | `<head>` |
-| 14 | Show founders' full names on the page? (I recommend yes) | Studio |
-| 15 | WhatsApp number, whenever you're ready (on hold) | Contact |
+| 1 | B6: OK for the `tools/sync_partials.py` script in Phase 2 | Phase 2 |
+| 2 | Confirm the H1 keeps "Built in weeks", or switch to "Built fast" | Hero |
+| 3 | What the ERP labelling tool labels | C6 case 2 |
+| 4 | Confirm: "the agent never agrees a price outside the rules your buyers set" | C6 case 2 margin note |
+| 5 | Stack and integration notes for the WhatsApp agent and the labelling tool | C6 case 2 tech layer |
+| 6 | Stack and alerting notes for the Blinkit tracker | C6 case 3 tech layer |
+| 7 | Confirm: "your data stays yours; used only to build and run your tool" | FAQ 4 |
+| 8 | Typical reply time to an enquiry (optional) | Contact |
+| 9 | LinkedIn company URL | JSON-LD sameAs, colophon |
+| 10 | Cloudflare Web Analytics token (steps in `docs/indexing-and-analytics.md`) | `<head>` |
+| 11 | Show founders' full names on the page? (I recommend yes) | Studio |
+| 12 | WhatsApp number, whenever you're ready (on hold) | Contact |

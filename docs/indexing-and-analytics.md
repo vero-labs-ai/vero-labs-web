@@ -6,14 +6,7 @@ Use a shared login if you can (for example a Vero Labs Google account), so Visha
 
 ## The order that works
 
-1. **Get three codes** (steps A1, B1 and C1 below) and send them to Claude: the Google verification code, the Bing verification code and the Cloudflare token.
-2. **Claude adds them** to the site's `<head>`, together with `robots.txt` and `sitemap.xml`, on the `site-refresh` branch.
-3. **You review and deploy** by merging into `main`. GitHub Pages updates in a few minutes.
-4. **Click Verify** in Google and Bing, then submit the sitemap and request indexing (steps A2, A3, B2 and B3).
-
-The verification tags must stay on the site permanently. If one is removed, that tool stops trusting the site.
-
-If you want indexing to start before the full refresh is ready, Claude can make a small separate branch with only the tags, `robots.txt` and `sitemap.xml`, so you can deploy that first.
+Google and Bing are already verified, so only the Cloudflare token is needed before deployment. For the full order of work, see `docs/launch-checklist.md`.
 
 ---
 
