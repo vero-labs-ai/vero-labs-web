@@ -140,6 +140,7 @@ Updated 29 Oct 2026 after Alakh's answers.
   - Exhibit F is the Blinkit slot map.
   - The small "What we build" diagrams are unnumbered sketches.
   - /demo keeps its own Fig. 1 because it's a separate document.
+- **Keep the existing section IDs** (`#demo`, `#work`, `#method`, `#studio`, `#contact`, `#what-we-do`), even where the visible label changes. Google already shows these links in results (Search Console, 30 Oct 2026), so renaming them would break them.
 - **Navigation** (masthead contents and sticky bar): `Build · Demo · Work · Process · FAQ · Contact`. "Studio" drops out of the nav to keep it on one line at 390 px.
 
 ### C1. `<head>` (home)

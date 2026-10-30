@@ -89,6 +89,15 @@ Your domain does **not** need to move to Cloudflare for this. It works with a sm
 
 ---
 
+## Baseline before the refresh (exports from 30 Oct 2026)
+
+- **Google, last 6 months:** 71 clicks, 3,801 impressions. Clicks by month: Jul 29, Aug 18, Sep 10, Oct 5 (Oct is partial).
+- **Top Google searches:** "vero studio ai" (29 clicks, 582 impressions), "vero" (6, 770), "vero labs" (4, 112), "vero studio" (3, 117), "vero company" (0, 129).
+- **Bing, 30 Apr to 27 Oct:** see the export. Almost no clicks.
+- **Nearly every search is for a name.** None are for a problem we solve (WhatsApp agents, Blinkit tracking, and so on). The Phase 2 pages are the test of whether that changes.
+
+---
+
 ## D. After the tools are set up
 
 - Every time a page is added, Claude updates `sitemap.xml`. Request indexing for the new URL in Google (A3) and Bing (B3).
