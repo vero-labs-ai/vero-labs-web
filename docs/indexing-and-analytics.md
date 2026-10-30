@@ -89,6 +89,16 @@ Your domain does **not** need to move to Cloudflare for this. It works with a sm
 - **Bing, 30 Apr to 27 Oct:** see the export. Almost no clicks.
 - **Nearly every search is for a name.** None are for a problem we solve (WhatsApp agents, Blinkit tracking, and so on). The Phase 2 pages are the test of whether that changes.
 
+### Chatbot answers on launch day (31 Oct 2026, ChatGPT and Claude, temporary chats)
+
+| Question | ChatGPT | Claude |
+|---|---|---|
+| What does Vero Labs in Bangalore do? | Finds us. Describes the old site's four service areas | Finds us. Describes the old site, and gives the removed demo number |
+| Which AI studios in Bangalore build custom AI tools? | Lists us first of 10 | Doesn't list us. Cites directories such as Clutch, GoodFirms and DesignRush |
+| Who can build a WhatsApp AI agent for my business in India? | Doesn't list us. Names WhatsApp platforms, then Bengaluru companies with map listings | Doesn't list us. Names Meta, WhatsApp platforms and enterprise vendors |
+
+The answers reflect the site from before the refresh, which never mentioned WhatsApp. Gemini and Perplexity weren't checked.
+
 ---
 
 ## D. After the tools are set up
