@@ -300,14 +300,6 @@ a.wordmark:hover {
   margin-top: 2.5rem;
 }
 
-.hero-tags {
-  margin-top: 2.75rem;
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  letter-spacing: 0.04em;
-  color: var(--ink-soft);
-}
-
 /* ---------- Buttons ---------- */
 
 .btn {
@@ -737,7 +729,7 @@ h2.kicker-name {
   stroke-width: 1.25;
 }
 
-/* ---------- 01 · What we build ---------- */
+/* ---------- 01 · Built so far ---------- */
 
 .build-list {
   margin-top: 2.5rem;
@@ -773,21 +765,12 @@ h2.kicker-name {
   line-height: 1.25;
 }
 
-.build-quote {
-  margin-top: 0.6rem;
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: 1.1rem;
-  line-height: 1.4;
-  color: var(--ink-soft);
-}
-
 .build-entry > p:not(.build-no) {
   margin-top: 0.75rem;
 }
 
-.build-label {
-  display: block;
+.build-entry > .build-status {
+  margin-top: 0.4rem;
   font-family: var(--font-mono);
   font-size: 0.75rem;
   letter-spacing: 0.08em;
@@ -806,6 +789,21 @@ h2.kicker-name {
 
 .build-entry > .build-link {
   margin-top: 1rem;
+}
+
+.build-more {
+  margin-top: 0.5rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--rule);
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  line-height: 1.35;
+}
+
+.build-more .textlink {
+  font-family: var(--font-text);
+  font-size: 1rem;
+  white-space: nowrap;
 }
 
 .section-link {

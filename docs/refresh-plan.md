@@ -1,5 +1,11 @@
 # Vero Labs site refresh: plan and copy
 
+> **Changes after review, 30 Oct 2026. These override the copy below; the live HTML is the reference.**
+> - "What we build" is now "Built so far": four things actually built, with no categories or service list, and the title "Some things we've built. We can build a lot more."
+> - The AI quality and photo check is removed because it has not been built. The data-labelling tool for vision AI takes its place.
+> - The Client row is removed from each case summary, and the FAQ no longer lists client types.
+> - Release 2 service pages are on hold, since they conflict with this positioning.
+
 Branch: `site-refresh` · Status: **awaiting review** · Written 29 Oct 2026
 
 This document has three parts:

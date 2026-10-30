@@ -7,7 +7,7 @@ Status (30 Oct 2026): Release 1 is built on the `site-refresh` branch and not li
 The work ships in two releases:
 
 - **Release 1:** the home page, /demo and all the technical files.
-- **Release 2:** nine new pages: `/ai-services/`, five service pages and three case pages.
+- **Release 2:** on hold. It planned `/ai-services/`, service pages and three case pages, but service pages conflict with the open-ended positioning decided on 30 Oct 2026. Case pages still fit.
 
 ---
 
@@ -18,7 +18,7 @@ The work ships in two releases:
 - [ ] Review and approve the copy in `docs/refresh-plan.md` (blocks all building)
 - [ ] Headline: keep "Built in weeks", or switch to "Built fast"
 - [ ] Check keywords in Bing Keyword Research (section 3)
-- [ ] Refurbisher case: what does the ERP labelling tool label?
+- [ ] Refurbisher case: confirm the ERP labelling tool labels photos (site now says so)
 - [ ] Refurbisher case: confirm "the agent never agrees a price outside the rules your buyers set"
 - [ ] WhatsApp agent and labelling tool: stack notes for the tech-team section, or say to leave them out
 - [ ] Blinkit tracker: stack and alerting notes, or say to leave them out
@@ -43,8 +43,8 @@ The work ships in two releases:
 
 **Approved wording to reuse everywhere** (draft until you approve it):
 
-- **One line:** Vero Labs is an applied AI studio in Bangalore, India that builds custom AI tools for businesses.
-- **Short:** Vero Labs is an applied AI studio in Bangalore, India. Run by two engineers, we build WhatsApp agents, quick-commerce tracking, process automation, AI quality checks and voice agents, then keep them running.
+- **One line:** Vero Labs is an applied AI studio in Bangalore, India that builds custom AI solutions for businesses in any industry.
+- **Short:** Vero Labs is an applied AI studio in Bangalore, India. Run by two engineers, we build custom solutions for businesses in any industry, then keep them running. We are not tied to one industry or one kind of system.
 
 ### 3. Keywords (Build)
 
@@ -57,7 +57,6 @@ Keywords go in titles, headings and body copy. I'm not adding a `<meta name="key
 | `/whatsapp-agents/` | WhatsApp AI agent India, WhatsApp automation for business |
 | `/quick-commerce-tracking/` | Blinkit rank tracking, Blinkit ad tracking, Zepto and Instamart tracking |
 | `/process-automation/` | AI process automation India, automate Excel and WhatsApp workflows |
-| `/ai-quality-checks/` | AI quality inspection India, computer vision quality checks |
 | `/voice-agents/` | AI voice agent India, Hindi voice agent, lead qualification calls |
 
 These are estimates until they're checked in Keyword Research.
@@ -76,16 +75,17 @@ These are estimates until they're checked in Keyword Research.
 ```
 # Vero Labs
 
-> Vero Labs is an applied AI studio in Bangalore, India that builds custom AI tools for businesses, usually owner-led Indian companies. Run by two engineers, Alakh Agrawal and Vishal Srivastava.
+> Vero Labs is an applied AI studio in Bangalore, India that builds custom AI solutions for businesses in any industry. Run by two engineers, Alakh Agrawal and Vishal Srivastava.
 
 Vero Labs is a separate company from other businesses with "Vero" in their name.
 
-## What we build
-- WhatsApp agents that handle routine conversations
-- Blinkit, Zepto and Instamart rank and ad tracking
-- Tools that replace manual processes
-- AI quality and photo checks
-- Phone agents that call and qualify new leads
+## Some things we have built
+- A phone agent that calls and qualifies new leads, live in production
+- A WhatsApp agent for routine purchase chats, going live November 2026
+- Blinkit rank and ad tracking, in pilot
+- A data-labelling tool for training a vision AI
+
+These are examples. We are not tied to one industry or one kind of system.
 
 ## How to start
 - Every project gets a fixed price after a free 30-minute scope call.
@@ -108,7 +108,7 @@ Release 2 adds the new pages to "Key pages".
 
 ### 6. Page content (Build)
 
-- [x] Hero, What we build, Demo, three case studies, Process, FAQ, Studio, Contact, colophon, as in the plan
+- [x] Hero, Built so far, Demo, three case studies, Process, FAQ, Studio, Contact, colophon, as in the plan
 - [x] Link from the home page to `/demo/`, which no page links to today
 - [x] Footer links to the main pages
 - [x] Written summary beside the video and the audio call, because crawlers can't watch or listen
