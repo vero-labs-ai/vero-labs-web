@@ -6,7 +6,7 @@ Use a shared login if you can (for example a Vero Labs Google account), so Visha
 
 ## The order that works
 
-Google and Bing are already verified, so only the Cloudflare token is needed before deployment. For the full order of work, see `docs/launch-checklist.md`.
+Google and Bing are already verified, and the Cloudflare script is on, so nothing here is needed before deployment. For the full order of work, see `docs/launch-checklist.md`.
 
 ---
 

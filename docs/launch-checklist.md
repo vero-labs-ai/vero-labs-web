@@ -2,7 +2,7 @@
 
 Written 30 Oct 2026. This is the single list of what happens before and after deployment. "Deployment" means merging `site-refresh` into `main`, which you do yourself.
 
-Status (30 Oct 2026): Release 1 is built on the `site-refresh` branch and not live. Ticked items are done. The Cloudflare script is in the pages as a comment until the token arrives.
+Status (30 Oct 2026): Release 1 is built on the `site-refresh` branch and not live. Ticked items are done. The Cloudflare script is on for the home page and /demo.
 
 The work ships in two releases:
 
@@ -26,7 +26,7 @@ The work ships in two releases:
 - [ ] Typical reply time to an enquiry (optional)
 - [ ] LinkedIn company URL (create the page if there isn't one)
 - [ ] Show founders' full names on the page? (recommended)
-- [ ] Cloudflare Web Analytics token
+- [x] Cloudflare Web Analytics token
 - [x] Walkthrough video: upload date, for the video schema
 - [ ] OK for `tools/sync_partials.py` (Release 2 only)
 
@@ -115,7 +115,7 @@ Release 2 adds the new pages to "Key pages".
 - [x] Tables are real `<table>`s, and all important text is in the HTML
 - [x] Keep the existing section links (`#demo`, `#work`, `#method`, `#studio`, `#contact`, `#what-we-do`)
 - [x] Pre-filled `mailto:` template on the email buttons
-- [ ] Cloudflare script added with the real token
+- [x] Cloudflare script added with the real token
 
 ### 7. Tidy-up (Build)
 
@@ -163,7 +163,8 @@ Release 2 adds the new pages to "Key pages".
   - `/docs/launch-checklist.html`
   - `/README.md`
 - [ ] `/robots.txt`, `/sitemap.xml` and `/llms.txt` open, and a made-up URL shows the new 404 page
-- [ ] Cloudflare Web Analytics shows your own visit
+- [ ] Cloudflare Web Analytics shows your own visit (turn off any ad blocker first)
+- [ ] Lighthouse Best Practices on the live site is back to 96, with no console error from `cloudflareinsights.com`
 - [ ] Google Rich Results Test on the live URL
 - [ ] PageSpeed Insights, mobile and desktop
 - [ ] Share preview looks right on WhatsApp and in LinkedIn Post Inspector
