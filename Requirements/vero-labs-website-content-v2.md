@@ -1,3 +1,5 @@
+> SUPERSEDED for copy by `docs/refresh-plan.md` section C (Oct 2026). The live copy is in the HTML. Kept for history.
+
 # Vero Labs Website Content — v2 (Field Report edition)
 
 This file replaces `vero-labs-website-content.md` entirely. It is the copy deck for the v2

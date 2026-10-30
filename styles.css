@@ -249,6 +249,40 @@ a.wordmark:hover {
   letter-spacing: -0.015em;
 }
 
+.hero-kicker {
+  margin-bottom: 1.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+}
+
+.hero-grid {
+  display: grid;
+  gap: 2.5rem clamp(2.5rem, 5vw, 5rem);
+}
+
+.hero-fig {
+  max-width: 17rem;
+}
+
+@media (min-width: 1000px) {
+  .hero-grid {
+    grid-template-columns: minmax(0, var(--measure)) 17rem;
+    align-items: start;
+  }
+
+  .hero-fig {
+    margin-top: 2rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero h1 span {
+    display: block;
+  }
+}
+
 .hero-sub {
   margin-top: 2rem;
   max-width: var(--measure);
@@ -524,7 +558,7 @@ h2.kicker-name {
   font-weight: 500;
 }
 
-/* Future callable-demo line (used when the live number ships) */
+/* Callable-demo line */
 
 .demo-callout {
   margin-top: 1.25rem;
@@ -703,35 +737,112 @@ h2.kicker-name {
   stroke-width: 1.25;
 }
 
-/* ---------- 02 · Capabilities ---------- */
+/* ---------- 01 · What we build ---------- */
 
-.cap-grid {
+.build-list {
   margin-top: 2.5rem;
-  max-width: 56rem;
-}
-
-.cap {
-  padding-block: 1.75rem;
-  border-top: 1px solid var(--rule);
-}
-
-.cap h3 {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: 1.35rem;
-  line-height: 1.25;
-}
-
-.cap p {
-  margin-top: 0.6rem;
+  display: grid;
+  column-gap: clamp(2.5rem, 5vw, 5rem);
 }
 
 @media (min-width: 768px) {
-  .cap-grid {
-    display: grid;
+  .build-list {
     grid-template-columns: 1fr 1fr;
-    column-gap: clamp(2.5rem, 5vw, 5rem);
   }
+}
+
+.build-entry {
+  display: flex;
+  flex-direction: column;
+  padding-block: 1.75rem 2.25rem;
+  border-top: 1px solid var(--rule);
+}
+
+.build-no {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--redline);
+}
+
+.build-entry h3 {
+  margin-top: 0.35rem;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.45rem;
+  line-height: 1.25;
+}
+
+.build-quote {
+  margin-top: 0.6rem;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.1rem;
+  line-height: 1.4;
+  color: var(--ink-soft);
+}
+
+.build-entry > p:not(.build-no) {
+  margin-top: 0.75rem;
+}
+
+.build-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.sketch {
+  margin-top: auto;
+  padding-top: 1.25rem;
+}
+
+.build-entry:nth-child(even) .sketch {
+  --draw-delay: 150ms;
+}
+
+.build-entry > .build-link {
+  margin-top: 1rem;
+}
+
+.section-link {
+  margin-top: 1.5rem;
+}
+
+/* ---------- Technical details ---------- */
+
+.tech-details {
+  margin-top: 2.5rem;
+  max-width: var(--measure);
+  border-block: 1px solid var(--rule);
+}
+
+.tech-details summary {
+  padding-block: 0.85rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+}
+
+.tech-body {
+  padding-bottom: 1.5rem;
+}
+
+.tech-body .prose p + p {
+  margin-top: 0.75rem;
+}
+
+.tech-body b {
+  font-weight: 500;
+}
+
+.tech-body .evidence {
+  margin-top: 1.5rem;
 }
 
 /* ---------- 03 · Case study ---------- */
@@ -742,6 +853,77 @@ h2.kicker-name {
   font-size: 1.35rem;
   line-height: 1.25;
   margin-top: 2.5rem;
+}
+
+.case {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--ink);
+  scroll-margin-top: 3.25rem;
+}
+
+.case-title {
+  max-width: var(--measure);
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.45rem, 2.6vw, 1.9rem);
+  line-height: 1.2;
+  letter-spacing: -0.005em;
+}
+
+.case-summary {
+  margin-top: 1.5rem;
+  max-width: var(--measure);
+  padding: clamp(1rem, 2.5vw, 1.5rem);
+  background: var(--paper-tint);
+  border: 1px solid var(--rule);
+}
+
+.case-summary > div {
+  display: grid;
+  gap: 0.15rem 1.5rem;
+  padding-block: 0.6rem;
+  border-top: 1px solid var(--rule);
+}
+
+.case-summary > div:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.case-summary > div:last-child {
+  padding-bottom: 0;
+}
+
+.case-summary dt {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  line-height: 1.9;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+@media (min-width: 560px) {
+  .case-summary > div {
+    grid-template-columns: 9rem minmax(0, 1fr);
+  }
+}
+
+.slot-strip {
+  margin-top: 1.25rem;
+}
+
+.schematic .cell {
+  fill: var(--paper);
+  stroke: var(--rule);
+  stroke-width: 1;
+}
+
+.schematic .lbl-on {
+  fill: #FFFFFF;
+  font-weight: 500;
 }
 
 .pullquote {
@@ -760,33 +942,148 @@ h2.kicker-name {
 }
 
 .design-notes b {
-  font-weight: 600;
+  font-weight: 500;
 }
 
-/* ---------- 04 · Method ---------- */
+/* ---------- 04 · Process ---------- */
 
-.method-list {
-  list-style: none;
-  padding: 0;
-  margin-top: 2.5rem;
+.method-wrap {
+  position: relative;
   max-width: var(--measure);
 }
 
+.method-line {
+  position: absolute;
+  top: 1.9rem;
+  bottom: 2.5rem;
+  left: 0.72rem;
+  width: 1.5px;
+  background: var(--rule);
+}
+
+.method-line-fill {
+  display: block;
+  height: 100%;
+  background: var(--redline);
+  transform-origin: top;
+}
+
+html.js .method-wrap[data-draw="scroll"] .method-line-fill {
+  transform: scaleY(var(--draw-progress, 0));
+}
+
+.method-list {
+  position: relative;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Stops the process line at the last step number */
+.method-list li:last-child {
+  position: relative;
+}
+
+.method-list li:last-child::before {
+  content: "";
+  position: absolute;
+  top: 3rem;
+  bottom: 0;
+  left: 0;
+  width: 1.5rem;
+  background: var(--paper);
+}
+
 .method-list li {
+  display: flex;
+  gap: 1.25rem;
   padding-block: 1.5rem;
-  border-top: 1px solid var(--rule);
 }
 
 .method-no {
+  flex: none;
+  width: 1.5rem;
+  height: 1.5rem;
+  background: var(--paper);
   font-family: var(--font-mono);
   font-size: 0.85rem;
   font-weight: 500;
+  line-height: 1.5rem;
+  text-align: center;
   color: var(--redline);
-  margin-right: 1rem;
 }
 
 .method-list b {
-  font-weight: 600;
+  font-weight: 500;
+}
+
+.side-box + .side-box {
+  margin-top: 1.5rem;
+}
+
+.side-box {
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--rule);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+.side-box h3 {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.side-box ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 0.5rem;
+}
+
+.side-box li + li {
+  margin-top: 0.35rem;
+}
+
+@media (min-width: 1100px) {
+  .annotated > .aside-col {
+    grid-column: 2;
+    grid-row: 1;
+    padding-top: 1.5rem;
+  }
+}
+
+@media (max-width: 1099.98px) {
+  .aside-col {
+    margin-top: 1.5rem;
+    max-width: var(--measure);
+  }
+}
+
+/* ---------- 05 · FAQ ---------- */
+
+.faq-list {
+  margin-top: 2rem;
+  max-width: var(--measure);
+  border-bottom: 1px solid var(--rule);
+}
+
+.faq-item {
+  border-top: 1px solid var(--rule);
+}
+
+.faq-item summary {
+  padding-block: 1rem;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.2rem;
+  line-height: 1.3;
+  cursor: pointer;
+}
+
+.faq-item p {
+  padding-bottom: 1.25rem;
 }
 
 /* ---------- 05 · Studio ---------- */
@@ -892,12 +1189,12 @@ html.js .schematic .live-fill {
 html.js .schematic.is-drawn .live,
 html.js .schematic.is-drawn .mark {
   stroke-dashoffset: 0;
-  transition: stroke-dashoffset 600ms ease-out 100ms;
+  transition: stroke-dashoffset 600ms ease-out calc(100ms + var(--draw-delay, 0ms));
 }
 
 html.js .schematic.is-drawn .live-fill {
   opacity: 1;
-  transition: opacity 200ms ease-out 650ms;
+  transition: opacity 200ms ease-out calc(650ms + var(--draw-delay, 0ms));
 }
 
 .stickybar {
@@ -927,6 +1224,10 @@ html.js .schematic.is-drawn .live-fill {
     transition: none;
   }
 
+  html.js .method-wrap[data-draw="scroll"] .method-line-fill {
+    transform: none;
+  }
+
   .stickybar {
     transition: none;
   }
@@ -943,6 +1244,10 @@ html.js .schematic.is-drawn .live-fill {
 @media (max-width: 767.98px) {
   :root {
     --section-pad: 3.5rem;
+  }
+
+  .stickybar-nav {
+    display: none;
   }
 
   body {

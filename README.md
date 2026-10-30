@@ -1,19 +1,11 @@
-lkkokok
-
-
-
-
-
-
-
-
 # Vero Labs
 
 Website for [Vero Labs](https://github.com/Dark8203), an applied AI studio in Bangalore.
 This is the v2 "Field Report" design: a light, editorial, print-inspired system defined by
-the two documents in `Requirements/` (`vero-labs-website-content-v2.md` governs all copy,
-`vero-labs-build-guide-v2.md` governs all visuals). Those files are the source of truth for
-every future edit.
+`Requirements/vero-labs-build-guide-v2.md`, which still governs visuals. Copy now follows
+`docs/refresh-plan.md` (section C) and lives in the HTML; the v2 content deck is superseded.
+Launch steps are in `docs/launch-checklist.md`. `_config.yml` keeps `Requirements/`, `docs/`
+and this README off the public site.
 
 Hand-written static site: no framework, no build step, no bundler. All asset paths are
 relative, so the site works unchanged at a GitHub Pages project site, a user site, or a
@@ -25,9 +17,12 @@ custom domain.
 /
 ├── index.html          # the field report: masthead, hero, sections 01-07
 ├── demo/index.html     # the demo annex: walkthrough, Fig. 1, latency table
+├── 404.html            # not-found page (absolute paths, because it serves at any URL)
 ├── styles.css          # design tokens + components + responsive + motion states
 ├── main.js             # progressive enhancement: sticky bar, reveals, schematic draw-in
-├── .nojekyll           # tell GitHub Pages to skip Jekyll processing
+├── robots.txt, sitemap.xml, llms.txt   # for search engines and AI assistants
+├── <key>.txt           # IndexNow key file
+├── _config.yml         # keeps internal docs off the public site (GitHub Pages runs Jekyll)
 ├── README.md
 └── assets/
     ├── favicon.svg     # ink "V·L" monogram
@@ -38,51 +33,8 @@ custom domain.
 
 ## Dropping in the media assets
 
-The demo video and audio clips are first-class content but are not committed yet. The
-markup is fully wired; shipping them is a drop-in operation.
-
-### Video
-
-Both `index.html` and `demo/index.html` contain a marked block:
-
-```
-<!-- VIDEO EMBED SWAP POINT ... -->
-<div class="video-frame">
-  <p class="video-placeholder">Recorded walkthrough · video embed pending</p>
-</div>
-```
-
-Replace the `<p class="video-placeholder">…</p>` line with the real iframe (YouTube
-unlisted or Loom), as shown in the comment at each swap point. Keep the `.video-frame`
-wrapper: it provides the hairline border and the 16:9 ratio. Nothing may autoplay.
-
-### Audio clips
-
-Drop MP3 files into `assets/audio/` with these exact names:
-
-| File               | Used on            | Status                          |
-| ------------------ | ------------------ | ------------------------------- |
-| `clip-01.mp3`      | /demo              | cleared                         |
-| `clip-02.mp3`      | /demo              | cleared                         |
-| `clip-03.mp3`      | /demo              | cleared                         |
-| `clip-04.mp3`      | /demo              | cleared                         |
-| `clip-05.mp3`      | /demo              | cleared                         |
-| `clip-07a.mp3`     | home + /demo       | cleared                         |
-| `clip-10.mp3`      | home + /demo       | cleared                         |
-| `clip-11.mp3`      | /demo              | cleared                         |
-| `clip-06.mp3`      | (after bleep pass) | QUARANTINED until bleeped       |
-| `clip-08.mp3`      | (after bleep pass) | QUARANTINED until bleeped       |
-| `clip-09.mp3`      | (after bleep pass) | QUARANTINED until bleeped       |
-
-The audio players are currently removed from the rendered pages (no files exist yet, so
-they showed dead controls). The full ready-to-paste clip lists live in `AUDIO CLIPS
-REMOVED` comment blocks inside the Exhibit A figure on both pages; restore them once the
-MP3s land. Clips 06, 08, and 09 must not ship until the bleep pass is done; their `<li>`
-items (and the clip-06 transcript swap on the home page) are pre-written in the same
-comments, with captions ready. Restore after cleaning, never before.
-
-PII rule from the content file: only cleared audio ships. No customer audio, ever. No
-client or sample-tenant names anywhere, including file names.
+The swap instructions, the audio clip lists and the clip quarantine rules are in
+`Requirements/media-notes.md`.
 
 ## Run locally
 

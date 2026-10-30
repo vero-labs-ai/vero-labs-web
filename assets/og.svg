@@ -4,10 +4,10 @@
        it renders anywhere. Re-export after edits (see README). -->
   <rect width="1200" height="630" fill="#F8F8F5"/>
   <text x="80" y="150" font-family="Georgia, 'Times New Roman', serif" font-weight="600" font-size="72" letter-spacing="1" fill="#171715">VERO LABS</text>
-  <text x="1120" y="150" text-anchor="end" font-family="Georgia, 'Times New Roman', serif" font-size="30" fill="#55554F">Applied AI Studio, Bangalore</text>
+  <text x="1120" y="150" text-anchor="end" font-family="Georgia, 'Times New Roman', serif" font-size="30" fill="#55554F">Applied AI Studio &#183; Bangalore, India</text>
   <rect x="80" y="185" width="1040" height="2" fill="#171715"/>
   <text x="80" y="235" font-family="Consolas, 'Courier New', monospace" font-size="24" letter-spacing="2" fill="#55554F">NO. 01 &#183; <tspan fill="#C8371E">FIELD REPORT</tspan> &#183; 2026</text>
-  <text x="80" y="370" font-family="Georgia, 'Times New Roman', serif" font-weight="500" font-size="60" fill="#171715">We build AI systems that survive</text>
-  <text x="80" y="445" font-family="Georgia, 'Times New Roman', serif" font-weight="500" font-size="60" fill="#171715">contact with production.</text>
-  <text x="80" y="560" font-family="Consolas, 'Courier New', monospace" font-size="24" letter-spacing="1" fill="#55554F">multi-agent &#183; voice &#183; computer vision &#183; applied ml</text>
+  <text x="80" y="370" font-family="Georgia, 'Times New Roman', serif" font-weight="500" font-size="60" fill="#171715">Custom AI for your business.</text>
+  <text x="80" y="445" font-family="Georgia, 'Times New Roman', serif" font-weight="500" font-size="60" fill="#171715">Built in weeks. Run in production.</text>
+  <text x="80" y="560" font-family="Consolas, 'Courier New', monospace" font-size="22" fill="#55554F">whatsapp agents &#183; marketplace tracking &#183; process automation &#183; ai quality checks</text>
 </svg>
