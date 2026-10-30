@@ -240,3 +240,47 @@ Build and approve the pages first, then repeat:
 - Moving the whole domain to Cloudflare (only if seeing AI crawler visits becomes important)
 - Google Analytics (only with a consent banner)
 - Making the GitHub repo private (the paid plan is needed, or the site goes offline)
+- Reducing location mentions (details below)
+
+### Open item: reduce Bangalore and India mentions
+
+Parked on 31 Oct 2026, not approved or built. The aim is to stop stressing the location, because Vero Labs will also target clients outside India. The site keeps its current wording until this is picked up.
+
+Proposed wording, to review again before building:
+
+| # | Where | Now | Proposed |
+|---|---|---|---|
+| 1 | Company summary: home and demo footers, structured data, `llms.txt`, listing sites | Vero Labs is an AI studio in Bangalore, India, offering AI services and custom AI development to businesses in any industry. | Vero Labs is an AI studio offering AI services and custom AI development to businesses in any industry, anywhere in the world. |
+| 2 | Home page title | Vero Labs · AI Services & Custom AI Development · Bangalore, India | Vero Labs · AI Services & Custom AI Development |
+| 3 | Demo page title | Vero Labs · Voice Agent Demo · Bangalore, India | Vero Labs · Voice Agent Demo |
+| 4 | Home description for search results | Same as row 1, plus "See a few things we've built." | New row 1 wording, plus "See a few things we've built." |
+| 5 | Demo description for search results | Watch a phone agent built by Vero Labs, an AI studio in Bangalore, India: a recorded walkthrough and the measured latency. | Watch a phone agent built by Vero Labs, an AI studio: a recorded walkthrough and the measured latency. |
+| 6 | Home share text | An applied AI studio in Bangalore, India. Tell us what you need; we build it on your data and keep it running. | An AI studio. Tell us what you need; we build it on your data and keep it running. |
+| 7 | Demo share text | Hear a phone agent built by Vero Labs, an applied AI studio in Bangalore, India. | Hear a phone agent built by Vero Labs, an AI studio. |
+| 8 | Line under the logo on all pages, and the share image | AI Studio · AI Services · Bangalore, India (the share image says "Applied AI Studio · Bangalore, India") | AI Studio · AI Services |
+| 9 | Hero text | Vero Labs is an applied AI studio in Bangalore, India. We build custom solutions for businesses in any industry. Tell us what you need... | Vero Labs is an AI studio. We build custom solutions for businesses in any industry, anywhere. Tell us what you need... |
+| 10 | FAQ question, on the page and in the structured data | Do you work outside Bangalore, or outside India? | Where are you based, and do you work with clients elsewhere? |
+| 11 | FAQ answer, on the page and in the structured data | Yes. We work remotely with businesses across India and abroad. Calls and reviews happen over video, and we are happy to meet in person in Bangalore. | We're based in Bangalore and work with businesses anywhere. Calls and reviews happen over video. |
+| 12 | Both founder bios | ...Based in Bangalore. | Remove that sentence |
+| 13 | Contact line | vishal@vero.co.in · alakh@vero.co.in · Bangalore, India | vishal@vero.co.in · alakh@vero.co.in |
+| 14 | `robots.txt` comment and `README.md` | ...applied AI studio in Bangalore... | Remove the location |
+
+Technical changes that go with it:
+
+- Service area in structured data: change "India + Worldwide" to "Worldwide"
+- Language tags: change `en-IN` to `en`, and `en_IN` to `en_GB`
+- Update `sitemap.xml` dates and the location keywords in section 3
+- Re-render `og.png`
+- Keep the Bengaluru address in structured data, the row 11 FAQ answer, and "English or Hindi" in the phone agent case
+
+Elsewhere when this ships:
+
+- LinkedIn, Clutch and GoodFirms: use row 1 as the description, with Bengaluru only in the required location field
+- Google Business Profile and Bing Places: treat as optional, because they are built for local search
+- Chatbot checks: remove the city and country from the questions
+- Request indexing again in Google and Bing for the home page and `/demo/`
+
+Trade-offs to weigh:
+
+- Rankings for searches like "AI company Bangalore" will probably fall
+- The `.co.in` domain still signals India to Google. If overseas clients become the main focus, the real fix is a `.com` or `.ai` domain with redirects
