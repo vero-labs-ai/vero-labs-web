@@ -43,7 +43,7 @@ The work ships in two releases:
 
 **Approved wording to reuse everywhere** (draft until you approve it):
 
-- **One line:** Vero Labs is an applied AI studio in Bangalore, India that builds custom AI solutions for businesses in any industry.
+- **One line:** Vero Labs is an AI studio in Bangalore, India, offering AI services and custom AI development to businesses in any industry.
 - **Short:** Vero Labs is an applied AI studio in Bangalore, India. Run by two engineers, we build custom solutions for businesses in any industry, then keep them running. We are not tied to one industry or one kind of system.
 
 ### 3. Keywords (Build)
@@ -75,14 +75,14 @@ These are estimates until they're checked in Keyword Research.
 ```
 # Vero Labs
 
-> Vero Labs is an applied AI studio in Bangalore, India that builds custom AI solutions for businesses in any industry. Run by two engineers, Alakh Agrawal and Vishal Srivastava.
+> Vero Labs is an AI studio in Bangalore, India, offering AI services and custom AI development to businesses in any industry. Run by two engineers, Alakh Agrawal and Vishal Srivastava.
 
 Vero Labs is a separate company from other businesses with "Vero" in their name.
 
 ## Some things we have built
 - A phone agent that calls and qualifies new leads, live in production
-- A WhatsApp agent for routine purchase chats, going live November 2026
-- Blinkit rank and ad tracking, in pilot
+- A WhatsApp agent that handles routine purchase chats with traders
+- Blinkit, Zepto and Instamart rank and ad tracking
 - A data-labelling tool for training a vision AI
 
 These are examples. We are not tied to one industry or one kind of system.
@@ -230,8 +230,6 @@ Build and approve the pages first, then repeat:
 
 ### I. Update when something changes
 
-- [ ] Refurbisher case: update the status when it goes live (planned November 2026)
-- [ ] Sweets brand case: update the status when the pilot ends
 - [ ] Add real results only when you have real numbers
 - [ ] Add the WhatsApp button when there's a number
 - [ ] Add a phone number when there's a human line

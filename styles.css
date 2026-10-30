@@ -769,15 +769,6 @@ h2.kicker-name {
   margin-top: 0.75rem;
 }
 
-.build-entry > .build-status {
-  margin-top: 0.4rem;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-}
-
 .sketch {
   margin-top: auto;
   padding-top: 1.25rem;

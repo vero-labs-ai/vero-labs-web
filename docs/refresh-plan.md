@@ -5,6 +5,8 @@
 > - The AI quality and photo check is removed because it has not been built. The data-labelling tool for vision AI takes its place.
 > - The Client row is removed from each case summary, and the FAQ no longer lists client types.
 > - Release 2 service pages are on hold, since they conflict with this positioning.
+> - Copy rows 1-40 reviewed and applied on 30 Oct 2026. Rows 41-47 (FAQ cost answer, bios, contact intro, demo intro and closing, 404) await review.
+> - No go-live dates or pilot status on the site. Only the phone agent keeps "Live in production". "AI services" is back in the title, description, FAQ, footer, schema and line under the logo.
 
 Branch: `site-refresh` · Status: **awaiting review** · Written 29 Oct 2026
 
