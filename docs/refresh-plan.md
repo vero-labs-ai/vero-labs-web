@@ -125,7 +125,7 @@ Updated 29 Oct 2026 after Alakh's answers.
 - **Stays:** the masthead, "No. 01 · Field Report · 2026", the fonts, the palette, hairline rules, margin notes, Exhibits, Figs, the redline schematics, "Hand-built; no site builder", and the /demo page.
 - **Two layers everywhere:**
   - The executive layer is always visible: mono kicker, plain H2, a 1-2 sentence answer, a figure, and an outcome caption.
-  - The engineering layer is a native `<details>` labelled **"For your tech team"**, typeset as an evidence block, plus small mono annotations on the figures. The content inside `<details>` is ordinary static HTML, so crawlers and chatbots still read it.
+  - The engineering layer is a native `<details>` labelled **"Technical details"**, typeset as an evidence block, plus small mono annotations on the figures. The content inside `<details>` is ordinary static HTML, so crawlers and chatbots still read it.
 - **"What we build" is not a card grid.** The v2 build guide bans icon cards. I'll set the five entries as an editorial list: hairline rules, a 2-column layout on desktop, and a small hand-drawn redline schematic per entry instead of an icon. No boxes or shadows.
 - **Section numbering** becomes 01-07: What we build, Demo, Work, Process, FAQ, Studio, Contact. The colophon stays unnumbered.
 - **Figures and exhibits keep running numbers in page order:**
@@ -295,7 +295,7 @@ New link under the exhibits, because no page links to `/demo/` today and Google 
 > Three systems we have built, and where each one stands.
 
 Intro:
-> One is live, one goes live next month, one is a pilot. Each starts with a one-box summary. The engineering detail is underneath for your tech team.
+> One is live, one goes live next month, one is a pilot. Each starts with a one-box summary. The technical details are underneath.
 
 The summary box is an evidence block, laid out as a mono two-column `<dl>`. Its rows are: CLIENT · PROBLEM · WHAT WE BUILT · STATUS. (The brief's TIME TO FIRST VERSION row is dropped per B3.)
 
@@ -348,7 +348,7 @@ Margin note, kept:
 >
 > **Knows its limits.** It qualifies and books. It does not negotiate, and when it doesn't have the answer, it says a person will follow up instead of making one up.
 
-**For your tech team** (`<details>`, closed by default):
+**Technical details** (`<details>`, closed by default):
 - Stack: Plivo (telephony), Deepgram Nova-3 (speech-to-text), Azure GPT-4.1 (in-call LLM), ElevenLabs (text-to-speech), Bolna (voice orchestration), Node.js middleware, FastAPI pipeline, GPT-5.4 post-call extraction, Salesforce.
 - The original design notes:
   - Determinism over RAG. Project knowledge goes in as structured per-call context instead of a vector store. An earlier retrieval experiment was dropped on purpose.
@@ -394,7 +394,7 @@ Margin note:
 
 That note needs your confirmation that it's true. `[TODO: Alakh]`
 
-**For your tech team** (`<details>`):
+**Technical details** (`<details>`):
 > Stack and integration notes: [TODO: Alakh]. Labelling tool: [TODO: Alakh].
 
 Honest line:
@@ -431,7 +431,7 @@ Summary box:
 Margin note:
 > What it means for a brand: watch the lower slots. That is where positions change during the day.
 
-**For your tech team** (`<details>`):
+**Technical details** (`<details>`):
 > About 80 checks a day for each search at each address (every 10 minutes, 9 AM to 10 PM). Stack and alerting notes: [TODO: Alakh].
 
 ### C7. 04 · How working with us works
@@ -581,7 +581,7 @@ Each phase is one commit on `site-refresh`. I won't push or deploy.
 
 1. **Head, SEO and site files.** The C1 head, JSON-LD, robots.txt, sitemap.xml, llms.txt, re-rendered og.png, and `_config.yml` if B1 is approved.
 2. **Hero and "What we build".** C2-C4, Fig. 1 with draw-on-load, five sketches with staggered draw, and nav changes.
-3. **Demo and Work.** C5-C6, summary boxes, "For your tech team" blocks, Figs. 4-5 and Exhibit F.
+3. **Demo and Work.** C5-C6, summary boxes, "Technical details" blocks, Figs. 4-5 and Exhibit F.
 4. **Process, FAQ, Studio, Contact and colophon.** C7-C11, the scroll-drawn process line, and /demo touch-ups (C12).
 5. **QA.** I'll check all of the following, then write the report:
    - before/after screenshots at 390 and 1440 px

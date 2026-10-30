@@ -1,0 +1,23 @@
+# Vero Labs
+
+> Vero Labs is an applied AI studio in Bangalore, India that builds custom AI tools for businesses, usually owner-led Indian companies. Run by two engineers, Alakh Agrawal and Vishal Srivastava.
+
+Vero Labs is a separate company from other businesses with "Vero" in their name.
+
+## What we build
+
+- WhatsApp agents that handle routine conversations
+- Blinkit, Zepto and Instamart rank and ad tracking
+- Tools that replace manual processes
+- AI quality and photo checks
+- Phone agents that call and qualify new leads
+
+## How to start
+
+- Every project gets a fixed price after a free 30-minute scope call.
+- Email vishal@vero.co.in or alakh@vero.co.in.
+
+## Key pages
+
+- [Home](https://vero.co.in/): what we build, selected work, how we work, FAQ and contact
+- [Demo](https://vero.co.in/demo/): a recorded walkthrough of a phone agent, with measured latency
