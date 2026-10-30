@@ -100,7 +100,7 @@ Release 2 adds the new pages to "Key pages".
 
 ### 5. Structured data (Build)
 
-- [x] `ProfessionalService`: name, URL, description, Bengaluru address, area served, emails, telephone (demo line), founders, `knowsAbout`, `sameAs`. - [x] `WebSite`
+- [x] `ProfessionalService`: name, URL, description, Bengaluru address, area served, emails, founders, `knowsAbout`, `sameAs`. - [x] `WebSite`
 - [x] `FAQPage`, with wording matching the visible FAQ
 - [x] `VideoObject` for the walkthrough
 - [ ] `BreadcrumbList` on the Release 2 pages
@@ -132,7 +132,7 @@ Release 2 adds the new pages to "Key pages".
 - [x] Lighthouse at 90 or above for Performance, Accessibility, SEO and Best Practices
 - [x] No layout shift from animations
 - [x] Keyboard navigation, visible focus, AA contrast
-- [x] Video, audio, demo number, email links and OG image all work
+- [x] Video, audio, email links and OG image all work
 - [ ] Schema passes validator.schema.org (paste the code)
 - [x] All links work
 - [x] Copy scan: no client names, em dashes, exclamation marks, banned hype words, prices, timelines, or "Vero" on its own
@@ -154,7 +154,7 @@ Release 2 adds the new pages to "Key pages".
 - [ ] GitHub repo, Settings → Pages: the build succeeded, the custom domain is `vero.co.in`, and Enforce HTTPS is on
 - [ ] vero.co.in loads, and `www` and `http://` redirect to it
 - [ ] Check on a real phone and a laptop
-- [ ] `/demo/`, the video, the audio, the demo number and both email buttons work
+- [ ] `/demo/`, the video, the audio and both email buttons work
 - [ ] These all show "not found":
   - `/Requirements/vero-labs-website-content-v2.html`
   - `/Requirements/vero-labs-website-content-v2.md`
@@ -232,7 +232,7 @@ Build and approve the pages first, then repeat:
 
 - [ ] Add real results only when you have real numbers
 - [ ] Add the WhatsApp button when there's a number
-- [ ] Add a phone number when there's a human line
+- [ ] Add a phone number when there's a working line (the demo agent number was removed on 31 Oct 2026 because it stopped working)
 - [ ] Add audio clips when the cleared MP3s are ready
 
 ### Parked, not planned

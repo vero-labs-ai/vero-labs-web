@@ -550,16 +550,6 @@ h2.kicker-name {
   font-weight: 500;
 }
 
-/* Callable-demo line */
-
-.demo-callout {
-  margin-top: 1.25rem;
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--redline);
-}
-
 /* Transcript */
 
 .transcript {
