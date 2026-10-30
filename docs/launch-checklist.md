@@ -2,7 +2,7 @@
 
 Written 30 Oct 2026. This is the single list of what happens before and after deployment. "Deployment" means merging `site-refresh` into `main`, which you do yourself.
 
-Status today: only the `_config.yml` change and the caller's name removal are done, and they're on the branch, not live. Everything else marked "Build" is not built yet.
+Status (30 Oct 2026): Release 1 is built on the `site-refresh` branch and not live. Ticked items are done. The Cloudflare script is in the pages as a comment until the token arrives.
 
 The work ships in two releases:
 
@@ -27,19 +27,19 @@ The work ships in two releases:
 - [ ] LinkedIn company URL (create the page if there isn't one)
 - [ ] Show founders' full names on the page? (recommended)
 - [ ] Cloudflare Web Analytics token
-- [ ] Walkthrough video: upload date, for the video schema
+- [x] Walkthrough video: upload date, for the video schema
 - [ ] OK for `tools/sync_partials.py` (Release 2 only)
 
 ### 2. Names, titles and summaries (Build)
 
-- [ ] `lang="en-IN"`, and "Vero Labs" written in full everywhere
-- [ ] Unique title and meta description on every page
-- [ ] Canonical URL on every page
-- [ ] Open Graph and Twitter tags on every page, with an absolute image URL
-- [ ] Re-render `og.png` with the new headline
-- [ ] One H1 per page, with a logical H2/H3 order
-- [ ] Short company summary in the page, using the approved wording below
-- [ ] Visible "Last updated" date
+- [x] `lang="en-IN"`, and "Vero Labs" written in full everywhere
+- [x] Unique title and meta description on every page
+- [x] Canonical URL on every page
+- [x] Open Graph and Twitter tags on every page, with an absolute image URL
+- [x] Re-render `og.png` with the new headline
+- [x] One H1 per page, with a logical H2/H3 order
+- [x] Short company summary in the page, using the approved wording below
+- [x] Visible "Last updated" date
 
 **Approved wording to reuse everywhere** (draft until you approve it):
 
@@ -64,11 +64,11 @@ These are estimates until they're checked in Keyword Research.
 
 ### 4. Files for search engines and AI (Build)
 
-- [ ] `sitemap.xml`, with every page and its `lastmod`
-- [ ] `robots.txt`, allowing Googlebot, Bingbot, OAI-SearchBot, GPTBot, ChatGPT-User, PerplexityBot, ClaudeBot, Claude-SearchBot and Google-Extended, and pointing to the sitemap
-- [ ] `llms.txt`, from the draft below
-- [ ] `404.html`, in the Field Report style
-- [ ] IndexNow key file (lets Bing hear about changes straight away)
+- [x] `sitemap.xml`, with every page and its `lastmod`
+- [x] `robots.txt`, allowing Googlebot, Bingbot, OAI-SearchBot, GPTBot, ChatGPT-User, PerplexityBot, ClaudeBot, Claude-SearchBot and Google-Extended, and pointing to the sitemap
+- [x] `llms.txt`, from the draft below
+- [x] `404.html`, in the Field Report style
+- [x] IndexNow key file (lets Bing hear about changes straight away)
 - [ ] Add `tools/` and `partials/` to the `_config.yml` exclude list if the script is approved
 
 **`llms.txt` draft:**
@@ -100,43 +100,43 @@ Release 2 adds the new pages to "Key pages".
 
 ### 5. Structured data (Build)
 
-- [ ] `ProfessionalService`: name, URL, description, Bengaluru address, area served, emails, founders, `knowsAbout`, `sameAs`. **No phone number.**
-- [ ] `WebSite`
-- [ ] `FAQPage`, with wording matching the visible FAQ
-- [ ] `VideoObject` for the walkthrough
+- [x] `ProfessionalService`: name, URL, description, Bengaluru address, area served, emails, founders, `knowsAbout`, `sameAs`. **No phone number.**
+- [x] `WebSite`
+- [x] `FAQPage`, with wording matching the visible FAQ
+- [x] `VideoObject` for the walkthrough
 - [ ] `BreadcrumbList` on the Release 2 pages
 
 ### 6. Page content (Build)
 
-- [ ] Hero, What we build, Demo, three case studies, Process, FAQ, Studio, Contact, colophon, as in the plan
-- [ ] Link from the home page to `/demo/`, which no page links to today
-- [ ] Footer links to the main pages
-- [ ] Written summary beside the video and the audio call, because crawlers can't watch or listen
-- [ ] Every diagram has `<title>`, `<desc>` and a visible caption
-- [ ] Tables are real `<table>`s, and all important text is in the HTML
-- [ ] Keep the existing section links (`#demo`, `#work`, `#method`, `#studio`, `#contact`, `#what-we-do`)
-- [ ] Pre-filled `mailto:` template on the email buttons
+- [x] Hero, What we build, Demo, three case studies, Process, FAQ, Studio, Contact, colophon, as in the plan
+- [x] Link from the home page to `/demo/`, which no page links to today
+- [x] Footer links to the main pages
+- [x] Written summary beside the video and the audio call, because crawlers can't watch or listen
+- [x] Every diagram has `<title>`, `<desc>` and a visible caption
+- [x] Tables are real `<table>`s, and all important text is in the HTML
+- [x] Keep the existing section links (`#demo`, `#work`, `#method`, `#studio`, `#contact`, `#what-we-do`)
+- [x] Pre-filled `mailto:` template on the email buttons
 - [ ] Cloudflare script added with the real token
 
 ### 7. Tidy-up (Build)
 
-- [ ] Remove internal notes from HTML comments in `index.html` and `demo/index.html`
-- [ ] Add a v3 copy doc in `Requirements/`, and mark v2 as replaced
-- [ ] Fix `README.md`: the stray `lkkokok` line and the wrong `.nojekyll` claim
-- [ ] Lazy-load the YouTube embed so the page loads faster
+- [x] Remove internal notes from HTML comments in `index.html` and `demo/index.html`
+- [x] Mark the v2 content doc as replaced (the plan and the HTML now hold the copy; clip notes moved to `Requirements/media-notes.md`)
+- [x] Fix `README.md`: the stray `lkkokok` line and the wrong `.nojekyll` claim
+- [x] Lazy-load the YouTube embed so the page loads faster
 
 ### 8. Quality checks (Build)
 
-- [ ] Before and after screenshots at 390 and 1440 px
-- [ ] No sideways scroll at 390 px
-- [ ] Reduced motion shows diagrams fully drawn
-- [ ] Lighthouse at 90 or above for Performance, Accessibility, SEO and Best Practices
-- [ ] No layout shift from animations
-- [ ] Keyboard navigation, visible focus, AA contrast
-- [ ] Video, audio, demo number, email links and OG image all work
+- [x] Before and after screenshots at 390 and 1440 px
+- [x] No sideways scroll at 390 px
+- [x] Reduced motion shows diagrams fully drawn
+- [x] Lighthouse at 90 or above for Performance, Accessibility, SEO and Best Practices
+- [x] No layout shift from animations
+- [x] Keyboard navigation, visible focus, AA contrast
+- [x] Video, audio, demo number, email links and OG image all work
 - [ ] Schema passes validator.schema.org (paste the code)
-- [ ] All links work
-- [ ] Copy scan: no client names, em dashes, exclamation marks, banned hype words, prices, timelines, or "Vero" on its own
+- [x] All links work
+- [x] Copy scan: no client names, em dashes, exclamation marks, banned hype words, prices, timelines, or "Vero" on its own
 - [ ] 30-second test and chatbot test, answers written in the report
 - [ ] Final report with what changed, scores and open items
 
