@@ -4,8 +4,9 @@
 > - "What we build" is now "Built so far": four things actually built, with no categories or service list, and the title "Some things we've built. We can build a lot more."
 > - The AI quality and photo check is removed because it has not been built. The data-labelling tool for vision AI takes its place.
 > - The Client row is removed from each case summary, and the FAQ no longer lists client types.
+> - No client details on the site, except a light real-estate mention in the phone agent case and "FMCG brand" in the Blinkit case.
 > - Release 2 service pages are on hold, since they conflict with this positioning.
-> - Copy rows 1-40 reviewed and applied on 30 Oct 2026. Rows 41-47 (FAQ cost answer, bios, contact intro, demo intro and closing, 404) await review.
+> - Copy rows 1-40 reviewed and applied on 30 Oct 2026. Rows 41-47 stay as they were, by decision.
 > - No go-live dates or pilot status on the site. Only the phone agent keeps "Live in production". "AI services" is back in the title, description, FAQ, footer, schema and line under the logo.
 
 Branch: `site-refresh` · Status: **awaiting review** · Written 29 Oct 2026
@@ -101,7 +102,7 @@ Updated 29 Oct 2026 after Alakh's answers.
 - Search Console shows the Requirements page was never indexed, so no removal request is needed.
 
 **B2. Phone numbers. Decided.**
-- No phone number in the new copy or in the JSON-LD.
+- Superseded on 30 Oct 2026: the JSON-LD now carries the demo line, +91 80 6535 5106. The visible copy shows it only as the demo number.
 - The demo agent's number stays in the Demo section as it is today.
 
 **B3. Timelines. Decided: no numbers, just say we're fast.**
@@ -249,7 +250,7 @@ Each entry has these parts, in order:
 - *"This runs on Excel, WhatsApp and people's memory."*
 - > We build a small app or workflow that does the job in one place and plugs into the systems you already use: your ERP, CRM or Google Sheets.
 - > Outcome: the process runs the same way every time, and it no longer depends on one person remembering.
-- link: `See the case ↓` (goes to the refurbisher's labelling tool)
+- link: `See the case ↓` (goes to the labelling tool)
 - Sketch: `Excel + WhatsApp` → `One tool` → `Your ERP or CRM`
 
 **Entry 4**
@@ -286,7 +287,7 @@ Intro:
 
 **Exhibit B** (one call, unedited): unchanged.
 - Caption, lightly edited:
-  > A different agent on a similar setup: it takes inbound calls for a study-abroad counselling service. Different script, different personality. One call, start to finish, with nothing cut.
+  > A different agent on a similar setup: it takes inbound calls. Different script, different personality. One call, start to finish, with nothing cut.
 - Callout, unchanged: `Or call this agent yourself, live: +91 80 6535 5106`
 
 Margin note, unchanged:
@@ -318,7 +319,6 @@ Summary box:
 
 | | |
 |---|---|
-| CLIENT | An enterprise real-estate developer |
 | PROBLEM | Hot leads went cold while tele-callers worked through the queue. |
 | WHAT WE BUILT | A phone agent that calls each new lead, asks the qualifying questions in English or Hindi, books site visits and updates Salesforce. |
 | STATUS | Live in production |
@@ -381,13 +381,12 @@ Summary box:
 
 | | |
 |---|---|
-| CLIENT | An electronics refurbisher in Bangalore, about 300 people |
 | PROBLEM | Buyers negotiate prices with traders one chat at a time on WhatsApp. |
 | WHAT WE BUILT | An AI agent that handles routine purchase chats using the company's price sheet and negotiation rules, and sends unusual deals to a buyer to approve. Plus a data-labelling tool inside their ERP, to prepare for AI quality checks. |
 | STATUS | Demoed to the client. Going live in November 2026. |
 
 **The problem:**
-> The company buys used electronics from traders. Each deal is a WhatsApp conversation: the trader offers stock, a buyer checks the price sheet, and they go back and forth on price. Buyers handle these chats one by one, and most of them follow the same pattern.
+> The company buys stock from traders. Each deal is a WhatsApp conversation: the trader offers stock, a buyer checks the price sheet, and they go back and forth on price. Buyers handle these chats one by one, and most of them follow the same pattern.
 
 **What we built:**
 > An AI agent that runs the routine purchase chats on WhatsApp. It reads the company's price sheet, follows the negotiation rules the buyers set, and passes any deal outside those rules to a buyer to approve. Agreed deals go into the company's ERP.
@@ -411,7 +410,7 @@ Honest line:
 #### Case 3. Blinkit rank and ad tracking
 
 **H3:**
-> Showing a sweets brand where its products and ads really appear on Blinkit.
+> Showing an FMCG brand where its products and ads really appear on Blinkit.
 
 `mono:` `Pilot`
 
@@ -419,13 +418,12 @@ Summary box:
 
 | | |
 |---|---|
-| CLIENT | A regional sweets brand |
-| PROBLEM | Heavy Blinkit ad spend at festive peaks, with no view of where its products and ads actually appeared. |
+| PROBLEM | Heavy Blinkit ad spend, with no view of where its products and ads actually appeared. |
 | WHAT WE BUILT | Tracking of product rank and ad positions for chosen searches, at exact delivery addresses, every 10 minutes from 9 AM to 10 PM, with a live dashboard and rank alerts. |
 | STATUS | Pilot |
 
 **The problem:**
-> On Blinkit, what a shopper sees depends on what they search and where they are. The brand spends heavily on ads around festivals, but it could not see where its products and ads actually showed up, address by address, through the day.
+> On Blinkit, what a shopper sees depends on what they search and where they are. The brand spends heavily on ads, but it could not see where its products and ads actually showed up, address by address, through the day.
 
 **What we built:**
 > Tracking for the searches the brand cares about, at the exact delivery addresses it chose. Every 10 minutes from 9 AM to 10 PM, we record where each product ranks and which ad slots it holds. A live dashboard shows the picture, and an alert goes out when a rank drops.
@@ -485,7 +483,7 @@ There are two boxes beside the steps, in the margin column on desktop and stacke
 The FAQ uses native `<details>` per question with all answers in the static HTML. The same text goes into `FAQPage` JSON-LD.
 
 1. **What kind of businesses do you work with?**
-   > Mostly owner-led companies in India that already know the tool they want. Recent work includes an electronics refurbisher, a consumer food brand and a real-estate developer. You do not need an AI plan, just a clear problem that costs your team time or money.
+   > Mostly owner-led companies in India that already know the tool they want. You do not need an AI plan, just a clear problem that costs your team time or money.
 
 2. **How much does it cost, and how long does it take?**
    > Every project gets a fixed price after a free 30-minute scope call, and you know it before we start. We move fast: you see a working version on your own data before you commit to the full build.
@@ -616,8 +614,8 @@ These are outline only. I'll write the full copy for your review in a second doc
 | `/ai-quality-checks/` | AI quality and photo checks | Vero Labs · AI Quality & Photo Checks · Bangalore |
 | `/voice-agents/` | Phone agents that call and qualify leads | Vero Labs · Voice AI Agents · Bangalore, India |
 | `/work/real-estate-lead-qualification/` | Case: real-estate lead qualification | Vero Labs · Case: Real-Estate Lead Qualification |
-| `/work/refurbisher-whatsapp-agent/` | Case: a WhatsApp purchase agent | Vero Labs · Case: WhatsApp Purchase Agent |
-| `/work/sweets-brand-blinkit-tracking/` | Case: Blinkit tracking for a sweets brand | Vero Labs · Case: Blinkit Rank & Ad Tracking |
+| `/work/whatsapp-purchase-agent/` | Case: a WhatsApp purchase agent | Vero Labs · Case: WhatsApp Purchase Agent |
+| `/work/blinkit-tracking/` | Case: Blinkit tracking | Vero Labs · Case: Blinkit Rank & Ad Tracking |
 
 Each page has the same structure, at 400-800 words:
 

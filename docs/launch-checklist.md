@@ -18,8 +18,8 @@ The work ships in two releases:
 - [ ] Review and approve the copy in `docs/refresh-plan.md` (blocks all building)
 - [ ] Headline: keep "Built in weeks", or switch to "Built fast"
 - [ ] Check keywords in Bing Keyword Research (section 3)
-- [ ] Refurbisher case: confirm the ERP labelling tool labels photos (site now says so)
-- [ ] Refurbisher case: confirm "the agent never agrees a price outside the rules your buyers set"
+- [ ] Labelling case: confirm the ERP labelling tool labels photos (site now says so)
+- [ ] WhatsApp case: confirm "the agent never agrees a price outside the rules your buyers set"
 - [ ] WhatsApp agent and labelling tool: stack notes for the tech-team section, or say to leave them out
 - [ ] Blinkit tracker: stack and alerting notes, or say to leave them out
 - [ ] FAQ: confirm "your data stays yours; used only to build and run your tool"
@@ -100,8 +100,7 @@ Release 2 adds the new pages to "Key pages".
 
 ### 5. Structured data (Build)
 
-- [x] `ProfessionalService`: name, URL, description, Bengaluru address, area served, emails, founders, `knowsAbout`, `sameAs`. **No phone number.**
-- [x] `WebSite`
+- [x] `ProfessionalService`: name, URL, description, Bengaluru address, area served, emails, telephone (demo line), founders, `knowsAbout`, `sameAs`. - [x] `WebSite`
 - [x] `FAQPage`, with wording matching the visible FAQ
 - [x] `VideoObject` for the walkthrough
 - [ ] `BreadcrumbList` on the Release 2 pages
