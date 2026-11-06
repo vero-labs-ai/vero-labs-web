@@ -6,7 +6,7 @@ Vero Labs is a separate company from other businesses with "Vero" in their name.
 
 ## Some things we have built
 
-- A phone agent that calls and qualifies new leads, live in production
+- A phone agent that calls and qualifies new leads, live
 - A WhatsApp agent that handles routine purchase chats with traders
 - Blinkit, Zepto and Instamart rank and ad tracking
 - A data-labelling tool for training a vision AI
