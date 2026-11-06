@@ -6,11 +6,11 @@
 <title>Selected work · Vero Labs</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="robots" content="noindex, nofollow">
-<meta name="description" content="Case studies from Vero Labs, an OpenAI Partner Network member: a WhatsApp purchase agent, a Blinkit rank and ad tracker, a QC photo labelling tool and a phone agent. Each one with a working replay on dummy data.">
+<meta name="description" content="Case studies from Vero Labs: a WhatsApp purchase agent, a Blinkit rank and ad tracker, a QC photo labelling tool and a phone agent. Each one with a working replay on dummy data. Vero Labs is a member of the OpenAI Partner Network.">
 <link rel="canonical" href="https://vero.co.in/work/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Selected work · Vero Labs">
-<meta property="og:description" content="Custom AI tools Vero Labs, an OpenAI Partner Network member, has built for businesses, each with a working replay on dummy data.">
+<meta property="og:description" content="Custom AI tools we have built for businesses, each with a working replay on dummy data. OpenAI Partner Network member.">
 <meta property="og:url" content="https://vero.co.in/work/">
 <meta property="og:image" content="https://vero.co.in/assets/og.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -37,13 +37,18 @@
   .how b { font: 500 .72rem/1.3 var(--mono); text-transform: uppercase; letter-spacing: .07em; color: var(--accent); }
   .how span { font-size: .95rem; }
   @media (max-width: 900px) { .how li { border-right: 0; border-bottom: 1px solid var(--rule); } .how li:last-child { border-bottom: 0; } }
-  .opn { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr); gap: 1rem 2.5rem; align-items: center; margin: 0 0 2.5rem; padding: 1.4rem 1.5rem; border: 1px solid var(--ink); border-left: 6px solid var(--accent); background: var(--paper-2); }
-  .opn .k { font: 500 .72rem/1.3 var(--mono); text-transform: uppercase; letter-spacing: .08em; color: var(--ink-3); margin: 0 0 .45rem; }
-  .opn .big { font: 500 clamp(1.55rem, 3.2vw, 2.15rem)/1.1 var(--serif); color: var(--accent); margin: 0; letter-spacing: -.01em; }
-  .opn .t { margin: 0; color: var(--ink-2); }
-  .opn .t b { color: var(--ink); font-weight: 500; }
-  @media (max-width: 760px) { .opn { grid-template-columns: 1fr; } }
+  .cred { border: 1px solid var(--ink); border-left: 6px solid var(--accent); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); margin: 0 0 2.5rem; }
+  .cred .badge { padding: 1.25rem; display: grid; gap: .5rem; align-content: center; border-right: 1px solid var(--rule); }
+  .cred .badge b { font: 600 .72rem/1.3 var(--mono); text-transform: uppercase; letter-spacing: .1em; color: var(--accent); }
+  .cred .badge strong { font: 500 1.7rem/1.15 var(--serif); letter-spacing: -.01em; }
+  .cred ul { list-style: none; margin: 0; padding: 1.1rem 1.25rem; display: grid; gap: .6rem; align-content: center; }
+  .cred li { display: grid; grid-template-columns: 1.1rem minmax(0, 1fr); gap: .5rem; font-size: .97rem; line-height: 1.45; }
+  .cred li::before { content: "✓"; color: var(--accent); font-weight: 600; }
+  @media (max-width: 760px) { .cred { grid-template-columns: 1fr; } .cred .badge { border-right: 0; border-bottom: 1px solid var(--rule); } }
 </style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"CollectionPage","name":"Selected work · Vero Labs","url":"https://vero.co.in/work/","publisher":{"@type":"ProfessionalService","@id":"https://vero.co.in/#organization","name":"Vero Labs","url":"https://vero.co.in/","memberOf":{"@type":"Organization","name":"OpenAI Partner Network"}}}
+</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -61,12 +66,14 @@
     <p class="lede">Each case below has a working replay you can click through. The data in the replays is made up; the steps are the ones the real systems take. Client names are withheld.</p>
   </div>
 
-  <section class="opn" aria-label="OpenAI Partner Network">
-    <div>
-      <p class="k">Credentials</p>
-      <p class="big">OpenAI Partner Network member</p>
-    </div>
-    <p class="t">Two of the four systems below run on OpenAI models, designed and built by us for clients. <b>The WhatsApp purchase agent</b> reads, prices and negotiates traders' offers through the OpenAI API. <b>The phone agent</b> uses GPT-4.1 on every call and GPT-5.4 to turn each call into clean CRM records.</p>
+  <section class="cred" aria-label="OpenAI Partner Network member">
+    <div class="badge"><b>Credentials</b><strong>OpenAI Partner Network member</strong><span style="color:var(--ink-2);font-size:.92rem">Vero Labs is a member of OpenAI's partner network for companies that build and deploy on OpenAI. We are a small, hands-on AI team that ships fast.</span></div>
+    <ul>
+      <li><span><b>Fast.</b> Kickoff to a live WhatsApp agent demo in about 3 weeks. A free prototype on your own data in about a week.</span></li>
+      <li><span><b>Active.</b> Four systems built for clients in 2026: three live, one in client testing.</span></li>
+      <li><span><b>On OpenAI today.</b> The WhatsApp purchase agent and our phone agent's post-call data extraction run on OpenAI models in client systems.</span></li>
+      <li><span><b>Yours to keep.</b> Set up on your own OpenAI account, so usage, costs and data stay with you. We test models on your data and pick the one that passes your success test.</span></li>
+    </ul>
   </section>
 
   <div class="cases">
