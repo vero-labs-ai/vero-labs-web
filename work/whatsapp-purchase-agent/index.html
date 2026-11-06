@@ -6,7 +6,7 @@
 <title>WhatsApp purchase agent for a listed IT hardware refurbisher · Vero Labs</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="robots" content="noindex, nofollow">
-<meta name="description" content="Vero Labs built an AI agent that reads traders' laptop offers on WhatsApp, asks for missing details in one message, prices them against the buying sheet and logs every deal for the buyer to approve. Vero Labs is a member of the OpenAI Partner Network.">
+<meta name="description" content="Vero Labs built an AI agent that reads traders' laptop offers on WhatsApp in any format, asks for missing details in one message, prices them against the buying sheet and logs every deal for the buyer to approve. Vero Labs is a member of the OpenAI Partner Network.">
 <link rel="canonical" href="https://vero.co.in/work/whatsapp-purchase-agent/">
 <meta property="og:type" content="article">
 <meta property="og:title" content="WhatsApp purchase agent for a listed IT hardware refurbisher">
@@ -87,7 +87,7 @@
   <div class="head">
     <p class="kicker"><b>A</b>Selected work · WhatsApp agent</p>
     <h1>An AI agent that handles traders' laptop offers on WhatsApp</h1>
-    <p class="lede">Built for a listed IT hardware refurbisher in India that buys used corporate laptops and desktops. Traders send offers as loose text all day. The agent reads each one, asks for what's missing in a single message, prices it against the buying sheet, negotiates inside set limits and hands the deal to a buyer to approve.</p>
+    <p class="lede">Built for a listed IT hardware refurbisher in India that buys used corporate laptops and desktops. Traders send offers all day as text, voice notes, photos, Excel sheets and PDFs. The agent reads each one, asks for what's missing in a single message, prices it against the buying sheet, negotiates inside set limits and hands the deal to a buyer to approve.</p>
   </div>
 
   <dl class="facts">
@@ -132,7 +132,7 @@
   <section class="sec">
     <div class="label">The problem</div>
     <div class="body">
-      <p>The purchase team buys used corporate laptops from hundreds of traders. Offers arrive on WhatsApp as free text, in English, Hindi and Hinglish, at all hours: "40 pc 5490 i5 8th 8/256, 14500". A buyer has to read each one, chase the missing details, look up the buying price, reply, haggle and log the result.</p>
+      <p>The purchase team buys used corporate laptops from hundreds of traders. Offers arrive on WhatsApp at all hours and in every form: typed text in English, Hindi and Hinglish, voice notes, photos, and Excel or PDF lot lists. A typical typed one: "40 pc 5490 i5 8th 8/256, 14500". A buyer has to read each one, chase the missing details, look up the buying price, reply, haggle and log the result.</p>
       <p>On a busy day that means slow replies, offers that never get logged, and good lots that go to a competitor who answered first.</p>
     </div>
   </section>
@@ -141,12 +141,14 @@
     <div class="label">What we built</div>
     <div class="body">
       <ul>
+        <li><b>Takes any format.</b> Text, voice notes, photos, Excel sheets and PDFs. Most WhatsApp bots stop at typed text; this one reads whatever a trader sends.</li>
+        <li><b>Handles big lots.</b> Large lot lists sent as Excel sheets or PDFs are processed in the background, line by line.</li>
         <li><b>Reads the offer.</b> Pulls model, processor, generation, RAM, storage, quantity and price out of a loose message in English, Hindi or Hinglish.</li>
         <li><b>Asks once.</b> If battery health, grade, chargers or faults are missing, it asks for all of them in one message, not one question at a time.</li>
         <li><b>Prices it.</b> Works out a target price from the company's own buying sheet, by model, generation and grade.</li>
         <li><b>Negotiates inside limits.</b> Opens a little below target, moves to target, and never goes above the buyer's ceiling.</li>
         <li><b>Hands over.</b> Unusual offers (very large lots, unknown models) go straight to a buyer. Every purchase needs a buyer's approval before the agent confirms it.</li>
-        <li><b>Logs everything.</b> Each offer lands in a Google Sheet as a row with its outcome: won, lost or escalated.</li>
+        <li><b>Logs everything.</b> Each offer lands in the team's sheet as a row with its outcome: won, lost or escalated.</li>
       </ul>
     </div>
   </section>
@@ -154,7 +156,7 @@
   <section class="sec">
     <div class="label">The control sheet</div>
     <div class="body">
-      <p>The team runs the agent from a Google Sheet they already know how to use. No new dashboard to learn.</p>
+      <p>The team runs the agent from a shared spreadsheet they already know how to use. No new dashboard to learn.</p>
       <div class="tbl-wrap"><table>
         <thead><tr><th>Control</th><th>What it does</th></tr></thead>
         <tbody>
@@ -175,7 +177,7 @@
         <li><b>Week 1</b><span>Read three months of the purchase team's WhatsApp chats to learn how traders write offers and how buyers price them. Agreed the rules: opening counter, ceiling, what counts as unusual.</span></li>
         <li><b>Week 2</b><span>Offer reading, pricing against the buying sheet, and the control sheet with its tabs and switches.</span></li>
         <li><b>Week 3</b><span>Negotiation and hand-over to buyers. Live demo on WhatsApp with the client's team.</span></li>
-        <li><b>Now</b><span>The client is testing it on their own server with their own AI account. Next in build: reading whole lot files and checking a trader's specs on the web.</span></li>
+        <li><b>Now</b><span>The client is testing it on their own server with their own AI account. Next in build: checking a trader's specs on the web.</span></li>
       </ol>
     </div>
   </section>
@@ -187,20 +189,11 @@
         <li><b>One question beats five.</b> Traders ignore a bot that asks one thing at a time. Asking for every missing detail in a single message gets answers.</li>
         <li><b>Humans approve, the agent does the legwork.</b> Buyers trusted it faster once every purchase still needed their tap.</li>
         <li><b>The WhatsApp provider was the slowest part.</b> The agent replies in under 10 seconds. Message delivery through the provider sometimes added minutes, so we measure each step separately.</li>
-        <li><b>A sheet is a fine control panel.</b> The team already lives in Sheets. Switches there got used from day one.</li>
+        <li><b>A sheet is a fine control panel.</b> The team already lives in spreadsheets. Switches there got used from day one.</li>
       </ul>
     </div>
   </section>
 
-  <section class="sec">
-    <div class="label">Built with</div>
-    <div class="body">
-      <ul class="stack">
-        <li>OpenAI API</li><li>WhatsApp Business API</li><li>Google Sheets API</li><li>Python</li><li>Client's own server</li>
-      </ul>
-      <p style="color:var(--ink-2)">The code, data and accounts belong to the client. We keep only our general-purpose building blocks.</p>
-    </div>
-  </section>
 
   <section class="offer" id="start" aria-labelledby="offer-title">
     <header>
@@ -216,7 +209,7 @@
     </ol>
     <div class="offer-grid">
       <div><h3>It fits if</h3><ul>
-        <li>Orders, quotes or offers arrive as loose text on WhatsApp or email</li>
+        <li>Orders, quotes or offers arrive on WhatsApp or email as text, voice notes, photos, sheets or PDFs</li>
         <li>Prices come from a list or sheet you already keep</li>
         <li>Your team handles dozens or hundreds of these a day</li>
       </ul></div>
@@ -232,7 +225,7 @@
         <li>For companies in the EU, we sign a data processing agreement (DPA) under GDPR</li>
       </ul></div>
       <div><h3>Where we work</h3><ul>
-        <li>Built in Bengaluru; we work with teams in India, the Gulf and Europe</li>
+        <li>Based in Bengaluru; we work with teams across India and abroad, from the US and Europe to the Middle East and Africa</li>
         <li>Calls and reviews over video; English and Hindi chats handled</li>
       </ul></div>
     </div>

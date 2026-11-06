@@ -15,7 +15,7 @@ from string import Template
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROOF = {
     "whatsapp": ("../../work/whatsapp-purchase-agent/", "WhatsApp agent for a listed IT hardware refurbisher",
-                 "Reads traders' offers, asks for what's missing in one message, prices against the buying sheet, hands every deal to a buyer."),
+                 "Reads traders' offers in any format (text, voice notes, photos, Excel, PDFs), asks for what's missing in one message, prices against the buying sheet, hands every deal to a buyer."),
     "qcom": ("../../work/quick-commerce-rank-tracker/", "Blinkit rank and ad tracker for a regional food brand",
              "Search rank and sponsored slots every 10 minutes, with Telegram alerts when a product drops below target."),
     "labelling": ("../../work/qc-photo-labelling/", "Photo labelling for device quality checks",
