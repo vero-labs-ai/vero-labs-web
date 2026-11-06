@@ -1,0 +1,24 @@
+[
+  {
+    "company": "Example Foodstuff Trading",
+    "slug": "example-foodstuff",
+    "code": "demo",
+    "headline": "Turning your WhatsApp orders from 600 grocery outlets into clean dispatch lists",
+    "intro": "A short page for your team, following our LinkedIn chat. It shows what we would build for you in a week, on a sample of your own data.",
+    "noticed": [
+      "Your sales team takes orders from retailers and restaurants on WhatsApp, often as voice-typed lists in English or Hindi.",
+      "Prices change weekly and are kept in a sheet, so every order is re-typed and checked by hand before dispatch."
+    ],
+    "week": [
+      "An agent that reads 200 of your past order chats and turns each into order lines matched to your product codes",
+      "One clarifying message when an item or pack size is unclear, instead of a phone call",
+      "A dispatch sheet your warehouse can use the next morning, with a count of orders it could not read"
+    ],
+    "need": [
+      "An export of about 200 recent order chats",
+      "Your current product list with codes and prices",
+      "30 minutes with the person who handles orders today"
+    ],
+    "proof": "whatsapp"
+  }
+]

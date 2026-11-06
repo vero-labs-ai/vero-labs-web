@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Selected work · Vero Labs</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Case studies from Vero Labs: a WhatsApp purchase agent, a Blinkit rank and ad tracker, a QC photo labelling tool and a phone agent. Each one with a working replay on dummy data.">
+<link rel="canonical" href="https://vero.co.in/work/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Selected work · Vero Labs">
+<meta property="og:description" content="Custom AI tools we have built for businesses, each with a working replay on dummy data.">
+<meta property="og:url" content="https://vero.co.in/work/">
+<meta property="og:image" content="https://vero.co.in/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap">
+<link rel="stylesheet" href="work.css">
+<script src="work.js" defer></script>
+<style>
+  .cases { display: grid; gap: 0; border-top: 1px solid var(--ink); }
+  .case { display: grid; grid-template-columns: 4rem minmax(0, 1fr) minmax(0, 15rem); gap: 1rem 2rem; padding-block: 1.75rem; border-bottom: 1px solid var(--rule); text-decoration: none; color: var(--ink); }
+  .case:hover h2 { text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 4px; }
+  .case .letter { font: 500 2.4rem/1 var(--serif); color: var(--accent); }
+  .case .what { display: grid; gap: .5rem; min-width: 0; }
+  .case .what p { margin: 0; color: var(--ink-2); max-width: 40rem; }
+  .case dl { margin: 0; display: grid; gap: .5rem; align-content: start; font-size: .88rem; }
+  .case dt { font: 500 .68rem/1.3 var(--mono); text-transform: uppercase; letter-spacing: .08em; color: var(--ink-3); }
+  .case dd { margin: 0; }
+  .case .go { font: 500 .78rem/1.3 var(--mono); color: var(--accent); text-transform: uppercase; letter-spacing: .06em; }
+  @media (max-width: 760px) { .case { grid-template-columns: 2.5rem minmax(0, 1fr); } .case dl { grid-column: 2; } .case .letter { font-size: 1.8rem; } }
+  .how { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 0; border: 1px solid var(--rule); margin: 0; padding: 0; list-style: none; counter-reset: s; }
+  .how li { padding: 1rem; border-right: 1px solid var(--rule); display: grid; gap: .3rem; align-content: start; }
+  .how li:last-child { border-right: 0; }
+  .how b { font: 500 .72rem/1.3 var(--mono); text-transform: uppercase; letter-spacing: .07em; color: var(--accent); }
+  .how span { font-size: .95rem; }
+  @media (max-width: 900px) { .how li { border-right: 0; border-bottom: 1px solid var(--rule); } .how li:last-child { border-bottom: 0; } }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="mast">
+  <div class="mast-top"><a class="logo" href="/">VERO LABS</a><span class="mast-desc">AI Studio · AI Services · Bangalore, India</span></div>
+  <div class="mast-meta"><span>No. 02 · Field Report · Selected work</span>
+    <nav aria-label="Contents"><a href="/">Home</a><a href="/work/" aria-current="page">Work</a><a href="/partners/">Partners</a><a href="/#method">Process</a><a href="/#faq">FAQ</a><a href="/#contact">Contact</a></nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="head">
+    <p class="kicker">Selected work · 2026</p>
+    <h1>Custom AI tools we have built, and how they work</h1>
+    <p class="lede">Each case below has a working replay you can click through. The data in the replays is made up; the steps are the ones the real systems take. Client names are withheld.</p>
+  </div>
+
+  <div class="cases">
+    <a class="case" href="whatsapp-purchase-agent/">
+      <span class="letter">A</span>
+      <div class="what">
+        <p class="kicker" style="margin:0">WhatsApp agent · purchase</p>
+        <h2>An AI agent that handles traders' laptop offers on WhatsApp</h2>
+        <p>Reads loose offers in English, Hindi and Hinglish, asks for missing details in one message, prices them against the buying sheet, negotiates within limits and hands every deal to a buyer to approve.</p>
+        <span class="go">Watch the replay →</span>
+      </div>
+      <dl><div><dt>Client</dt><dd>Listed IT hardware refurbisher</dd></div><div><dt>Status</dt><dd><span class="chip test">In client testing</span></dd></div><div><dt>Time to live demo</dt><dd>About 3 weeks</dd></div></dl>
+    </a>
+    <a class="case" href="quick-commerce-rank-tracker/">
+      <span class="letter">B</span>
+      <div class="what">
+        <p class="kicker" style="margin:0">Marketplace tracking · Blinkit</p>
+        <h2>Where a food brand's products sit on Blinkit, every 10 minutes</h2>
+        <p>Search rank and sponsored slots at chosen delivery addresses, a live dashboard, and Telegram alerts when a product drops below its target spot. Plus our own scan of 447 searches across three cities.</p>
+        <span class="go">Play a day of data →</span>
+      </div>
+      <dl><div><dt>Client</dt><dd>Regional food brand</dd></div><div><dt>Status</dt><dd><span class="chip live">Running daily</span></dd></div><div><dt>Checks</dt><dd>Every 10 min, 9 AM–10 PM</dd></div></dl>
+    </a>
+    <a class="case" href="qc-photo-labelling/">
+      <span class="letter">C</span>
+      <div class="what">
+        <p class="kicker" style="margin:0">Data for vision AI</p>
+        <h2>A labelling tool that turns QC photos into training data</h2>
+        <p>A labelling screen inside the company's own web app, with defect labels from its ERP, so staff build a dataset for a defect-spotting model during normal checks.</p>
+        <span class="go">Try the labeller →</span>
+      </div>
+      <dl><div><dt>Client</dt><dd>Listed IT hardware refurbisher</dd></div><div><dt>Status</dt><dd><span class="chip test">Photo capture started</span></dd></div></dl>
+    </a>
+    <a class="case" href="/#case-real-estate">
+      <span class="letter">D</span>
+      <div class="what">
+        <p class="kicker" style="margin:0">Phone agent · sales</p>
+        <h2>A phone agent that qualifies every new lead before a salesperson calls</h2>
+        <p>Calls each warm lead in English or Hindi, asks the qualifying questions, books site visits and writes the answers into Salesforce.</p>
+        <span class="go">Read the case and hear a call →</span>
+      </div>
+      <dl><div><dt>Client</dt><dd>Real estate developer</dd></div><div><dt>Status</dt><dd><span class="chip live">Live in production</span></dd></div></dl>
+    </a>
+  </div>
+
+  <section class="sec" style="margin-top:2rem">
+    <div class="label">Ways to start</div>
+    <div class="body" style="max-width:none">
+      <div class="more">
+        <a href="whatsapp-purchase-agent/#start"><span>Traders, distributors, refurbishers</span><b>A free prototype on your own WhatsApp or email orders</b></a>
+        <a href="quick-commerce-rank-tracker/#start"><span>Brands on quick-commerce</span><b>A free week of tracking on your searches</b></a>
+        <a href="/partners/"><span>ERP implementers, CAs, agencies</span><b>Refer a client, or build with us under your brand</b></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="label">How a project runs</div>
+    <div class="body" style="max-width:none">
+      <ol class="how">
+        <li><b>1 · Scope call</b><span>30 minutes. You describe the job; we agree what "working" means and fix the price.</span></li>
+        <li><b>2 · Working version</b><span>Built on a sample of your own data, usually in 2–4 weeks, with updates as we go.</span></li>
+        <li><b>3 · Go live</b><span>Hardened, connected to your systems, with switches your team controls.</span></li>
+        <li><b>4 · After</b><span>We run and improve it, or hand over the code and docs. You own what you paid for.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="close">
+    <p class="kicker">Have a job like these?</p>
+    <h2>Tell us what your team does by hand, in two lines.</h2>
+    <p>We'll reply with how we'd build it and what a first working version would look like on your data.</p>
+    <div class="controls"><a class="btn primary" data-contact="email" data-topic="A project" href="/#contact">Email us</a><a class="btn" data-contact="whatsapp" data-topic="A project" href="/#contact">WhatsApp us</a><a class="btn" href="/">Back to home</a></div>
+  </section>
+</main>
+
+<footer class="foot">
+  <span>Vero Labs · Applied AI studio, Bengaluru</span>
+  <span><a href="/">vero.co.in</a> · <a href="/demo/">Phone agent demo</a> · <a href="/#contact">Contact</a></span>
+</footer>
+
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "ebb36261316f40cbacec135feb47248b"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

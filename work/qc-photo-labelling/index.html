@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Photo labelling app for device quality checks · Vero Labs</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Vero Labs built a photo labelling tool inside a refurbisher's own web app, so QC staff can mark defects on device photos and build training data for a vision AI model.">
+<link rel="canonical" href="https://vero.co.in/work/qc-photo-labelling/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Photo labelling app for device quality checks">
+<meta property="og:description" content="QC staff tap to label defects on device photos inside the tools they already use, building training data for a vision model.">
+<meta property="og:url" content="https://vero.co.in/work/qc-photo-labelling/">
+<meta property="og:image" content="https://vero.co.in/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap">
+<link rel="stylesheet" href="../work.css">
+<script src="../work.js" defer></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"Photo labelling app for device quality checks","about":"Data labelling for vision AI","author":{"@type":"Organization","name":"Vero Labs","url":"https://vero.co.in/"},"publisher":{"@type":"Organization","name":"Vero Labs","url":"https://vero.co.in/"},"datePublished":"2026-11-04","mainEntityOfPage":"https://vero.co.in/work/qc-photo-labelling/"}
+</script>
+<style>
+  .lab { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 1rem; }
+  @media (max-width: 860px) { .lab { grid-template-columns: 1fr; } }
+  .canvas { border: 1px solid var(--ink); background: var(--paper-2); position: relative; touch-action: none; user-select: none; -webkit-user-select: none; }
+  .canvas svg { display: block; width: 100%; height: auto; cursor: crosshair; }
+  .canvas .hint { position: absolute; left: .5rem; top: .5rem; font: 500 .68rem/1.2 var(--mono); background: var(--paper); border: 1px solid var(--rule); padding: .25rem .4rem; color: var(--ink-2); pointer-events: none; }
+  .labels { display: flex; flex-wrap: wrap; gap: .4rem; }
+  .side { display: grid; gap: .8rem; align-content: start; min-width: 0; }
+  .side h3 { font: 500 .72rem/1.3 var(--mono); text-transform: uppercase; letter-spacing: .07em; color: var(--ink-2); }
+  .boxes { list-style: none; margin: 0; padding: 0; display: grid; gap: .3rem; }
+  .boxes li { display: flex; justify-content: space-between; gap: .5rem; align-items: center; font: 400 .82rem/1.3 var(--sans); border-bottom: 1px dashed var(--rule); padding: .25rem 0; }
+  .boxes button { font: 500 .68rem/1 var(--mono); background: none; border: 0; color: var(--accent); cursor: pointer; padding: .3rem; }
+  pre.json { margin: 0; background: var(--ink); color: #EDEDE6; font: 400 .74rem/1.5 var(--mono); padding: .75rem; overflow: auto; max-height: 17rem; white-space: pre; }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="mast">
+  <div class="mast-top"><a class="logo" href="/">VERO LABS</a><span class="mast-desc">AI Studio · AI Services · Bangalore, India</span></div>
+  <div class="mast-meta"><span>No. 02 · Field Report · Selected work</span>
+    <nav aria-label="Contents"><a href="/">Home</a><a href="/work/" aria-current="page">Work</a><a href="/partners/">Partners</a><a href="/#method">Process</a><a href="/#faq">FAQ</a><a href="/#contact">Contact</a></nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="head">
+    <p class="kicker"><b>C</b>Selected work · Data for vision AI</p>
+    <h1>A labelling tool that turns QC photos into training data</h1>
+    <p class="lede">The same IT hardware refurbisher wants a camera to spot scratches, dents and cracks one day. That needs thousands of labelled photos first. We built a labelling screen inside the web app its QC staff already use, so labelling happens during normal checks.</p>
+  </div>
+
+  <dl class="facts">
+    <div><dt>Client</dt><dd>Listed IT hardware refurbisher, India</dd></div>
+    <div><dt>Where it lives</dt><dd>Inside the client's own internal web app</dd></div>
+    <div><dt>Status</dt><dd><span class="chip test">Photo capture started</span></dd></div>
+    <div><dt>Goal</dt><dd>1,500+ labelled photos to train a defect model</dd></div>
+  </dl>
+
+  <section class="exhibit" aria-labelledby="ex-c">
+    <header><span id="ex-c">Exhibit A · Try the labelling screen</span><span class="dummy">Dummy photo</span></header>
+    <div class="stage lab">
+      <div style="min-width:0; display:grid; gap:.6rem">
+        <div class="controls" role="group" aria-label="QC checkpoint">
+          <button class="btn" type="button" id="v-lid" aria-pressed="true">Lid</button>
+          <button class="btn" type="button" id="v-kb" aria-pressed="false">Keyboard</button>
+        </div>
+        <div class="canvas"><span class="hint">Pick a label, then drag a box on the photo</span>
+          <svg id="img" viewBox="0 0 800 500" role="img" aria-label="Drawing of a laptop for labelling"><title>Laptop photo for labelling</title><g id="art"></g><g id="drawn"></g><rect id="ghost" fill="none" stroke="var(--accent)" stroke-width="2" stroke-dasharray="6 4" width="0" height="0"/></svg>
+        </div>
+      </div>
+      <div class="side">
+        <div><h3>Defect labels · from the ERP</h3><div class="labels" id="labels"></div></div>
+        <div><h3>Boxes on this photo</h3><ul class="boxes" id="boxes"></ul></div>
+        <div><h3>Saved record</h3><pre class="json" id="json"></pre></div>
+      </div>
+    </div>
+  </section>
+  <p class="caption">The drawing and serial number are made up. The record format matches the one the tool saves: label, box in image pixels, checkpoint and who labelled it.</p>
+
+  <div style="height:2rem"></div>
+
+  <section class="sec">
+    <div class="label">The problem</div>
+    <div class="body">
+      <p>Every device that comes in goes through quality checks by eye. The company wants a vision model to help grade devices, but a model is only as good as its examples, and it had none in a usable form.</p>
+      <p>Generic labelling tools sit outside the company's systems, need separate logins and lose the link to the device record. Staff would not use them during a busy shift.</p>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="label">What we built</div>
+    <div class="body">
+      <ul>
+        <li><b>Inside the existing app.</b> A labelling screen added to the company's internal web app, next to the device record.</li>
+        <li><b>Tap and draw.</b> Pick a defect, drag a box. It runs in the browser, so there is nothing to install.</li>
+        <li><b>Labels from the ERP.</b> The defect list comes from the company's ERP, so the categories match how they already grade devices.</li>
+        <li><b>Clean output.</b> Photos go to the company's own file server; each label is saved as structured data ready for model training.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="label">What we learned</div>
+    <div class="body">
+      <ul>
+        <li><b>Keep the original resolution.</b> Box positions are stored in image pixels. If a photo is compressed or resized on the way, every box shifts. Photos now travel untouched.</li>
+        <li><b>Start at one checkpoint.</b> Labelling begins at incoming QC, where the most devices pass, before spreading to other stages.</li>
+        <li><b>Labelling is a habit, not a project.</b> It only works if it fits inside the check staff already do.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="label">Built with</div>
+    <div class="body">
+      <ul class="stack"><li>Django</li><li>ERP integration</li><li>SFTP file storage</li><li>JSON export</li></ul>
+    </div>
+  </section>
+
+  <section class="close">
+    <p class="kicker">Thinking about vision AI?</p>
+    <h2>Most of the work is getting good examples. We can set that up inside the tools your team already uses.</h2>
+    <div class="controls"><a class="btn primary" data-contact="email" data-topic="A project" href="/#contact">Email us</a><a class="btn" data-contact="whatsapp" data-topic="A project" href="/#contact">WhatsApp us</a><a class="btn" href="/work/">See other work</a></div>
+  </section>
+</main>
+
+<footer class="foot">
+  <span>Vero Labs · Applied AI studio, Bengaluru</span>
+  <span><a href="/">vero.co.in</a> · <a href="/work/">Work</a> · <a href="/#contact">Contact</a></span>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+  var NS = "http://www.w3.org/2000/svg", SCALE = 2; // photo is 1600 x 1000, drawn at 800 x 500
+  var LABELS = ["Scratch", "Dent", "Crack", "Stain", "Missing key", "Hinge damage"];
+  var ART = {
+    lid: "<rect x='0' y='0' width='800' height='500' fill='var(--paper-2)'/>" +
+      "<rect x='130' y='55' width='540' height='390' rx='18' fill='#3B3D3A' stroke='#2A2B29' stroke-width='3'/>" +
+      "<rect x='150' y='75' width='500' height='350' rx='12' fill='#444643'/>" +
+      "<circle cx='400' cy='250' r='34' fill='none' stroke='#5C5E5A' stroke-width='3'/>" +
+      "<path d='M 230 140 L 330 118' stroke='#A9AAA4' stroke-width='2.2' fill='none'/>" +
+      "<path d='M 240 150 L 300 138' stroke='#8F908A' stroke-width='1.4' fill='none'/>" +
+      "<ellipse cx='560' cy='350' rx='26' ry='16' fill='#373936' stroke='#2E2F2D' stroke-width='2'/>" +
+      "<path d='M 548 342 Q 560 336 574 345' stroke='#55574F' stroke-width='1.5' fill='none'/>" +
+      "<path d='M 640 410 l 18 22 l -10 6' stroke='#B5B6B0' stroke-width='1.6' fill='none'/>",
+    kb: "<rect x='0' y='0' width='800' height='500' fill='var(--paper-2)'/>" +
+      "<rect x='90' y='70' width='620' height='360' rx='16' fill='#C9CAC5' stroke='#A3A49F' stroke-width='3'/>" +
+      (function () { var s = ""; for (var r = 0; r < 5; r++) for (var c = 0; c < 13; c++) { if (r === 2 && c === 6) continue; s += "<rect x='" + (118 + c * 44) + "' y='" + (100 + r * 44) + "' width='38' height='38' rx='4' fill='#2F302E'/>"; } return s; })() +
+      "<rect x='378' y='188' width='38' height='38' rx='4' fill='#9C9D98' stroke='#7C7D78' stroke-dasharray='3 3'/>" +
+      "<rect x='310' y='330' width='180' height='80' rx='6' fill='#B9BAB5' stroke='#A3A49F'/>" +
+      "<path d='M 520 340 q 30 18 70 6 q 20 -6 30 10' fill='#A99A7E' opacity='.55'/>"
+  };
+  var START = {
+    lid: [{ label: "Scratch", x: 220, y: 105, w: 125, h: 60 }, { label: "Dent", x: 528, y: 326, w: 64, h: 46 }],
+    kb: [{ label: "Missing key", x: 370, y: 180, w: 54, h: 54 }]
+  };
+  var view = "lid", boxes = {}, current = "Scratch";
+  boxes.lid = START.lid.slice(); boxes.kb = START.kb.slice();
+
+  var svg = document.getElementById("img"), art = document.getElementById("art"), drawn = document.getElementById("drawn"), ghost = document.getElementById("ghost");
+
+  document.getElementById("labels").innerHTML = LABELS.map(function (l) { return "<button class='btn' type='button' data-l='" + l + "' aria-pressed='" + (l === current) + "'>" + l + "</button>"; }).join("");
+  document.getElementById("labels").addEventListener("click", function (e) {
+    var b = e.target.closest("button"); if (!b) return; current = b.dataset.l;
+    this.querySelectorAll("button").forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+  });
+
+  function render() {
+    art.innerHTML = ART[view];
+    var list = boxes[view];
+    drawn.innerHTML = list.map(function (b) {
+      return "<rect x='" + b.x + "' y='" + b.y + "' width='" + b.w + "' height='" + b.h + "' fill='none' stroke='var(--accent)' stroke-width='2.5'/>" +
+        "<rect x='" + b.x + "' y='" + (b.y - 20) + "' width='" + (b.label.length * 8 + 14) + "' height='20' fill='var(--accent)'/>" +
+        "<text x='" + (b.x + 7) + "' y='" + (b.y - 6) + "' fill='#FFFFFF' style='font: 500 12px var(--mono)'>" + b.label + "</text>";
+    }).join("");
+    document.getElementById("boxes").innerHTML = list.map(function (b, i) {
+      return "<li><span>" + b.label + " · " + Math.round(b.w * SCALE) + "×" + Math.round(b.h * SCALE) + " px</span><button type='button' data-i='" + i + "'>Remove</button></li>";
+    }).join("") || "<li>No boxes yet. Drag on the photo.</li>";
+    var rec = {
+      image: "IQC_" + (view === "lid" ? "lid" : "keyboard") + "_SN-DEMO-48213.jpg",
+      size_px: [1600, 1000],
+      checkpoint: "Incoming QC · " + (view === "lid" ? "lid" : "keyboard"),
+      labels: list.map(function (b) { return { label: b.label, box_px: [Math.round(b.x * SCALE), Math.round(b.y * SCALE), Math.round(b.w * SCALE), Math.round(b.h * SCALE)] }; }),
+      labelled_by: "qc_station_02"
+    };
+    document.getElementById("json").textContent = JSON.stringify(rec, null, 2).replace(/\[\n\s+(\d+),\n\s+(\d+),\n\s+(\d+),\n\s+(\d+)\n\s+\]/g, "[$1, $2, $3, $4]").replace(/\[\n\s+(\d+),\n\s+(\d+)\n\s+\]/g, "[$1, $2]");
+  }
+  document.getElementById("boxes").addEventListener("click", function (e) { var b = e.target.closest("button"); if (!b) return; boxes[view].splice(+b.dataset.i, 1); render(); });
+
+  function pt(e) { var r = svg.getBoundingClientRect(); return { x: (e.clientX - r.left) * 800 / r.width, y: (e.clientY - r.top) * 500 / r.height }; }
+  var start = null;
+  svg.addEventListener("pointerdown", function (e) { start = pt(e); svg.setPointerCapture(e.pointerId); });
+  svg.addEventListener("pointermove", function (e) {
+    if (!start) return; var p = pt(e);
+    ghost.setAttribute("x", Math.min(start.x, p.x)); ghost.setAttribute("y", Math.min(start.y, p.y));
+    ghost.setAttribute("width", Math.abs(p.x - start.x)); ghost.setAttribute("height", Math.abs(p.y - start.y));
+  });
+  svg.addEventListener("pointerup", function (e) {
+    if (!start) return; var p = pt(e), w = Math.abs(p.x - start.x), h = Math.abs(p.y - start.y);
+    if (w > 8 && h > 8) boxes[view].push({ label: current, x: Math.max(0, Math.min(start.x, p.x)), y: Math.max(20, Math.min(start.y, p.y)), w: w, h: h });
+    start = null; ghost.setAttribute("width", 0); ghost.setAttribute("height", 0); render();
+  });
+
+  ["lid", "kb"].forEach(function (v) {
+    document.getElementById("v-" + v).addEventListener("click", function () {
+      view = v; ["lid", "kb"].forEach(function (x) { document.getElementById("v-" + x).setAttribute("aria-pressed", x === v ? "true" : "false"); }); render();
+    });
+  });
+  render();
+})();
+</script>
+
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "ebb36261316f40cbacec135feb47248b"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

@@ -4,3 +4,4 @@ exclude:
   - Requirements
   - docs
   - README.md
+  - tools

@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>WhatsApp purchase agent for a listed IT hardware refurbisher · Vero Labs</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Vero Labs built an AI agent that reads traders' laptop offers on WhatsApp, asks for missing details in one message, prices them against the buying sheet and logs every deal for the buyer to approve.">
+<link rel="canonical" href="https://vero.co.in/work/whatsapp-purchase-agent/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WhatsApp purchase agent for a listed IT hardware refurbisher">
+<meta property="og:description" content="An AI agent that handles traders' offers on WhatsApp, prices them against the buying sheet and hands every deal to a human buyer to approve.">
+<meta property="og:url" content="https://vero.co.in/work/whatsapp-purchase-agent/">
+<meta property="og:image" content="https://vero.co.in/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap">
+<link rel="stylesheet" href="../work.css">
+<script src="../work.js" defer></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"WhatsApp purchase agent for a listed IT hardware refurbisher","about":"AI agent for WhatsApp purchase negotiation","author":{"@type":"Organization","name":"Vero Labs","url":"https://vero.co.in/"},"publisher":{"@type":"Organization","name":"Vero Labs","url":"https://vero.co.in/"},"datePublished":"2026-11-04","mainEntityOfPage":"https://vero.co.in/work/whatsapp-purchase-agent/"}
+</script>
+<style>
+  /* the replay instrument */
+  .replay { display: grid; grid-template-columns: minmax(0, 21rem) minmax(0, 1fr); gap: 1rem; align-items: start; }
+  @media (max-width: 760px) { .replay { grid-template-columns: 1fr; } }
+  .phone { border: 1px solid var(--ink); background: var(--chat-bg); display: grid; grid-template-rows: auto 1fr; height: 34rem; min-width: 0; }
+  .phone .top { display: flex; justify-content: space-between; align-items: center; gap: .5rem; padding: .55rem .75rem; background: var(--ink); color: var(--paper); font: 500 .8rem/1.3 var(--sans); }
+  .phone .top small { font: 400 .68rem/1.2 var(--mono); opacity: .75; }
+  .chat { overflow-y: auto; padding: .75rem; display: flex; flex-direction: column; gap: .45rem; scroll-behavior: smooth; }
+  .msg { max-width: 86%; padding: .45rem .6rem .35rem; font: 400 .86rem/1.4 var(--sans); white-space: pre-line; animation: pop .25s ease-out; }
+  .msg time { display: block; text-align: right; font: 400 .62rem/1.2 var(--mono); color: var(--ink-3); margin-top: .15rem; }
+  .msg.in { align-self: flex-start; background: var(--bubble-in); }
+  .msg.out { align-self: flex-end; background: var(--bubble-out); }
+  .msg .who { display: block; font: 500 .65rem/1.2 var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--accent); margin-bottom: .15rem; }
+  .msg.buyer .who { color: var(--warn); }
+  .note { align-self: center; max-width: 94%; text-align: center; font: 400 .7rem/1.4 var(--mono); color: var(--ink-2); background: var(--paper); border: 1px dashed var(--rule); padding: .35rem .55rem; animation: pop .25s ease-out; }
+  .typing { align-self: flex-end; background: var(--bubble-out); padding: .5rem .7rem; display: flex; gap: .25rem; }
+  .typing i { width: .38rem; height: .38rem; border-radius: 50%; background: var(--ink-3); animation: blink 1s infinite; }
+  .typing i:nth-child(2) { animation-delay: .15s; } .typing i:nth-child(3) { animation-delay: .3s; }
+  @keyframes blink { 0%, 100% { opacity: .25; } 50% { opacity: 1; } }
+  @keyframes pop { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+
+  .sheet { border: 1px solid var(--ink); min-width: 0; background: var(--paper); }
+  .sheet .bar { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .3rem .75rem; padding: .5rem .75rem; border-bottom: 1px solid var(--ink); font: 500 .72rem/1.4 var(--mono); text-transform: uppercase; letter-spacing: .06em; }
+  .sheet table td { white-space: normal; }
+  .sheet table td:first-child { color: var(--ink-2); width: 9.5rem; white-space: nowrap; }
+  .sheet td.miss { color: var(--ink-3); font-style: italic; }
+  .sheet td.flash { animation: flash 1.4s ease-out; }
+  @keyframes flash { from { background: var(--accent-soft); } to { background: transparent; } }
+  .status { display: inline-block; padding: .2rem .4rem; font: 500 .7rem/1 var(--mono); text-transform: uppercase; letter-spacing: .06em; border: 1px solid currentColor; }
+  .status.won { color: var(--ok); } .status.esc, .status.paused { color: var(--warn); } .status.work { color: var(--accent); }
+  .toggles { display: flex; flex-wrap: wrap; gap: .4rem 1rem; padding: .6rem .75rem; border-top: 1px solid var(--rule); font: 400 .75rem/1.4 var(--mono); color: var(--ink-2); }
+  .toggles span b { font-weight: 500; color: var(--ink); }
+  .now { padding: .6rem .75rem; border-top: 1px solid var(--rule); font: 400 .82rem/1.45 var(--sans); color: var(--ink-2); min-height: 3.6rem; }
+  .now b { color: var(--ink); font-weight: 600; }
+  .replay-controls { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .6rem; padding: 0 1rem 1rem; }
+
+  /* recording mode for the demo video (vero.co.in/work/whatsapp-purchase-agent/#video) */
+  .vcap { display: none; }
+  .video-mode .mast, .video-mode .skip, .video-mode .head, .video-mode .facts, .video-mode .sec, .video-mode .close, .video-mode .offer, .video-mode .foot, .video-mode .caption, .video-mode .replay-controls, .video-mode .exhibit > header { display: none !important; }
+  .video-mode main { max-width: none; padding: 0; }
+  .video-mode .exhibit { border: 0; margin: 0; }
+  .video-mode .vcap { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: .9rem 1.2rem; border-bottom: 1px solid var(--ink); }
+  .video-mode .vcap h2 { font-size: 1.55rem; }
+  .video-mode .vcap .kicker { white-space: nowrap; }
+  .video-mode .replay { grid-template-columns: 24rem 1fr; padding: 1rem 1.2rem; }
+  .video-mode .phone { height: 33.5rem; }
+  .card-screen { position: fixed; inset: 0; background: var(--paper); display: none; place-content: center; text-align: center; gap: 1rem; padding: 2rem; z-index: 9; }
+  .card-screen.on { display: grid; animation: pop .4s ease-out; }
+  .card-screen h2 { font-size: 3rem; max-width: 50rem; }
+  .card-screen p { font: 400 1.35rem/1.5 var(--serif); color: var(--ink-2); margin: 0; max-width: 46rem; justify-self: center; }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="mast">
+  <div class="mast-top"><a class="logo" href="/">VERO LABS</a><span class="mast-desc">AI Studio · AI Services · Bangalore, India</span></div>
+  <div class="mast-meta"><span>No. 02 · Field Report · Selected work</span>
+    <nav aria-label="Contents"><a href="/">Home</a><a href="/work/" aria-current="page">Work</a><a href="/partners/">Partners</a><a href="/#method">Process</a><a href="/#faq">FAQ</a><a href="/#contact">Contact</a></nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="head">
+    <p class="kicker"><b>A</b>Selected work · WhatsApp agent</p>
+    <h1>An AI agent that handles traders' laptop offers on WhatsApp</h1>
+    <p class="lede">Built for a listed IT hardware refurbisher in India that buys used corporate laptops and desktops. Traders send offers as loose text all day. The agent reads each one, asks for what's missing in a single message, prices it against the buying sheet, negotiates inside set limits and hands the deal to a buyer to approve.</p>
+  </div>
+
+  <dl class="facts">
+    <div><dt>Client</dt><dd>Listed IT hardware refurbisher, India</dd></div>
+    <div><dt>Built in</dt><dd>About 3 weeks to a live WhatsApp demo</dd></div>
+    <div><dt>Status</dt><dd><span class="chip test">In client testing</span></dd></div>
+    <div><dt>Runs on</dt><dd>The client's server, WhatsApp number and AI account</dd></div>
+  </dl>
+
+  <section class="exhibit" aria-labelledby="ex-a">
+    <header><span id="ex-a">Exhibit A · Replay of four chats</span><span class="dummy">Dummy data</span></header>
+    <div class="vcap"><div><p class="kicker" id="vkick">WhatsApp purchase agent · replay</p><h2 id="vtitle">Offer 1: a lot of 40 laptops</h2></div><p class="kicker">vero.co.in</p></div>
+    <div class="stage replay">
+      <div class="phone" aria-label="Chat with a trader">
+        <div class="top"><span id="trader-name">Trader · Rahul Traders</span><small id="desk">Purchase desk number</small></div>
+        <div class="chat" id="chat" aria-live="polite"></div>
+      </div>
+      <div class="sheet">
+        <div class="bar"><span id="sheet-tab">Control sheet · Offers tab</span><span id="sheet-id">Offer #1042</span></div>
+        <div class="tbl-wrap" style="border:0"><table><tbody id="sheet"></tbody></table></div>
+        <div class="toggles" id="toggles"></div>
+        <div class="now" id="now" aria-live="polite"></div>
+      </div>
+    </div>
+    <div class="replay-controls">
+      <div class="seg" role="group" aria-label="Choose an offer">
+        <button class="btn" type="button" id="s-deal" aria-pressed="true">Deal agreed</button>
+        <button class="btn" type="button" id="s-esc" aria-pressed="false">Unusual offer</button>
+        <button class="btn" type="button" id="s-hand" aria-pressed="false">Buyer steps in</button>
+        <button class="btn" type="button" id="s-order" aria-pressed="false">Distributor order<span class="example-tag">Example</span></button>
+      </div>
+      <div class="controls">
+        <button class="btn primary" type="button" id="play">Play replay</button>
+        <button class="btn" type="button" id="step">Next step</button>
+      </div>
+    </div>
+  </section>
+  <p class="caption">The chats, prices and names are made up. The first three offers follow the steps the client's agent takes. "Distributor order" shows the same engine set up for incoming retail orders: an example of how we would configure it for a distributor, not a client deployment.</p>
+
+  <div style="height:2rem"></div>
+
+  <section class="sec">
+    <div class="label">The problem</div>
+    <div class="body">
+      <p>The purchase team buys used corporate laptops from hundreds of traders. Offers arrive on WhatsApp as free text, in English, Hindi and Hinglish, at all hours: "40 pc 5490 i5 8th 8/256, 14500". A buyer has to read each one, chase the missing details, look up the buying price, reply, haggle and log the result.</p>
+      <p>On a busy day that means slow replies, offers that never get logged, and good lots that go to a competitor who answered first.</p>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="label">What we built</div>
+    <div class="body">
+      <ul>
+        <li><b>Reads the offer.</b> Pulls model, processor, generation, RAM, storage, quantity and price out of a loose message in English, Hindi or Hinglish.</li>
+        <li><b>Asks once.</b> If battery health, grade, chargers or faults are missing, it asks for all of them in one message, not one question at a time.</li>
+        <li><b>Prices it.</b> Works out a target price from the company's own buying sheet, by model, generation and grade.</li>
+        <li><b>Negotiates inside limits.</b> Opens a little below target, moves to target, and never goes above the buyer's ceiling.</li>
+        <li><b>Hands over.</b> Unusual offers (very large lots, unknown models) go straight to a buyer. Every purchase needs a buyer's approval before the agent confirms it.</li>
+        <li><b>Logs everything.</b> Each offer lands in a Google Sheet as a row with its outcome: won, lost or escalated.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="label">The control sheet</div>
+    <div class="body">
+      <p>The team runs the agent from a Google Sheet they already know how to use. No new dashboard to learn.</p>
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>Control</th><th>What it does</th></tr></thead>
+        <tbody>
+          <tr><td>Agent on/off per trader</td><td>Keep the agent away from key accounts</td></tr>
+          <tr><td>Kill switch</td><td>Stops all agent replies at once</td></tr>
+          <tr><td>Hand-reply pause</td><td>When a buyer types in a chat, the agent stays out of it for 12 hours</td></tr>
+          <tr><td>Buying sheet</td><td>Target prices by model, generation and grade; buyers edit it as the market moves</td></tr>
+          <tr><td>Won / Lost / Escalated tabs</td><td>Every offer and its outcome, for review and reporting</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="label">How it went</div>
+    <div class="body">
+      <ol class="weeks">
+        <li><b>Week 1</b><span>Read three months of the purchase team's WhatsApp chats to learn how traders write offers and how buyers price them. Agreed the rules: opening counter, ceiling, what counts as unusual.</span></li>
+        <li><b>Week 2</b><span>Offer reading, pricing against the buying sheet, and the control sheet with its tabs and switches.</span></li>
+        <li><b>Week 3</b><span>Negotiation and hand-over to buyers. Live demo on WhatsApp with the client's team.</span></li>
+        <li><b>Now</b><span>The client is testing it on their own server with their own AI account. Next in build: reading whole lot files and checking a trader's specs on the web.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="label">What we learned</div>
+    <div class="body">
+      <ul>
+        <li><b>One question beats five.</b> Traders ignore a bot that asks one thing at a time. Asking for every missing detail in a single message gets answers.</li>
+        <li><b>Humans approve, the agent does the legwork.</b> Buyers trusted it faster once every purchase still needed their tap.</li>
+        <li><b>The WhatsApp provider was the slowest part.</b> The agent replies in under 10 seconds. Message delivery through the provider sometimes added minutes, so we measure each step separately.</li>
+        <li><b>A sheet is a fine control panel.</b> The team already lives in Sheets. Switches there got used from day one.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="label">Built with</div>
+    <div class="body">
+      <ul class="stack">
+        <li>OpenAI API</li><li>WhatsApp Business API</li><li>Google Sheets API</li><li>Python</li><li>Client's own server</li>
+      </ul>
+      <p style="color:var(--ink-2)">The code, data and accounts belong to the client. We keep only our general-purpose building blocks.</p>
+    </div>
+  </section>
+
+  <section class="offer" id="start" aria-labelledby="offer-title">
+    <header>
+      <p class="kicker">For traders, distributors and refurbishers</p>
+      <h2 id="offer-title">See it work on your own chats in about a week, before you pay anything</h2>
+      <p>If your team takes orders, quotes or offers on WhatsApp or email and re-types them into a sheet or ERP, we can build this for you. You see a working prototype on a sample of your data first.</p>
+    </header>
+    <ol class="steps">
+      <li><b>1 · 20-min call</b><span>Walk us through one real order or offer. We agree the success test the prototype has to pass.</span></li>
+      <li><b>2 · Prototype<span class="free">Free</span></b><span>A working version on a sample of your chats and price list, in about a week.</span></li>
+      <li><b>3 · Pilot</b><span>Fixed price, agreed before we start. Runs on your live number with your team approving.</span></li>
+      <li><b>4 · Run or hand over</b><span>We run and improve it for a monthly fee, or hand over the code and docs.</span></li>
+    </ol>
+    <div class="offer-grid">
+      <div><h3>It fits if</h3><ul>
+        <li>Orders, quotes or offers arrive as loose text on WhatsApp or email</li>
+        <li>Prices come from a list or sheet you already keep</li>
+        <li>Your team handles dozens or hundreds of these a day</li>
+      </ul></div>
+      <div><h3>What we need from you</h3><ul>
+        <li>An export of recent chats or emails (a few hundred messages is plenty)</li>
+        <li>Your current price list or buying sheet</li>
+        <li>One person who knows the process, about 30 minutes a week</li>
+      </ul></div>
+      <div><h3>Your data</h3><ul>
+        <li>We sign an NDA before you share anything</li>
+        <li>It runs on your WhatsApp number, your AI account and your server or cloud</li>
+        <li>Your data is used only for your build, and we delete the sample when you ask</li>
+        <li>For companies in the EU, we sign a data processing agreement (DPA) under GDPR</li>
+      </ul></div>
+      <div><h3>Where we work</h3><ul>
+        <li>Built in Bengaluru; we work with teams in India, the Gulf and Europe</li>
+        <li>Calls and reviews over video; English and Hindi chats handled</li>
+      </ul></div>
+    </div>
+    <div class="offer-cta">
+      <p>Tell us the job in two lines. We reply within one working day.</p>
+      <div class="controls">
+        <a class="btn primary" data-contact="email" data-topic="WhatsApp agent prototype" href="/#contact">Email us</a>
+        <a class="btn" data-contact="whatsapp" data-topic="WhatsApp agent prototype" href="/#contact">WhatsApp us</a>
+        <a class="btn" href="/work/">Other work</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <span>Vero Labs · Applied AI studio, Bengaluru</span>
+  <span><a href="/">vero.co.in</a> · <a href="/work/">Work</a> · <a href="/#contact">Contact</a></span>
+</footer>
+
+<div class="card-screen" id="card"><p class="kicker" id="card-k">Vero Labs</p><h2 id="card-h">A WhatsApp purchase agent</h2><p id="card-p"></p></div>
+
+<script>
+(function () {
+  "use strict";
+  var EMPTY = { "Model": null, "Processor": null, "RAM / storage": null, "Quantity": null, "Asking price": null, "Battery health": null, "Grade": null, "Chargers": null, "Faults": null, "Target price": null, "Agent's offer": null, "Buyer's ceiling": null, "Status": null };
+
+  var ORDER_FIELDS = ["Retailer", "Line 1", "Line 2", "Line 3", "Line 4", "Delivery", "Order value", "Credit check", "Status"];
+  var SCN = {
+    deal: {
+      title: "Offer 1: a lot of 40 laptops", trader: "Rahul Traders", id: "Offer #1042",
+      steps: [
+        { k: "in", t: "10:02", x: "bhai 40 pc dell 5490 i5 8th 8/256 available, 14500 each",
+          set: { "Model": "Dell Latitude 5490", "Processor": "Intel i5, 8th gen", "RAM / storage": "8 GB / 256 GB SSD", "Quantity": "40", "Asking price": "₹14,500 per unit", "Status": ["Reading offer", "work"] },
+          now: "<b>Reads the offer.</b> Model, processor, RAM, storage, quantity and price pulled out of one loose line." },
+        { k: "note", x: "Missing: battery, grade, chargers, faults",
+          now: "<b>Four details are missing.</b> The agent will ask for all of them in one message." },
+        { k: "out", t: "10:02", x: "Thanks Rahul ji. To price this right, please share:\n1. Battery health (above 70%?)\n2. Grade split (A / B / C)\n3. Chargers included?\n4. Any screen, keyboard or hinge issues?",
+          set: { "Status": ["Waiting for details", "work"] } },
+        { k: "in", t: "10:09", x: "battery 75+ sab. grade A 30, B 10. charger hai. 2 pc keyboard issue",
+          set: { "Battery health": "75%+ on all", "Grade": "30 × A, 10 × B", "Chargers": "Included", "Faults": "2 units, keyboard" },
+          now: "<b>Details in.</b> The offer is complete." },
+        { k: "note", x: "Buying sheet: A ₹13,200 · B ₹11,800 · keyboard −₹600",
+          set: { "Target price": "₹12,820 per unit (blended)", "Buyer's ceiling": "₹13,200 per unit", "Status": ["Negotiating", "work"] },
+          now: "<b>Prices it.</b> 30 × ₹13,200 + 10 × ₹11,800 − 2 × ₹600, over 40 units = ₹12,820 target. Ceiling set by the buyer: ₹13,200." },
+        { k: "out", t: "10:10", x: "For this mix we can do ₹12,180 per unit for all 40 (30 A, 10 B, 2 with keyboard issue).",
+          set: { "Agent's offer": "₹12,180 (opening, 5% below target)" },
+          now: "<b>Opens below target.</b> The opening counter is 5% under the target price." },
+        { k: "in", t: "10:14", x: "nahi bhai, 13800 se kam nahi hoga" },
+        { k: "out", t: "10:14", x: "Understood. Our best is ₹12,820 per unit for the full lot of 40.",
+          set: { "Agent's offer": "₹12,820 (target)" },
+          now: "<b>Moves to target.</b> Never past the ceiling." },
+        { k: "in", t: "10:21", x: "13200 final kar do, 40 ka lot" },
+        { k: "note", x: "₹13,200 is within the ceiling · sent to buyer for approval",
+          set: { "Status": ["Waiting for buyer", "esc"] },
+          now: "<b>A human decides.</b> The price is inside the limit, so the agent asks a buyer to approve. It never confirms a purchase on its own." },
+        { k: "buyer", t: "10:23", x: "Approved in the sheet", who: "Buyer · Arjun",
+          now: "<b>Buyer approves</b> with one tap in the control sheet." },
+        { k: "out", t: "10:23", x: "Done: ₹13,200 × 40 units. Our team will confirm pickup and payment shortly. Thank you!",
+          set: { "Agent's offer": "₹13,200 × 40 = ₹5,28,000", "Status": ["Won · logged", "won"] },
+          now: "<b>Logged as won.</b> ₹52,000 below the trader's first ask, with every message on record." }
+      ]
+    },
+    esc: {
+      title: "Offer 2: a lot too big for the agent", trader: "Shree Infotech", id: "Offer #1043",
+      steps: [
+        { k: "in", t: "11:40", x: "500 pc mix lot HP Dell Lenovo, i5 i7 6th to 10th gen. 9 lakh for all. list baad mein bhejta hoon",
+          set: { "Model": "Mixed: HP, Dell, Lenovo", "Processor": "i5 / i7, 6th–10th gen", "Quantity": "500", "Asking price": "₹9,00,000 for the lot", "Status": ["Reading offer", "work"] },
+          now: "<b>Reads the offer.</b> A mixed lot of 500 with no model list." },
+        { k: "note", x: "500 units is above the agent's limit of 100 · no unit list",
+          set: { "Status": ["Escalated to buyer", "esc"] },
+          now: "<b>Knows its limits.</b> Large or unclear lots go straight to a buyer. The agent does not negotiate them." },
+        { k: "out", t: "11:40", x: "Thanks, that's a big lot. Our buyer will call you today. Meanwhile, could you send the model-wise list?" },
+        { k: "buyer", t: "11:42", x: "Escalation picked up · calling the trader", who: "Buyer · Arjun",
+          set: { "Buyer's ceiling": "Buyer handles" },
+          now: "<b>Buyer takes over</b> with the full chat and the parsed details already in the sheet." }
+      ]
+    },
+    order: {
+      title: "Example: a distributor's retail order", trader: "Sai Kirana Stores", role: "Retailer", id: "Order #5518", tab: "Orders tab", fields: ORDER_FIELDS, example: true,
+      steps: [
+        { k: "in", t: "08:12", x: "bhaiya kal ke liye: parle g 5rs 10 case, marie 5 case, tata salt 1kg 20 pkt, surf excel 1kg 12",
+          set: { "Retailer": "Sai Kirana Stores (R-2231)", "Line 1": "Parle-G ₹5 · 10 cases", "Line 2": "Marie · 5 cases (pack size?)", "Line 3": "Tata Salt 1 kg · 20 packs", "Line 4": "Surf Excel 1 kg · 12 packs", "Delivery": "Tomorrow", "Status": ["Reading order", "work"] },
+          now: "<b>Reads the order.</b> Four lines in loose Hinglish, matched to the distributor's product list." },
+        { k: "note", x: "Price list: Marie has two pack sizes · Surf Excel 1 kg: 8 in stock",
+          now: "<b>Checks the price list and stock.</b> One item is unclear and one is short." },
+        { k: "out", t: "08:12", x: "Thanks Sai ji. Two quick checks:\n1. Marie: Britannia Marie Gold 120 g or 250 g?\n2. Surf Excel 1 kg: 8 in stock now. Send 8 tomorrow and 4 on Friday?",
+          set: { "Status": ["Waiting for retailer", "work"] } },
+        { k: "in", t: "08:20", x: "120g. haan theek hai, 8 abhi",
+          set: { "Line 2": "Marie Gold 120 g · 5 cases", "Line 4": "Surf Excel 1 kg · 8 now, 4 Friday" },
+          now: "<b>Answers in.</b> Every line is now clear." },
+        { k: "note", x: "Order value ₹18,640 · within the retailer's credit limit",
+          set: { "Order value": "₹18,640 at today's price list", "Credit check": "Within limit (₹50,000)" },
+          now: "<b>Prices it and checks credit.</b> Orders over a set value, or from new retailers, would wait for a salesperson's OK." },
+        { k: "out", t: "08:21", x: "Order confirmed for tomorrow: Parle-G 10 cases, Marie Gold 120 g 5 cases, Tata Salt 1 kg 20, Surf Excel 1 kg 8 (4 more on Friday). Total ₹18,640.",
+          set: { "Status": ["Confirmed · in dispatch sheet", "won"] },
+          now: "<b>Logged for dispatch.</b> The warehouse sees a clean order, line by line. Nobody re-typed it." }
+      ]
+    },
+    hand: {
+      title: "Offer 3: a buyer steps in by hand", trader: "Mehta Computers", id: "Offer #1044",
+      steps: [
+        { k: "in", t: "16:05", x: "T480 i5 8th 8/256 qty 15 @ 13900",
+          set: { "Model": "Lenovo ThinkPad T480", "Processor": "Intel i5, 8th gen", "RAM / storage": "8 GB / 256 GB SSD", "Quantity": "15", "Asking price": "₹13,900 per unit", "Status": ["Reading offer", "work"] },
+          now: "<b>Reads the offer.</b>" },
+        { k: "out", t: "16:05", x: "Thanks! Please share battery health, grade split (A/B/C), chargers, and any faults.",
+          set: { "Status": ["Waiting for details", "work"] } },
+        { k: "buyer", t: "16:07", x: "Mehta ji, call karta hoon 5 min mein", who: "Buyer · Arjun (typed by hand)",
+          now: "<b>A buyer types in the chat.</b> This trader is a regular, so the buyer wants to handle it." },
+        { k: "note", x: "Buyer replied by hand · agent paused for this trader for 12 hours",
+          set: { "Status": ["Agent paused until 04:07", "paused"] },
+          pause: true,
+          now: "<b>The agent steps back</b> for 12 hours, so the trader never gets two voices at once." }
+      ]
+    }
+  };
+
+  var chat = document.getElementById("chat"), sheet = document.getElementById("sheet"),
+      now = document.getElementById("now"), toggles = document.getElementById("toggles"),
+      playBtn = document.getElementById("play"), stepBtn = document.getElementById("step");
+  var cur = "deal", idx = 0, data = {}, timer = null, playing = false, paused = false;
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+
+  function drawSheet(changed) {
+    var html = "";
+    (SCN[cur].fields || Object.keys(EMPTY)).forEach(function (key) {
+      var v = data[key], cls = changed && changed.indexOf(key) > -1 ? " flash" : "";
+      if (v == null) { html += "<tr><td>" + key + "</td><td class='miss" + cls + "'>not yet known</td></tr>"; return; }
+      if (key === "Status") { html += "<tr><td>" + key + "</td><td class='" + cls.trim() + "'><span class='status " + v[1] + "'>" + esc(v[0]) + "</span></td></tr>"; return; }
+      html += "<tr><td>" + key + "</td><td class='" + cls.trim() + "'>" + esc(v) + "</td></tr>";
+    });
+    sheet.innerHTML = html;
+    toggles.innerHTML = SCN[cur].example ? "<span>Agent for this retailer: <b>On</b></span><span>Kill switch: <b>Off</b></span><span>Big or new-customer orders need approval: <b>Yes</b></span>" : "<span>Agent for this trader: <b>" + (paused ? "Paused 12 h" : "On") + "</b></span><span>Kill switch: <b>Off</b></span><span>Purchases need buyer approval: <b>Yes</b></span>";
+  }
+
+  function addBubble(s) {
+    var el = document.createElement("div");
+    if (s.k === "note") { el.className = "note"; el.textContent = s.x; }
+    else {
+      el.className = "msg " + (s.k === "in" ? "in" : "out") + (s.k === "buyer" ? " buyer" : "");
+      var who = s.k === "in" ? SCN[cur].trader : (s.who || (SCN[cur].example ? "Order agent" : "Purchase agent"));
+      el.innerHTML = "<span class='who'>" + esc(who) + "</span>" + esc(s.x) + "<time>" + esc(s.t || "") + "</time>";
+    }
+    chat.appendChild(el);
+    chat.scrollTop = chat.scrollHeight;
+  }
+
+  function apply(s) {
+    addBubble(s);
+    var changed = [];
+    if (s.set) Object.keys(s.set).forEach(function (k) { data[k] = s.set[k]; changed.push(k); });
+    if (s.pause) paused = true;
+    drawSheet(changed);
+    if (s.now) now.innerHTML = s.now;
+    window.dispatchEvent(new CustomEvent("replaystep", { detail: { scn: cur, idx: idx, step: s } }));
+  }
+
+  function reset(name) {
+    stop(); cur = name; idx = 0; data = {}; paused = false;
+    chat.innerHTML = ""; now.innerHTML = "Press <b>Play replay</b> to watch the agent work through this offer, or <b>Next step</b> to go one message at a time.";
+    document.getElementById("trader-name").textContent = (SCN[name].role || "Trader") + " · " + SCN[name].trader;
+    document.getElementById("desk").textContent = SCN[name].example ? "Order desk number" : "Purchase desk number";
+    document.getElementById("sheet-tab").textContent = "Control sheet · " + (SCN[name].tab || "Offers tab");
+    document.getElementById("sheet-id").textContent = SCN[name].id;
+    document.getElementById("vtitle").textContent = SCN[name].title;
+    Object.keys(SCN).forEach(function (n) { document.getElementById("s-" + n).setAttribute("aria-pressed", n === name ? "true" : "false"); });
+    drawSheet([]);
+  }
+
+  function showAll(name) { reset(name); SCN[name].steps.forEach(function (s) { apply(s); idx++; }); now.innerHTML = "<b>Finished.</b> Press Play replay to watch it step by step, or pick another offer."; }
+
+  function next(cb) {
+    var steps = SCN[cur].steps;
+    if (idx >= steps.length) { stop(); if (cb) cb(true); return; }
+    var s = steps[idx];
+    var typing = (s.k === "out" && !reduce) ? 1100 : 0;
+    if (typing && playing) {
+      var t = document.createElement("div"); t.className = "typing"; t.innerHTML = "<i></i><i></i><i></i>";
+      chat.appendChild(t); chat.scrollTop = chat.scrollHeight;
+      timer = setTimeout(function () { t.remove(); apply(s); idx++; if (cb) cb(false); }, typing);
+    } else { apply(s); idx++; if (cb) cb(false); }
+  }
+
+  function delayFor(s) { var base = window.__speed || 1; var d = s.k === "note" ? 2600 : s.k === "in" ? 2400 : 2800; return reduce ? 400 : d * base; }
+
+  function loop(done) {
+    if (!playing) return;
+    next(function (finished) {
+      if (finished) { if (done) done(); return; }
+      var s = SCN[cur].steps[idx - 1];
+      timer = setTimeout(function () { loop(done); }, delayFor(s));
+    });
+  }
+
+  function play(done) {
+    if (idx >= SCN[cur].steps.length) reset(cur);
+    playing = true; playBtn.textContent = "Pause"; loop(done);
+  }
+  function stop() { playing = false; clearTimeout(timer); var t = chat.querySelector(".typing"); if (t) t.remove(); playBtn.textContent = "Play replay"; }
+
+  playBtn.addEventListener("click", function () { playing ? stop() : play(); });
+  stepBtn.addEventListener("click", function () { stop(); if (idx >= SCN[cur].steps.length) reset(cur); next(); });
+  Object.keys(SCN).forEach(function (n) { document.getElementById("s-" + n).addEventListener("click", function () { reset(n); play(); }); });
+
+  // At rest: the full first conversation is visible.
+  showAll("deal");
+
+  // Recording mode for the demo video.
+  window.__runVideo = function (onEnd, opts) {
+    opts = opts || {};
+    document.body.classList.add("video-mode");
+    var card = document.getElementById("card");
+    function showCard(k, h, p, ms, then) {
+      document.getElementById("card-k").textContent = k; document.getElementById("card-h").textContent = h; document.getElementById("card-p").textContent = p;
+      card.classList.add("on"); setTimeout(function () { card.classList.remove("on"); then(); }, ms);
+    }
+    var order = opts.order || ["deal", "esc", "hand"];
+    function run(i) {
+      if (i >= order.length) {
+        return showCard("Vero Labs · vero.co.in", "Custom AI tools on your own data, working in weeks.", "Orders, quotes and offers on WhatsApp, email or sheets. Tell us the job in two lines: vero.co.in", 7000, function () { if (onEnd) onEnd(); });
+      }
+      reset(order[i]);
+      setTimeout(function () { play(function () { setTimeout(function () { run(i + 1); }, 3500); }); }, 1200);
+    }
+    var intro = opts.intro || ["Vero Labs · case replay · dummy data", "A WhatsApp agent that handles traders' laptop offers", "Built for a listed IT hardware refurbisher. It reads each offer, asks for what's missing, prices it against the buying sheet and hands every deal to a buyer to approve."];
+    showCard(intro[0], intro[1], intro[2], 7000, function () { run(0); });
+  };
+  if (location.hash === "#video") { window.__runVideo(); }
+  if (location.hash === "#video-distributor") { window.__runVideo(null, { order: ["order", "deal"], intro: ["Vero Labs · example replay · dummy data", "A WhatsApp agent that turns retail orders into clean rows", "The same engine we built for a listed IT hardware refurbisher, set up for a distributor: it reads loose orders, checks the price list and stock, asks once, and logs the order for dispatch."] }); }
+})();
+</script>
+
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "ebb36261316f40cbacec135feb47248b"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

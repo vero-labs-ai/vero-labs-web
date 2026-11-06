@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>For $company · Vero Labs</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="referrer" content="no-referrer">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap">
+<link rel="stylesheet" href="../../work/work.css">
+<script src="../../work/work.js" defer></script>
+<style>
+  .prep { display: inline-flex; gap: .5rem; align-items: center; font: 500 .72rem/1 var(--mono); text-transform: uppercase; letter-spacing: .08em; color: var(--ink-2); border: 1px solid var(--rule); padding: .4rem .55rem; }
+  .prep i { width: .5rem; height: .5rem; border-radius: 50%; background: var(--accent); }
+  .proof { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 1rem; align-items: center; border: 1px solid var(--ink); padding: 1rem 1.25rem; text-decoration: none; color: var(--ink); }
+  .proof:hover { background: var(--paper-2); }
+  .proof span { font: 500 .78rem/1.3 var(--mono); color: var(--accent); text-transform: uppercase; letter-spacing: .06em; white-space: nowrap; }
+  @media (max-width: 560px) { .proof { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="mast">
+  <div class="mast-top"><a class="logo" href="/">VERO LABS</a><span class="mast-desc">AI Studio · AI Services · Bangalore, India</span></div>
+  <div class="mast-meta"><span>Prepared for $company · $date</span>
+    <nav aria-label="Contents"><a href="/work/">Our work</a><a href="#start">How we'd start</a></nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="head">
+    <span class="prep"><i></i>Prepared for $company</span>
+    <h1>$headline</h1>
+    <p class="lede">$intro</p>
+  </div>
+
+  <section class="sec">
+    <div class="label">What we noticed</div>
+    <div class="body">$noticed</div>
+  </section>
+
+  <section class="sec">
+    <div class="label">What we'd show you in a week</div>
+    <div class="body"><ul>$week</ul></div>
+  </section>
+
+  $snapshot
+
+  <section class="sec">
+    <div class="label">Closest thing we've built</div>
+    <div class="body">
+      <a class="proof" href="$proof_href"><div><h3>$proof_title</h3><p style="margin:.3rem 0 0;color:var(--ink-2)">$proof_line</p></div><span>Open the replay →</span></a>
+    </div>
+  </section>
+
+  <section class="offer" id="start" aria-labelledby="offer-title">
+    <header>
+      <p class="kicker">How we'd start with $company</p>
+      <h2 id="offer-title">A working prototype on a sample of your data, before you pay anything</h2>
+    </header>
+    <ol class="steps">
+      <li><b>1 · 20-min call</b><span>You walk us through one real case. We agree the success test.</span></li>
+      <li><b>2 · Prototype<span class="free">Free</span></b><span>Working version on a sample of your data in about a week.</span></li>
+      <li><b>3 · Pilot</b><span>Fixed price, agreed before we start, on your own accounts.</span></li>
+      <li><b>4 · Run or hand over</b><span>We run and improve it, or hand over code and docs.</span></li>
+    </ol>
+    <div class="offer-grid">
+      <div><h3>What we need from you</h3><ul>$need</ul></div>
+      <div><h3>Your data</h3><ul>
+        <li>NDA before you share anything</li>
+        <li>Runs on your own accounts and infrastructure</li>
+        <li>Used only for your build; sample deleted on request</li>
+        <li>Data processing agreement (DPA) for EU companies</li>
+      </ul></div>
+    </div>
+    <div class="offer-cta">
+      <p>Reply to our message, or reach us here.</p>
+      <div class="controls">
+        <a class="btn primary" data-contact="email" data-topic="$company: prototype" href="/#contact">Email us</a>
+        <a class="btn" data-contact="whatsapp" data-topic="$company: prototype" href="/#contact">WhatsApp us</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <span>Vero Labs · Applied AI studio, Bengaluru · This page is private to $company and not listed on our site.</span>
+  <span><a href="/">vero.co.in</a></span>
+</footer>
+
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "ebb36261316f40cbacec135feb47248b"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
