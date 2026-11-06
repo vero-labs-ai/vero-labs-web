@@ -8,7 +8,7 @@ Vero Labs is a separate company from other businesses with "Vero" in their name.
 
 - Vero Labs is a member of the OpenAI Partner Network.
 - A small, fast AI team: kickoff to a live WhatsApp agent demo in about 3 weeks; a working prototype on a client's own data in about a week.
-- Builds on the frontier AI stack with whichever models and tools fit each job; not tied to one AI provider.
+- Builds on the frontier stack: the latest models and tools from OpenAI, Anthropic and others, chosen to fit each job.
 
 ## Some things we have built
 
