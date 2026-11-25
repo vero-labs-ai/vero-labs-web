@@ -72,6 +72,27 @@
   .card-screen.on { display: grid; animation: pop .4s ease-out; }
   .card-screen h2 { font-size: 3rem; max-width: 50rem; }
   .card-screen p { font: 400 1.35rem/1.5 var(--serif); color: var(--ink-2); margin: 0; max-width: 46rem; justify-self: center; }
+  /* v2: language switch, file attachments in chat */
+  .langbar { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem .6rem; padding: .7rem 1rem 0; font: 500 .72rem/1.4 var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--ink-2); }
+  .langbar .seg .btn { padding-block: .3rem; font-size: .78rem; }
+  .msg.has-att { max-width: 92%; }
+  .att { display: block; margin: .15rem 0 .3rem; border: 1px solid var(--rule); background: var(--paper); overflow: hidden; }
+  .att.photo { border: 0; background: transparent; }
+  .att.photo svg { display: block; width: 100%; height: auto; }
+  .att .fhead { display: flex; align-items: center; gap: .5rem; padding: .4rem .5rem; border-bottom: 1px solid var(--rule); }
+  .att .badge { font: 600 .6rem/1 var(--mono); letter-spacing: .04em; color: #FFFFFF; padding: .3rem .35rem; }
+  .att.xlsx .badge { background: var(--ok); }
+  .att.pdf .badge { background: var(--accent); }
+  .att .fname { font: 500 .76rem/1.25 var(--sans); min-width: 0; overflow-wrap: anywhere; }
+  .att .fname small { display: block; font: 400 .64rem/1.3 var(--mono); color: var(--ink-3); }
+  .att table.mini { width: 100%; border-collapse: collapse; font: 400 .62rem/1.3 var(--mono); }
+  .att table.mini th, .att table.mini td { padding: .2rem .35rem; border-bottom: 1px solid var(--rule); text-align: left; white-space: nowrap; }
+  .att table.mini th { color: var(--ink-3); font-weight: 500; }
+  .att .more { padding: .25rem .35rem; font: 400 .62rem/1.3 var(--mono); color: var(--ink-3); }
+  .att .pdfpage { display: grid; gap: .2rem; padding: .45rem .5rem; font: 400 .62rem/1.35 var(--mono); color: var(--ink-2); }
+  .att .pdfpage span:first-child { font-weight: 500; color: var(--ink); letter-spacing: .04em; }
+  .msg .cap { display: block; }
+
 </style>
 </head>
 <body>
@@ -99,6 +120,13 @@
 
   <section class="exhibit" aria-labelledby="ex-a">
     <header><span id="ex-a">Exhibit A · Replay of four chats</span><span class="dummy">Dummy data</span></header>
+    <div class="langbar">
+      <span>Chats in</span>
+      <div class="seg" role="group" aria-label="Chat language">
+        <button class="btn" type="button" id="lang-en" aria-pressed="false">English</button>
+        <button class="btn" type="button" id="lang-hi" aria-pressed="false">Hindi + English</button>
+      </div>
+    </div>
     <div class="vcap"><div><p class="kicker" id="vkick">WhatsApp purchase agent · replay</p><h2 id="vtitle">Offer 1: a lot of 40 laptops</h2></div><p class="kicker">vero.co.in</p></div>
     <div class="stage replay">
       <div class="phone" aria-label="Chat with a trader">
@@ -125,7 +153,7 @@
       </div>
     </div>
   </section>
-  <p class="caption">The chats, prices and names are made up. The first three offers follow the steps the client's agent takes. "Distributor order" shows the same engine set up for incoming retail orders: an example of how we would configure it for a distributor, not a client deployment.</p>
+  <p class="caption">The chats, prices and names are made up. The first three follow the steps the client's agent takes, with text, photos, Excel sheets and PDF lists in the same chat. "Distributor order" shows the same engine set up for incoming retail orders: an example of how we would configure it for a distributor, not a client deployment. Switch the chats between English (prices in US dollars) and Hindi + English (prices in rupees).</p>
 
   <div style="height:2rem"></div>
 
@@ -250,105 +278,166 @@
 <script>
 (function () {
   "use strict";
+
+  /* Language: ?lang=en | ?lang=hi wins; otherwise visitors in India see Hindi + English chats, everyone else English. */
+  function detectLang() {
+    try {
+      var p = (new URLSearchParams(location.search).get("lang") || "").toLowerCase();
+      if (p === "en" || p === "hi") return p;
+    } catch (e) {}
+    try {
+      var tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
+      if (tz === "Asia/Kolkata" || tz === "Asia/Calcutta") return "hi";
+    } catch (e) {}
+    return "en";
+  }
+  var LANG = detectLang();
+
   var EMPTY = { "Model": null, "Processor": null, "RAM / storage": null, "Quantity": null, "Asking price": null, "Battery health": null, "Grade": null, "Chargers": null, "Faults": null, "Target price": null, "Agent's offer": null, "Buyer's ceiling": null, "Status": null };
-
   var ORDER_FIELDS = ["Retailer", "Line 1", "Line 2", "Line 3", "Line 4", "Delivery", "Order value", "Credit check", "Status"];
-  var SCN = {
-    deal: {
-      title: "Offer 1: a lot of 40 laptops", trader: "Rahul Traders", id: "Offer #1042",
-      steps: [
-        { k: "in", t: "10:02", x: "bhai 40 pc dell 5490 i5 8th 8/256 available, 14500 each",
-          set: { "Model": "Dell Latitude 5490", "Processor": "Intel i5, 8th gen", "RAM / storage": "8 GB / 256 GB SSD", "Quantity": "40", "Asking price": "₹14,500 per unit", "Status": ["Reading offer", "work"] },
-          now: "<b>Reads the offer.</b> Model, processor, RAM, storage, quantity and price pulled out of one loose line." },
-        { k: "note", x: "Missing: battery, grade, chargers, faults",
-          now: "<b>Four details are missing.</b> The agent will ask for all of them in one message." },
-        { k: "out", t: "10:02", x: "Thanks Rahul ji. To price this right, please share:\n1. Battery health (above 70%?)\n2. Grade split (A / B / C)\n3. Chargers included?\n4. Any screen, keyboard or hinge issues?",
-          set: { "Status": ["Waiting for details", "work"] } },
-        { k: "in", t: "10:09", x: "battery 75+ sab. grade A 30, B 10. charger hai. 2 pc keyboard issue",
-          set: { "Battery health": "75%+ on all", "Grade": "30 × A, 10 × B", "Chargers": "Included", "Faults": "2 units, keyboard" },
-          now: "<b>Details in.</b> The offer is complete." },
-        { k: "note", x: "Buying sheet: A ₹13,200 · B ₹11,800 · keyboard −₹600",
-          set: { "Target price": "₹12,820 per unit (blended)", "Buyer's ceiling": "₹13,200 per unit", "Status": ["Negotiating", "work"] },
-          now: "<b>Prices it.</b> 30 × ₹13,200 + 10 × ₹11,800 − 2 × ₹600, over 40 units = ₹12,820 target. Ceiling set by the buyer: ₹13,200." },
-        { k: "out", t: "10:10", x: "For this mix we can do ₹12,180 per unit for all 40 (30 A, 10 B, 2 with keyboard issue).",
-          set: { "Agent's offer": "₹12,180 (opening, 5% below target)" },
-          now: "<b>Opens below target.</b> The opening counter is 5% under the target price." },
-        { k: "in", t: "10:14", x: "nahi bhai, 13800 se kam nahi hoga" },
-        { k: "out", t: "10:14", x: "Understood. Our best is ₹12,820 per unit for the full lot of 40.",
-          set: { "Agent's offer": "₹12,820 (target)" },
-          now: "<b>Moves to target.</b> Never past the ceiling." },
-        { k: "in", t: "10:21", x: "13200 final kar do, 40 ka lot" },
-        { k: "note", x: "₹13,200 is within the ceiling · sent to buyer for approval",
-          set: { "Status": ["Waiting for buyer", "esc"] },
-          now: "<b>A human decides.</b> The price is inside the limit, so the agent asks a buyer to approve. It never confirms a purchase on its own." },
-        { k: "buyer", t: "10:23", x: "Approved in the sheet", who: "Buyer · Arjun",
-          now: "<b>Buyer approves</b> with one tap in the control sheet." },
-        { k: "out", t: "10:23", x: "Done: ₹13,200 × 40 units. Our team will confirm pickup and payment shortly. Thank you!",
-          set: { "Agent's offer": "₹13,200 × 40 = ₹5,28,000", "Status": ["Won · logged", "won"] },
-          now: "<b>Logged as won.</b> ₹52,000 below the trader's first ask, with every message on record." }
-      ]
-    },
-    esc: {
-      title: "Offer 2: a lot too big for the agent", trader: "Shree Infotech", id: "Offer #1043",
-      steps: [
-        { k: "in", t: "11:40", x: "500 pc mix lot HP Dell Lenovo, i5 i7 6th to 10th gen. 9 lakh for all. list baad mein bhejta hoon",
-          set: { "Model": "Mixed: HP, Dell, Lenovo", "Processor": "i5 / i7, 6th–10th gen", "Quantity": "500", "Asking price": "₹9,00,000 for the lot", "Status": ["Reading offer", "work"] },
-          now: "<b>Reads the offer.</b> A mixed lot of 500 with no model list." },
-        { k: "note", x: "500 units is above the agent's limit of 100 · no unit list",
-          set: { "Status": ["Escalated to buyer", "esc"] },
-          now: "<b>Knows its limits.</b> Large or unclear lots go straight to a buyer. The agent does not negotiate them." },
-        { k: "out", t: "11:40", x: "Thanks, that's a big lot. Our buyer will call you today. Meanwhile, could you send the model-wise list?" },
-        { k: "buyer", t: "11:42", x: "Escalation picked up · calling the trader", who: "Buyer · Arjun",
-          set: { "Buyer's ceiling": "Buyer handles" },
-          now: "<b>Buyer takes over</b> with the full chat and the parsed details already in the sheet." }
-      ]
-    },
-    order: {
-      title: "Example: a distributor's retail order", trader: "Sai Kirana Stores", role: "Retailer", id: "Order #5518", tab: "Orders tab", fields: ORDER_FIELDS, example: true,
-      steps: [
-        { k: "in", t: "08:12", x: "bhaiya kal ke liye: parle g 5rs 10 case, marie 5 case, tata salt 1kg 20 pkt, surf excel 1kg 12",
-          set: { "Retailer": "Sai Kirana Stores (R-2231)", "Line 1": "Parle-G ₹5 · 10 cases", "Line 2": "Marie · 5 cases (pack size?)", "Line 3": "Tata Salt 1 kg · 20 packs", "Line 4": "Surf Excel 1 kg · 12 packs", "Delivery": "Tomorrow", "Status": ["Reading order", "work"] },
-          now: "<b>Reads the order.</b> Four lines in loose Hinglish, matched to the distributor's product list." },
-        { k: "note", x: "Price list: Marie has two pack sizes · Surf Excel 1 kg: 8 in stock",
-          now: "<b>Checks the price list and stock.</b> One item is unclear and one is short." },
-        { k: "out", t: "08:12", x: "Thanks Sai ji. Two quick checks:\n1. Marie: Britannia Marie Gold 120 g or 250 g?\n2. Surf Excel 1 kg: 8 in stock now. Send 8 tomorrow and 4 on Friday?",
-          set: { "Status": ["Waiting for retailer", "work"] } },
-        { k: "in", t: "08:20", x: "120g. haan theek hai, 8 abhi",
-          set: { "Line 2": "Marie Gold 120 g · 5 cases", "Line 4": "Surf Excel 1 kg · 8 now, 4 Friday" },
-          now: "<b>Answers in.</b> Every line is now clear." },
-        { k: "note", x: "Order value ₹18,640 · within the retailer's credit limit",
-          set: { "Order value": "₹18,640 at today's price list", "Credit check": "Within limit (₹50,000)" },
-          now: "<b>Prices it and checks credit.</b> Orders over a set value, or from new retailers, would wait for a salesperson's OK." },
-        { k: "out", t: "08:21", x: "Order confirmed for tomorrow: Parle-G 10 cases, Marie Gold 120 g 5 cases, Tata Salt 1 kg 20, Surf Excel 1 kg 8 (4 more on Friday). Total ₹18,640.",
-          set: { "Status": ["Confirmed · in dispatch sheet", "won"] },
-          now: "<b>Logged for dispatch.</b> The warehouse sees a clean order, line by line. Nobody re-typed it." }
-      ]
-    },
-    hand: {
-      title: "Offer 3: a buyer steps in by hand", trader: "Mehta Computers", id: "Offer #1044",
-      steps: [
-        { k: "in", t: "16:05", x: "T480 i5 8th 8/256 qty 15 @ 13900",
-          set: { "Model": "Lenovo ThinkPad T480", "Processor": "Intel i5, 8th gen", "RAM / storage": "8 GB / 256 GB SSD", "Quantity": "15", "Asking price": "₹13,900 per unit", "Status": ["Reading offer", "work"] },
-          now: "<b>Reads the offer.</b>" },
-        { k: "out", t: "16:05", x: "Thanks! Please share battery health, grade split (A/B/C), chargers, and any faults.",
-          set: { "Status": ["Waiting for details", "work"] } },
-        { k: "buyer", t: "16:07", x: "Mehta ji, call karta hoon 5 min mein", who: "Buyer · Arjun (typed by hand)",
-          now: "<b>A buyer types in the chat.</b> This trader is a regular, so the buyer wants to handle it." },
-        { k: "note", x: "Buyer replied by hand · agent paused for this trader for 12 hours",
-          set: { "Status": ["Agent paused until 04:07", "paused"] },
-          pause: true,
-          now: "<b>The agent steps back</b> for 12 hours, so the trader never gets two voices at once." }
-      ]
-    }
-  };
+  var DEAL_FIELDS = ["Model", "Processor", "RAM / storage", "Quantity", "Asking price", "Battery health", "Grade", "Chargers", "Faults", "Pricing", "Target price", "Agent's offer", "Buyer's ceiling", "Status"];
+  var ESC_FIELDS = ["File", "Model", "Processor", "Quantity", "Asking price", "Flags", "Buyer's ceiling", "Status"];
+  var KEYS = ["deal", "esc", "hand", "order"];
 
+  function build(lang) {
+    function L(hi, en) { return lang === "en" ? en : hi; }
+    var BUYER = "Buyer · " + L("Arjun", "Sam");
+    return {
+      deal: {
+        title: "Offer 1: a lot of 40 laptops", trader: L("Rahul Traders", "Omar"), id: "Offer #1042", fields: DEAL_FIELDS,
+        steps: [
+          { k: "in", t: "10:02", x: L("bhai 40 pc dell 5490 i5 8th 8/256 available, 14500 each", "40 pcs Dell 5490 i5 8th gen 8/256 available, $175 each"),
+            set: { "Model": "Dell Latitude 5490", "Processor": "Intel i5, 8th gen", "RAM / storage": "8 GB / 256 GB SSD", "Quantity": "40", "Asking price": L("₹14,500 per unit", "$175 per unit"), "Status": ["Reading offer", "work"] },
+            now: "<b>Reads the offer.</b> Model, processor, RAM, storage, quantity and price pulled out of one loose line." },
+          { k: "in", t: "10:02", att: { type: "img", alt: "Photo of a laptop's spec label: Dell Latitude 5490, Core i5-8350U, 8GB, 256GB SSD", label: ["DELL Latitude 5490", "Core i5-8350U", "8GB RAM · 256GB SSD", "Service Tag 7XK••••"] },
+            x: L("ye dekho", "photo attached"),
+            set: { "Model": "Dell Latitude 5490 (label in photo)", "Processor": "Intel i5-8350U, 8th gen" },
+            now: "<b>Reads the photo too.</b> The label confirms the exact model and processor." },
+          { k: "note", x: "Missing: battery, grade, chargers, faults",
+            now: "<b>Four details are missing.</b> The agent will ask for all of them in one message." },
+          { k: "out", t: "10:03", x: L("Thanks Rahul ji.", "Thanks Omar.") + " To price this right, please share:\n1. Battery health (above 70%?)\n2. Grade split (A / B / C)\n3. Chargers included?\n4. Any screen, keyboard or hinge issues?",
+            set: { "Status": ["Waiting for details", "work"] } },
+          { k: "in", t: "10:09", att: { type: "xlsx", name: "40pcs_battery_grade.xlsx", meta: "1 sheet · 40 rows",
+              rows: [["#", "Tag", "Batt.", "Grade", "Note"], ["1", "7XK2QH2", "86%", "A", ""], ["2", "7XK9LM2", "78%", "B", ""], ["3", "7XK4TP2", "81%", "A", "kbd"]], more: "+ 37 more rows" },
+            x: L("details sheet mein hai. charger sab ke saath", "details in the sheet. chargers with all"),
+            set: { "Battery health": "75%+ on all 40 (lowest 76%)", "Grade": "30 × A, 10 × B", "Chargers": "Included", "Faults": "2 units, keyboard (rows 3 and 27)" },
+            now: "<b>Reads all 40 rows.</b> Battery, grade and faults per unit, added up for pricing." },
+          { k: "note", x: L("Buying sheet: A ₹13,200 · B ₹11,800 · keyboard −₹600", "Buying sheet: A $160 · B $142 · keyboard −$10"),
+            set: { "Pricing": L("30 × ₹13,200 + 10 × ₹11,800 − 2 × ₹600 = ₹5,12,800", "30 × $160 + 10 × $142 − 2 × $10 = $6,200"), "Target price": L("₹12,820 per unit (₹5,12,800 ÷ 40)", "$155 per unit ($6,200 ÷ 40)"), "Buyer's ceiling": L("₹13,200 per unit", "$160 per unit"), "Status": ["Negotiating", "work"] },
+            now: L("<b>Prices it.</b> Each grade at its buying-sheet price, less the keyboard fixes: ₹5,12,800 for 40, so ₹12,820 a unit. Ceiling set by the buyer: ₹13,200.", "<b>Prices it.</b> Each grade at its buying-sheet price, less the keyboard fixes: $6,200 for 40, so $155 a unit. Ceiling set by the buyer: $160.") },
+          { k: "out", t: "10:10", x: L("Thanks, got all 40 from your sheet. For this mix we can do ₹12,180 per unit for all 40 (30 A, 10 B, 2 with keyboard issue).", "Thanks, got all 40 from your sheet. For this mix we can do $147 per unit for all 40 (30 A, 10 B, 2 with keyboard issues)."),
+            set: { "Agent's offer": L("₹12,180 (opening, 5% below target)", "$147 (opening, 5% below target)") },
+            now: "<b>Opens below target.</b> The opening counter is 5% under the target price." },
+          { k: "in", t: "10:14", x: L("nahi bhai, 13800 se kam nahi hoga", "no, can't go below $168") },
+          { k: "out", t: "10:14", x: L("Understood. Our best is ₹12,820 per unit for the full lot of 40.", "Understood. Our best is $155 per unit for the full lot of 40."),
+            set: { "Agent's offer": L("₹12,820 (target)", "$155 (target)") },
+            now: "<b>Moves to target.</b> Never past the ceiling." },
+          { k: "in", t: "10:21", x: L("13200 final kar do, 40 ka lot", "$160 final for the lot of 40") },
+          { k: "note", x: L("₹13,200", "$160") + " is within the ceiling · sent to buyer for approval",
+            set: { "Status": ["Waiting for buyer", "esc"] },
+            now: "<b>A human decides.</b> The price is inside the limit, so the agent asks a buyer to approve. It never confirms a purchase on its own." },
+          { k: "buyer", t: "10:23", x: "Approved in the sheet", who: BUYER,
+            now: "<b>Buyer approves</b> with one tap in the control sheet." },
+          { k: "out", t: "10:23", x: L("Done: ₹13,200 × 40 units.", "Done: $160 × 40 units.") + " Our team will confirm pickup and payment shortly. Thank you!",
+            set: { "Agent's offer": L("₹13,200 × 40 = ₹5,28,000", "$160 × 40 = $6,400"), "Status": ["Won · logged", "won"] },
+            now: L("<b>Logged as won.</b> A text, a photo and a sheet became one priced deal, ₹52,000 below the trader's first ask.", "<b>Logged as won.</b> A text, a photo and a sheet became one priced deal, $600 below the trader's first ask.") }
+        ]
+      },
+      esc: {
+        title: "Offer 2: a lot too big for the agent", trader: L("Shree Infotech", "Daniel"), id: "Offer #1043", fields: ESC_FIELDS,
+        steps: [
+          { k: "in", t: "11:40", att: { type: "pdf", name: "Stock_list_500_mixed.pdf", meta: "12 pages",
+              lines: ["STOCK LIST · 500 UNITS", "HP EliteBook 840 G5 · i5-8350U · 8/256 · 140", "Dell Latitude 7490 · i5-8350U · 8/256 · 120", "Lenovo ThinkPad T480 · i9 · 8/256 · 1  …"] },
+            x: L("500 pc mix lot, list bheji hai. 9 lakh for all", "500 pcs mixed lot, list attached. $11,000 for all"),
+            set: { "File": "Stock_list_500_mixed.pdf (12 pages)", "Model": "Mixed: HP, Dell, Lenovo (14 models)", "Processor": "i5 / i7, 6th–10th gen", "Quantity": "500", "Asking price": L("₹9,00,000 for the lot", "$11,000 for the lot"), "Status": ["Reading file", "work"] },
+            now: "<b>Reads the 12-page PDF.</b> 500 units across 14 models, pulled into the sheet." },
+          { k: "note", x: "500 units is above the agent's limit of 100 · 3 models have no buying-sheet price · row 212: T480 with an i9",
+            set: { "Flags": "Above the 100-unit limit · 3 models not in the buying sheet · row 212: Lenovo never sold a T480 with an i9", "Status": ["Escalated to buyer", "esc"] },
+            now: "<b>Knows its limits.</b> Large lots go straight to a buyer, with the list already read and the problems marked. The agent does not negotiate them." },
+          { k: "out", t: "11:41", x: "Thanks, we've read the full list. It's a big lot, so our buyer will call you today. One check: row 212 says T480 with an i9, but the T480 doesn't come with an i9. Could you confirm?" },
+          { k: "buyer", t: "11:42", x: "Escalation picked up · calling the trader", who: BUYER,
+            set: { "Buyer's ceiling": "Buyer handles" },
+            now: "<b>Buyer takes over</b> with the chat, the parsed list and the flags already in the sheet." }
+        ]
+      },
+      hand: {
+        title: "Offer 3: a buyer steps in by hand", trader: L("Mehta Computers", "Hassan"), id: "Offer #1044",
+        steps: [
+          { k: "in", t: "16:05", x: L("T480 i5 8th 8/256 qty 15 @ 13900", "T480 i5 8th 8/256 qty 15 @ $170"),
+            set: { "Model": "Lenovo ThinkPad T480", "Processor": "Intel i5, 8th gen", "RAM / storage": "8 GB / 256 GB SSD", "Quantity": "15", "Asking price": L("₹13,900 per unit", "$170 per unit"), "Status": ["Reading offer", "work"] },
+            now: "<b>Reads the offer.</b>" },
+          { k: "out", t: "16:05", x: "Thanks! Please share battery health, grade split (A/B/C), chargers, and any faults.",
+            set: { "Status": ["Waiting for details", "work"] } },
+          { k: "buyer", t: "16:07", x: L("Mehta ji, call karta hoon 5 min mein", "Hassan, I'll call you in 5 min"), who: BUYER + " (typed by hand)",
+            now: "<b>A buyer types in the chat.</b> This trader is a regular, so the buyer wants to handle it." },
+          { k: "note", x: "Buyer replied by hand · agent paused for this trader for 12 hours",
+            set: { "Status": ["Agent paused until 04:07", "paused"] },
+            pause: true,
+            now: "<b>The agent steps back</b> for 12 hours, so the trader never gets two voices at once." }
+        ]
+      },
+      order: {
+        title: "Example: a distributor's retail order", trader: L("Sai Kirana Stores", "Corner Mart"), role: "Retailer", id: "Order #5518", tab: "Orders tab", fields: ORDER_FIELDS, example: true,
+        steps: [
+          { k: "in", t: "08:12", x: L("bhaiya kal ke liye: parle g 5rs 10 case, marie 5 case, tata salt 1kg 20 pkt, surf excel 1kg 12", "for tomorrow: basmati rice 5kg 10 bags, sunflower oil 5 cartons, sugar 1kg 20 packs, dish soap 12"),
+            set: { "Retailer": L("Sai Kirana Stores (R-2231)", "Corner Mart (R-2231)"), "Line 1": L("Parle-G ₹5 · 10 cases", "Basmati rice 5 kg · 10 bags"), "Line 2": L("Marie · 5 cases (pack size?)", "Sunflower oil · 5 cartons (bottle size?)"), "Line 3": L("Tata Salt 1 kg · 20 packs", "Sugar 1 kg · 20 packs"), "Line 4": L("Surf Excel 1 kg · 12 packs", "Dish soap 500 ml · 12 bottles"), "Delivery": "Tomorrow", "Status": ["Reading order", "work"] },
+            now: L("<b>Reads the order.</b> Four lines in loose Hinglish, matched to the distributor's product list.", "<b>Reads the order.</b> Four loose lines, matched to the distributor's product list.") },
+          { k: "note", x: L("Price list: Marie has two pack sizes · Surf Excel 1 kg: 8 in stock", "Price list: sunflower oil comes in 1 L and 1.8 L · dish soap 500 ml: 8 in stock"),
+            now: "<b>Checks the price list and stock.</b> One item is unclear and one is short." },
+          { k: "out", t: "08:12", x: L("Thanks Sai ji. Two quick checks:\n1. Marie: Britannia Marie Gold 120 g or 250 g?\n2. Surf Excel 1 kg: 8 in stock now. Send 8 tomorrow and 4 on Friday?", "Thanks! Two quick checks:\n1. Sunflower oil: 1 L or 1.8 L bottles?\n2. Dish soap 500 ml: 8 in stock now. Send 8 tomorrow and 4 on Friday?"),
+            set: { "Status": ["Waiting for retailer", "work"] } },
+          { k: "in", t: "08:20", x: L("120g. haan theek hai, 8 abhi", "1L. yes fine, 8 now"),
+            set: { "Line 2": L("Marie Gold 120 g · 5 cases", "Sunflower oil 1 L · 5 cartons"), "Line 4": L("Surf Excel 1 kg · 8 now, 4 Friday", "Dish soap 500 ml · 8 now, 4 Friday") },
+            now: "<b>Answers in.</b> Every line is now clear." },
+          { k: "note", x: L("Order value ₹18,640", "Order value $642") + " · within the retailer's credit limit",
+            set: { "Order value": L("₹18,640 at today's price list", "$642 at today's price list"), "Credit check": L("Within limit (₹50,000)", "Within limit ($2,000)") },
+            now: "<b>Prices it and checks credit.</b> Orders over a set value, or from new retailers, would wait for a salesperson's OK." },
+          { k: "out", t: "08:21", x: L("Order confirmed for tomorrow: Parle-G 10 cases, Marie Gold 120 g 5 cases, Tata Salt 1 kg 20, Surf Excel 1 kg 8 (4 more on Friday). Total ₹18,640.", "Order confirmed for tomorrow: basmati rice 5 kg 10 bags, sunflower oil 1 L 5 cartons, sugar 1 kg 20, dish soap 500 ml 8 (4 more on Friday). Total $642."),
+            set: { "Status": ["Confirmed · in dispatch sheet", "won"] },
+            now: "<b>Logged for dispatch.</b> The warehouse sees a clean order, line by line. Nobody re-typed it." }
+        ]
+      }
+    };
+  }
+
+  var SCN = build(LANG);
   var chat = document.getElementById("chat"), sheet = document.getElementById("sheet"),
       now = document.getElementById("now"), toggles = document.getElementById("toggles"),
       playBtn = document.getElementById("play"), stepBtn = document.getElementById("step");
   var cur = "deal", idx = 0, data = {}, timer = null, playing = false, paused = false;
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+
+  // A drawn stand-in for a phone photo of a laptop's spec label (no real image is used).
+  function photoSvg(lines) {
+    var t = "";
+    lines.forEach(function (l, i) {
+      t += "<text x='70' y='" + (52 + i * 15) + "' font-family='IBM Plex Mono, Courier New, monospace' font-size='" + (i === 0 ? 11 : 9.5) + "' font-weight='" + (i === 0 ? 600 : 400) + "' fill='#1E1E1C'>" + esc(l) + "</text>";
+    });
+    var bars = "";
+    for (var b = 0; b < 26; b++) { bars += "<rect x='" + (70 + b * 4.2) + "' y='118' width='" + (b % 3 === 0 ? 2.4 : 1.2) + "' height='14' fill='#1E1E1C'/>"; }
+    return "<svg viewBox='0 0 300 170' xmlns='http://www.w3.org/2000/svg' aria-hidden='true'>" +
+      "<defs><linearGradient id='lid' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='#55585C'/><stop offset='1' stop-color='#2C2E31'/></linearGradient></defs>" +
+      "<rect width='300' height='170' fill='url(#lid)'/>" +
+      "<rect x='0' y='150' width='300' height='20' fill='#202224'/>" +
+      "<g transform='rotate(-3 150 90)'><rect x='58' y='30' width='184' height='112' rx='3' fill='#F4F3EE'/>" +
+      "<rect x='58' y='30' width='184' height='10' rx='3' fill='#D8D6CE'/>" + t + bars + "</g>" +
+      "<circle cx='262' cy='22' r='26' fill='#FFFFFF' opacity='0.08'/></svg>";
+  }
+
+  function attHtml(a) {
+    if (a.type === "img") return "<span class='att photo' role='img' aria-label='" + esc(a.alt) + "'>" + photoSvg(a.label) + "</span>";
+    var h = "<span class='att file " + a.type + "'><span class='fhead'><span class='badge'>" + (a.type === "xlsx" ? "XLSX" : "PDF") + "</span><span class='fname'>" + esc(a.name) + "<small>" + esc(a.meta) + "</small></span></span>";
+    if (a.rows) {
+      h += "<table class='mini'>";
+      a.rows.forEach(function (r, i) { h += "<tr>" + r.map(function (c) { return (i === 0 ? "<th>" : "<td>") + esc(c) + (i === 0 ? "</th>" : "</td>"); }).join("") + "</tr>"; });
+      h += "</table>";
+      if (a.more) h += "<span class='more'>" + esc(a.more) + "</span>";
+    }
+    if (a.lines) h += "<span class='pdfpage'>" + a.lines.map(function (l) { return "<span>" + esc(l) + "</span>"; }).join("") + "</span>";
+    return h + "</span>";
+  }
 
   function drawSheet(changed) {
     var html = "";
@@ -366,9 +455,9 @@
     var el = document.createElement("div");
     if (s.k === "note") { el.className = "note"; el.textContent = s.x; }
     else {
-      el.className = "msg " + (s.k === "in" ? "in" : "out") + (s.k === "buyer" ? " buyer" : "");
+      el.className = "msg " + (s.k === "in" ? "in" : "out") + (s.k === "buyer" ? " buyer" : "") + (s.att ? " has-att" : "");
       var who = s.k === "in" ? SCN[cur].trader : (s.who || (SCN[cur].example ? "Order agent" : "Purchase agent"));
-      el.innerHTML = "<span class='who'>" + esc(who) + "</span>" + esc(s.x) + "<time>" + esc(s.t || "") + "</time>";
+      el.innerHTML = "<span class='who'>" + esc(who) + "</span>" + (s.att ? attHtml(s.att) : "") + (s.x ? "<span class='cap'>" + esc(s.x) + "</span>" : "") + "<time>" + esc(s.t || "") + "</time>";
     }
     chat.appendChild(el);
     chat.scrollTop = chat.scrollHeight;
@@ -381,7 +470,7 @@
     if (s.pause) paused = true;
     drawSheet(changed);
     if (s.now) now.innerHTML = s.now;
-    window.dispatchEvent(new CustomEvent("replaystep", { detail: { scn: cur, idx: idx, step: s } }));
+    window.dispatchEvent(new CustomEvent("replaystep", { detail: { scn: cur, idx: idx, step: s, lang: LANG } }));
   }
 
   function reset(name) {
@@ -392,7 +481,7 @@
     document.getElementById("sheet-tab").textContent = "Control sheet · " + (SCN[name].tab || "Offers tab");
     document.getElementById("sheet-id").textContent = SCN[name].id;
     document.getElementById("vtitle").textContent = SCN[name].title;
-    Object.keys(SCN).forEach(function (n) { document.getElementById("s-" + n).setAttribute("aria-pressed", n === name ? "true" : "false"); });
+    KEYS.forEach(function (n) { var b = document.getElementById("s-" + n); if (b) b.setAttribute("aria-pressed", n === name ? "true" : "false"); });
     drawSheet([]);
   }
 
@@ -410,7 +499,7 @@
     } else { apply(s); idx++; if (cb) cb(false); }
   }
 
-  function delayFor(s) { var base = window.__speed || 1; var d = s.k === "note" ? 2600 : s.k === "in" ? 2400 : 2800; return reduce ? 400 : d * base; }
+  function delayFor(s) { var base = window.__speed || 1; var d = s.k === "note" ? 2600 : s.att ? 3200 : s.k === "in" ? 2400 : 2800; return reduce ? 400 : d * base; }
 
   function loop(done) {
     if (!playing) return;
@@ -427,14 +516,27 @@
   }
   function stop() { playing = false; clearTimeout(timer); var t = chat.querySelector(".typing"); if (t) t.remove(); playBtn.textContent = "Play replay"; }
 
+  function setLang(l, keep) {
+    LANG = l; SCN = build(l);
+    ["en", "hi"].forEach(function (x) { var b = document.getElementById("lang-" + x); if (b) b.setAttribute("aria-pressed", x === l ? "true" : "false"); });
+    if (keep) {
+      try { var u = new URL(location.href); u.searchParams.set("lang", l); history.replaceState(null, "", u.toString()); } catch (e) {}
+    }
+  }
+
   playBtn.addEventListener("click", function () { playing ? stop() : play(); });
   stepBtn.addEventListener("click", function () { stop(); if (idx >= SCN[cur].steps.length) reset(cur); next(); });
-  Object.keys(SCN).forEach(function (n) { document.getElementById("s-" + n).addEventListener("click", function () { reset(n); play(); }); });
+  KEYS.forEach(function (n) { var b = document.getElementById("s-" + n); if (b) b.addEventListener("click", function () { reset(n); play(); }); });
+  ["en", "hi"].forEach(function (x) {
+    var b = document.getElementById("lang-" + x);
+    if (b) b.addEventListener("click", function () { if (LANG === x) return; setLang(x, true); showAll(cur); });
+  });
 
   // At rest: the full first conversation is visible.
-  showAll("deal");
+  setLang(LANG, false);
+  showAll(cur);
 
-  // Recording mode for the demo video.
+  // Recording mode for the demo videos. Add ?lang=en or ?lang=hi to pick the chat language.
   window.__runVideo = function (onEnd, opts) {
     opts = opts || {};
     document.body.classList.add("video-mode");
@@ -451,7 +553,7 @@
       reset(order[i]);
       setTimeout(function () { play(function () { setTimeout(function () { run(i + 1); }, 3500); }); }, 1200);
     }
-    var intro = opts.intro || ["Vero Labs · case replay · dummy data", "A WhatsApp agent that handles traders' laptop offers", "Built for a listed IT hardware refurbisher. It reads each offer, asks for what's missing, prices it against the buying sheet and hands every deal to a buyer to approve."];
+    var intro = opts.intro || ["Vero Labs · case replay · dummy data", "A WhatsApp agent that handles traders' laptop offers", "Built for a listed IT hardware refurbisher. It reads each offer, whether text, photos, Excel or PDF, asks for what's missing, prices it against the buying sheet and hands every deal to a buyer to approve."];
     showCard(intro[0], intro[1], intro[2], 7000, function () { run(0); });
   };
   if (location.hash === "#video") { window.__runVideo(); }
